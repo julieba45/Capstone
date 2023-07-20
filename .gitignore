@@ -4,3 +4,8 @@ __pycache__/
 .venv
 .DS_Store
 .vscode/
+instance/dev.db
+Pipfile
+Pipfile.lock
+.Pipfile.lock
+.Pipfile
