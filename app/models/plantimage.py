@@ -3,16 +3,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 
-class OrderPlant(db.Model):
-    __tablename__ = 'order_plants'
+class PlantImage(db.Model):
+    __tablename__ = 'plantimages'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    orderId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('orders.id')), nullable=False)
     plantId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('plants.id')), nullable=False)
-    quantity = db.Column(db.Integer, nullable=False)
+    pictureURL = db.Column(db.Text, nullable=False)
+    isPrimary = db.Column(db.Boolean)
 
-    order = db.relationship('Order', back_populates='order_plants')
-    plant = db.relationship('Plant', back_populates='order_plants')
+    plant = db.relationship('Plant', back_populates='images')

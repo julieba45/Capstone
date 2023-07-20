@@ -10,7 +10,11 @@ class Order(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     isCheckedOut = db.Column(db.Boolean, default=False)
     createdAt = db.Column(db.DateTime, default=datetime.utcnow)
     updatedAt = db.Column(db.DateTime, default=datetime.utcnow)
+
+    user = db.relationship('User', back_populates='orders')
+    order_plants = db.relationship('OrderPlant', back_populates='order', cascade="all, delete-orphan")
+    payments = db.relationship('Payment', back_populates='order', cascade="all, delete-orphan")
