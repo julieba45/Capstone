@@ -19,3 +19,8 @@ class Payment(db.Model):
 
     user = db.relationship('User', back_populates='payments')
     order = db.relationship('Order', back_populates='payments')
+
+    def to_dict(self):
+        return{
+            'paymentAmount': self.paymentAmount
+        }

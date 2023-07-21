@@ -18,3 +18,14 @@ class Order(db.Model):
     user = db.relationship('User', back_populates='orders')
     order_plants = db.relationship('OrderPlant', back_populates='order', cascade="all, delete-orphan")
     payments = db.relationship('Payment', back_populates='order', cascade="all, delete-orphan")
+
+    def to_dict(self):
+        payment = self.payments[0] if self.payments else None
+        print('HEYYYYYYYYY---------', type(self.order_plants))
+        return {
+            'id': self.id,
+            'userId': self.userId,
+            'isCheckedOut': self.isCheckedOut,
+            'orderPlants': [orderplants.to_dict() for orderplants in self.order_plants],
+            'payment': self.payments[0].to_dict() if self.payments else None
+        }
