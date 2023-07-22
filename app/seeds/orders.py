@@ -7,14 +7,17 @@ def seed_orders():
     order1 = Order(
         userId=1,
         isCheckedOut=True,
+        status='Completed'
     )
     order2 = Order(
         userId=2,
         isCheckedOut=True,
+        status='Completed'
     )
     order3 = Order(
         userId=3,
         isCheckedOut=True,
+        status='Completed'
     )
 
 
