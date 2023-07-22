@@ -26,6 +26,7 @@ class Favorite(db.Model):
             "userId": self.userId,
             "gardenName": self.gardenName,
             "position": self.position,
+            "plant": self.plant.to_dict(),
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt
         }
