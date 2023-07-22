@@ -32,7 +32,28 @@ def add_payment():
     payment = Payment(orderId=orderId, paymentAmount=payment_amount, userId=current_user_id, location=location)
     db.session.add(payment)
     order.isCheckedOut= True
+    order.status = "Completed"
     session.pop('orderId', None)
     db.session.commit()
 
     return jsonify(payment.to_dict_full())
+
+@payment_routes.route('<int:paymentId>', methods=['DELETE'])
+@login_required
+def delete_payment(paymentId):
+    """
+    Cancel/Delete a payment
+    """
+    payment = Payment.query.get(paymentId)
+
+    if payment is None:
+        return jsonify({'error': 'Payment not found'}), 404
+     #check current user is the owner of the payment
+    if payment.userId != current_user.id:
+        return jsonify({'error': 'Unauthorized to cancel this payment'}), 403
+    order = payment.order
+    order.staus = 'Cancelled'
+
+    db.session.delete(payment)
+    db.session.commit()
+    return jsonify({'message': 'Payment cancelled successfully'}), 200
