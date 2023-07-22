@@ -58,3 +58,43 @@ def add_plant_to_cart():
 
     db.session.commit()
     return jsonify(order.to_dict())
+
+@cart_routes.route('<int:plantId>', methods=['PUT'])
+def update_plant_in_cart(plantId):
+    """
+    Updates the quantity of a specific plant in the user's cart
+    """
+    data = request.get_json()
+    quantity = data.get('quantity',1)
+    orderId = session.get('orderId')
+
+    if orderId is None:
+        return jsonify({'error': 'No orderId, no order placed yet'}), 404
+    order = Order.query.get(orderId)
+    if order is None:
+        return jsonify({'error': 'Order not found'}), 404
+    order_plant = OrderPlant.query.filter_by(orderId=order.id, plantId=plantId).first()
+    if order_plant is None:
+        return jsonify({'error':'Plant not found in order'}), 404
+
+    order_plant.quantity = quantity
+    db.session.commit()
+    return jsonify({'message':'Cart updated successfully', 'cart': order.to_dict()}), 200
+
+
+@cart_routes.route('<int:plantId>', methods=['DELETE'])
+def remove_plant_in_cart(plantId):
+    orderId = session.get('orderId')
+
+    order = Order.query.get(orderId)
+    if order is None:
+        return jsonify({'error': 'Order not found'})
+
+    order_plant = OrderPlant.query.filter_by(orderId=order.id, plantId=plantId).first()
+    if order_plant is None:
+        return jsonify({'error':'Plant not found in order'}), 404
+
+    db.session.delete(order_plant)
+    db.session.commit()
+
+    return jsonify({'message':'Plant succesflly removed from your cart'})
