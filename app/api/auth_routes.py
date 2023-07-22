@@ -51,6 +51,7 @@ def logout():
     Logs a user out
     """
     logout_user()
+    session.pop('orderId', None)  # Remove the orderId from the session
     return {'message': 'User logged out'}
 
 
