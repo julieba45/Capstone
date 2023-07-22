@@ -22,6 +22,11 @@ def create_review(plantId):
     if not order:
         return jsonify({'error': 'You must buy a plant before you can review it'}), 403
 
+    #check if the user has already reviewed this plant, one user can only leave one review.
+    existing_review = Review.query.filter_by(userId=current_user.id, plantId=plantId).first()
+    if existing_review:
+        return jsonify({'error': "You have already reviewed this plant"}), 403
+
     if form.validate_on_submit():
         review = Review(
             reviewText=form.data['reviewText'],
