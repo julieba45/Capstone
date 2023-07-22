@@ -16,3 +16,12 @@ class OrderPlant(db.Model):
 
     order = db.relationship('Order', back_populates='order_plants')
     plant = db.relationship('Plant', back_populates='order_plants')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'orderId': self.orderId,
+            'plantId': self.plantId,
+            'quantity': self.quantity,
+            'plant': self.plant.to_dict()
+        }

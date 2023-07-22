@@ -26,3 +26,18 @@ class Plant(db.Model):
     order_plants = db.relationship('OrderPlant', back_populates='plant')
     reviews = db.relationship('Review', back_populates='plant')
     favorites = db.relationship('Favorite', back_populates='plant')
+
+    def to_dict(self):
+        return{
+            'id': self.id,
+            'name': self.name,
+            'species': self.species,
+            'description': self.description,
+            'careInstructions': self.careInstructions,
+            'wateringFrequency': self.wateringFrequency,
+            'isInBloom': self.isInBloom,
+            'price': self.price,
+            'size': self.size,
+            'createdAt': self.createdAt,
+            'updatedAt': self.updatedAt,
+        }
