@@ -49,3 +49,18 @@ def add_plant_to_favorites():
     db.session.add(favorite)
     db.session.commit()
     return jsonify(favorite.to_dict())
+
+@favorite_routes.route('/<int:favoriteId>', methods=['PUT'])
+def update_favorite(favoriteId):
+    """
+    Update a favorite for the current user
+    """
+    data = request.get_json()
+    favorite = Favorite.query.get(favoriteId)
+    if favorite is None:
+        return jsonify({'error': 'Favorite plant not found'}), 404
+    if favorite.userId != current_user.id:
+        return jsonify({'error': 'Unauthorized, to edit this favorite plant'}), 403
+
+    # favorite.gardenName = data.get('gardenName': favorite.gardenName)
+    ##NEED TO FINISH THIS ROUTE
