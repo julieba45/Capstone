@@ -38,3 +38,20 @@ def create_review(plantId):
         db.session.commit()
         return review.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@review_routes.route('/<int:reviewId>', methods=['DELETE'])
+@login_required
+def delete_review(reviewId):
+    """
+    Delete a review for a specific plant
+    """
+    review = Review.query.get(reviewId)
+    # print('--------------', review)
+    if review is None:
+        return jsonify({'error': 'Review not found'}), 404
+    if review.userId != current_user.id:
+        return jsonify({'error': 'Unauthorized, to delete this review'}), 403 #you are not the author of this review thus you can not delete.
+
+    db.session.delete(review)
+    db.session.commit()
+    return jsonify({"message": "Review deleted successfully"})
