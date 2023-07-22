@@ -13,7 +13,7 @@ class Payment(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     orderId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('orders.id')), nullable=False)
     paymentAmount = db.Column(db.Float, nullable=False)
-    status = db.Column(db.String(50), nullable=False)
+    location = db.Column(db.String(100), nullable=False)
     createdAt = db.Column(db.DateTime, default=datetime.utcnow)
     updatedAt = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -23,4 +23,14 @@ class Payment(db.Model):
     def to_dict(self):
         return{
             'paymentAmount': self.paymentAmount
+        }
+
+    def to_dict_full(self):
+        return {
+            'userId': self.userId,
+            'orderId': self.orderId,
+            'paymentAmount': self.paymentAmount,
+            'location': self.location,
+            'createdAt': self.createdAt,
+            'updatedAt': self.updatedAt
         }
