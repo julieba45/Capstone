@@ -21,6 +21,13 @@ def add_payment():
     current_user_id = current_user.get_id()
 
     order = Order.query.get(orderId)
+    if order is None:
+        return jsonify({'error':'Order not found'}), 404
+
+    total_cost = sum(order_plant.plant.price * order_plant.quantity for order_plant in order.order_plants)
+
+    if payment_amount != total_cost:
+        return jsonify({'error': 'Payment amount does not match totalcost'}), 400
 
     payment = Payment(orderId=orderId, paymentAmount=payment_amount, userId=current_user_id, location=location)
     db.session.add(payment)

@@ -11,7 +11,7 @@ order_routes = Blueprint("order", __name__)
 @login_required
 def checkout():
     """
-    Checks out the user's cart, turning it into an order
+    Checks out the user's cart, just updating user_id from null
     """
     current_user_id = current_user.get_id()
     orderId = session.get('orderId')
