@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Order, Plant, OrderPlant
-from app.models import User, db
+from app.models import Order, db
 from datetime import datetime
 from sqlalchemy import and_
 from .auth_routes import validation_errors_to_error_messages
@@ -23,7 +22,7 @@ def checkout():
         return jsonify({'error': 'Order not found'}), 404
     else:
         order.userId =  current_user_id
-        order.isCheckedOut= True
+        # order.isCheckedOut= True
         db.session.commit()
-        session.pop('orderId', None)
+        # session.pop('orderId', None)
         return jsonify(order.to_dict())

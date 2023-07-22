@@ -8,19 +8,19 @@ def seed_payments():
         userId=1,
         orderId=1,
         paymentAmount=200.0,
-        status='completed',
+        location='California'
     )
     payment2 = Payment(
         userId=2,
         orderId=2,
         paymentAmount=190.0,
-        status='completed',
+        location='California'
     )
     payment3 = Payment(
         userId=3,
         orderId=3,
         paymentAmount=70.0,
-        status='completed',
+        location='California'
     )
 
 
