@@ -66,3 +66,18 @@ def update_favorite(favoriteId):
     favorite.gardenName = data.get('gardenName', favorite.gardenName)
     db.session.commit()
     return jsonify(favorite.to_dict())
+
+@favorite_routes.route('/<int:favoriteId>', methods=['DELETE'])
+@login_required
+def delete_favorite(favoriteId):
+    """
+    Delete a plant from their favorites list
+    """
+    favorite = Favorite.query.get(favoriteId)
+    if favorite is None:
+        return jsonify({'error':'Favorite plant is not found'}), 404
+    if favorite.userId != current_user.id:
+        return jsonify({'error': 'Unauthorized, to delete this favorite plant'}), 403
+    db.session.delete(favorite)
+    db.session.commit()
+    return jsonify({'message': 'Favorite plant successfully deleted'})
