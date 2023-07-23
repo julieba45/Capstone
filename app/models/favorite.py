@@ -19,3 +19,14 @@ class Favorite(db.Model):
 
     user = db.relationship('User', back_populates='favorites')
     plant = db.relationship('Plant', back_populates='favorites')
+
+    def to_dict(self):
+        return {
+            "id":self.id,
+            "userId": self.userId,
+            "gardenName": self.gardenName,
+            "position": self.position,
+            "plant": self.plant.to_dict(),
+            'createdAt': self.createdAt,
+            'updatedAt': self.updatedAt
+        }

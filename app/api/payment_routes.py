@@ -28,6 +28,7 @@ def add_payment():
 
     if payment_amount != total_cost:
         return jsonify({'error': 'Payment amount does not match totalcost'}), 400
+    order.userId =  current_user_id
 
     payment = Payment(orderId=orderId, paymentAmount=payment_amount, userId=current_user_id, location=location)
     db.session.add(payment)
@@ -52,7 +53,7 @@ def delete_payment(paymentId):
     if payment.userId != current_user.id:
         return jsonify({'error': 'Unauthorized to cancel this payment'}), 403
     order = payment.order
-    order.staus = 'Cancelled'
+    order.status = 'Cancelled'
 
     db.session.delete(payment)
     db.session.commit()
