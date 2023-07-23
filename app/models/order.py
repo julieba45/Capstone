@@ -18,7 +18,7 @@ class Order(db.Model):
 
     user = db.relationship('User', back_populates='orders')
     order_plants = db.relationship('OrderPlant', back_populates='order', cascade="all, delete-orphan")
-    payments = db.relationship('Payment', back_populates='order', cascade="all, delete-orphan")
+    payments = db.relationship('Payment', back_populates='order')
 
     def to_dict(self):
         payment = self.payments[0] if self.payments else None
@@ -26,6 +26,7 @@ class Order(db.Model):
         return {
             'id': self.id,
             'userId': self.userId,
+            'userFirstName': self.user.firstName if self.user else None,
             'isCheckedOut': self.isCheckedOut,
             'status': self.status,
             'orderPlants': [orderplants.to_dict() for orderplants in self.order_plants],

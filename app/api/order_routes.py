@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Order, db
+from app.models import Order,User, db
 from datetime import datetime
 from sqlalchemy import and_
 from .auth_routes import validation_errors_to_error_messages
@@ -7,22 +7,18 @@ from flask_login import login_required, current_user
 
 order_routes = Blueprint("order", __name__)
 
-@order_routes.route('/checkout', methods=["PUT"])
+
+@order_routes.route('/current', methods=['GET'])
 @login_required
-def checkout():
+def get_current_orders():
     """
-    Checks out the user's cart, just updating user_id from null
+    Query for all the orders of the current user and returns them in a list of dictionaries
     """
     current_user_id = current_user.get_id()
-    orderId = session.get('orderId')
+    user = User.query.get(current_user_id)
 
-    #update order w/current user's ID
-    order = Order.query.get(orderId)
-    if order is None:
-        return jsonify({'error': 'Order not found'}), 404
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
     else:
-        order.userId =  current_user_id
-        # order.isCheckedOut= True
-        db.session.commit()
-        # session.pop('orderId', None)
-        return jsonify(order.to_dict())
+        orders = [order.to_dict() for order in user.orders]
+        return jsonify(orders)

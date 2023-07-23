@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Plant, User
-from app.models import User, db
+from app.models import Review, db
 from datetime import datetime
 from sqlalchemy import and_
 from .auth_routes import validation_errors_to_error_messages
@@ -27,3 +27,14 @@ def get_plant(plantId):
         return jsonify({'error: Plant not found'}), 404
     else:
         return jsonify(plant.to_dict())
+
+@plant_routes.route('/<int:plantId>/reviews', methods=['GET'])
+def get_reviews_by_plantId(plantId):
+    """
+    Get all reviews for a specific plant
+    """
+    plant = Plant.query.get(plantId)
+    if plant is None:
+        return jsonify({'error': 'Plant not found'}), 404
+    reviews = Review.query.filter_by(plantId=plantId).all()
+    return jsonify([review.to_dict() for review in reviews])

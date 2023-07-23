@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, Order, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -50,8 +50,12 @@ def logout():
     """
     Logs a user out
     """
+    Order.query.filter_by(isCheckedOut=False).delete()
     logout_user()
     session.pop('orderId', None)  # Remove the orderId from the session
+
+    db.session.commit()
+
     return {'message': 'User logged out'}
 
 
