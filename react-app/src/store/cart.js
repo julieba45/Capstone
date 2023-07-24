@@ -1,6 +1,7 @@
 const SET_CART = "cart/SET_CART";
 const ADD_PLANT = "cart/ADD_PLANT";
-const UPDATE_PLANT = "cart/UPDATE_PLANT"
+const UPDATE_PLANT = "cart/UPDATE_PLANT";
+const DELETE_PLANT = "cart/DELETE_PLANT";
 
 
 const setCart = (cart) => ({
@@ -16,6 +17,11 @@ const addPlant = (plant) => ({
 const updatePlant = (plant) => ({
     type: UPDATE_PLANT,
     payload: plant
+})
+
+const deletePlant = (plantId) => ({
+    type:DELETE_PLANT,
+    payload: plantId
 })
 
 
@@ -69,6 +75,15 @@ export const updatePlantInCart = (plant) => async(dispatch) => {
     }
 }
 
+export const deletePlantFromCart= (plantId) => async(dispatch) => {
+    const response = await fetch(`/api/cart/${plantId}`, {
+        method:'DELETE'
+    })
+    if(response.ok){
+        dispatch(deletePlant(plantId))
+    }
+}
+
 const initialState = {
     cart: []
 };
@@ -91,9 +106,17 @@ const cartReducer = (state = initialState, action) => {
                 ...state,
                 cart: {
                     ...state.cart,
-                    orderPlants: action.payload.cart.orderPlants
+                    orderPlants: [...action.payload.cart.orderPlants]
                 }
             }
+        case DELETE_PLANT:
+            return {
+                cart: {
+                    ...state.cart,
+                    orderPlants: state.cart.orderPlants.filter(plant => plant.plantId !== action.payload)
+                }
+            }
+
         default:
             return state
 	}
