@@ -5,6 +5,9 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import CartPage from "./components/CartPage";
+import GetAllPlants from "./components/GetAllPlants";
+import PlantDetails from "./PlantDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +26,15 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/cart">
+            <CartPage />
+          </Route>
+          <Route exact path="/plants">
+            <GetAllPlants/>
+          </Route>
+          <Route path="/plants/:plantId">
+            <PlantDetails/>
           </Route>
         </Switch>
       )}
