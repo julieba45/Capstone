@@ -50,7 +50,10 @@ def logout():
     """
     Logs a user out
     """
-    Order.query.filter_by(isCheckedOut=False).delete()
+    orders_to_delete = Order.query.filter_by(isCheckedOut=False).all()
+    for order in orders_to_delete:
+        db.session.delete(order)
+
     logout_user()
     session.pop('orderId', None)  # Remove the orderId from the session
 
