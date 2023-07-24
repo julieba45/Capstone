@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPlant } from '../store/plant';
 import { addToCart } from '../store/cart';
 import { useParams } from 'react-router-dom';
-import { createReviewforPlant } from '../store/review';
+import { createReviewforPlant, deleteReviewById, getAllPlantReviews } from '../store/review';
 
 
 const PlantDetails = () => {
@@ -13,10 +13,13 @@ const PlantDetails = () => {
     const [reviewText, setReviewText] = useState('');
     const [rating, setRating] =useState(5);
     const [error, setError] = useState(null);
+    const reviews = useSelector(state => state.reviews)
+    const currentUser = useSelector(state => state.session.user);
 
 
     useEffect(() => {
         dispatch(getPlant(plantId));
+        dispatch(getAllPlantReviews(plantId))
     }, [dispatch, plantId])
 
     const handleAddToCart = () => {
@@ -31,16 +34,30 @@ const PlantDetails = () => {
         } else {
             setError(null)
         }
+    }
 
+    const handleDeleteReview = (reviewId) => {
+        dispatch(deleteReviewById(reviewId))
     }
 
     return (
         <div>
             <h1>Plant Detail</h1>
-            {error && <p>{error}</p>}
             <h2>{plant.name}</h2>
             <p>{plant.description}</p>
             <button onClick={handleAddToCart}>Add to Cart</button>
+            <div>
+                <h1>All the reviews below:</h1>
+            {reviews.map(review => (
+                <div key={review.id}>
+                    <p>{review.reviewText}</p>
+                    <p>Rating: {review.rating}</p>
+                    {currentUser.id === review.userId && (
+                         <button onClick={() => handleDeleteReview(review.id)}>Delete Review</button>
+                    )}
+                </div>
+            ))}
+            </div>
             <form onSubmit={handleReviewSubmit}>
                 <textarea value = {reviewText}
                 onChange={(e) => setReviewText(e.target.value)}
@@ -49,6 +66,7 @@ const PlantDetails = () => {
                 onChange={(e) => setRating(e.target.value)}
                 />
                 <button type="submit">Submit Review</button>
+                {error && <p>{error}</p>}
             </form>
         </div>
     )
