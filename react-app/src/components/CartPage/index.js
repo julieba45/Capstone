@@ -35,7 +35,7 @@ const CartPage = () => {
                 {/* <img src={plantItem.plant.imageUrl} alt={plantItem.plant.name} /> */}
                 <p>{plantItem.plant.description}</p>
                 <p>{`Quantity: ${plantItem.quantity}`}</p>
-                <p>{plantItem.plantId}</p>
+                {/* <p>{plantItem.plantId}</p> */}
                 <button onClick={() => handleUpdate(plantItem)}>Update</button>
                 <button onClick ={() => handleDelete(plantItem.plantId)}>Delete</button>
             </div>

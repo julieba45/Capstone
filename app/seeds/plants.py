@@ -17,7 +17,7 @@ def seed_plants():
     plant2 = Plant(
         name='Weeping Willow Tree',
         species='Salix babylonica ',
-        description='',
+        description='sleepy tree',
         careInstructions='Water daily, prefers well-drained soils that have medium to wet moisture.',
         wateringFrequency=1,
         isInBloom=True,
@@ -27,7 +27,7 @@ def seed_plants():
     plant3 = Plant(
         name='Venus flytrap',
         species='D. muscipula',
-        description='A beautiful red rose',
+        description='A trapping plant that eats insects',
         careInstructions='Water daily',
         wateringFrequency=2,
         isInBloom=False,
