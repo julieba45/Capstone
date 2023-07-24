@@ -80,6 +80,7 @@ def add_plant_to_cart():
     print("Operation completed successfully")
     return jsonify(order.to_dict())
 
+
 @cart_routes.route('<int:plantId>', methods=['PUT'])
 def update_plant_in_cart(plantId):
     """
@@ -88,6 +89,7 @@ def update_plant_in_cart(plantId):
     data = request.get_json()
     quantity = data.get('quantity',1)
     orderId = session.get('orderId')
+    print(f"---------------Data received: {data}")
 
     if orderId is None:
         return jsonify({'error': 'No orderId, no order placed yet'}), 404

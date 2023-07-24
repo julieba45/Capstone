@@ -1,5 +1,6 @@
 const SET_CART = "cart/SET_CART";
 const ADD_PLANT = "cart/ADD_PLANT";
+const UPDATE_PLANT = "cart/UPDATE_PLANT"
 
 
 const setCart = (cart) => ({
@@ -11,6 +12,11 @@ const addPlant = (plant) => ({
     type: ADD_PLANT,
     payload: plant
 });
+
+const updatePlant = (plant) => ({
+    type: UPDATE_PLANT,
+    payload: plant
+})
 
 
 export const getCart = () => async(dispatch) => {
@@ -46,6 +52,23 @@ export const addToCart = (plant) => async(dispatch) => {
     }
 }
 
+export const updatePlantInCart = (plant) => async(dispatch) => {
+    console.log('--------Plant in thunk', plant)
+    const response = await fetch(`/api/cart/${plant.plantId}`, {
+        method:'PUT',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(plant)
+    });
+
+    if(response.ok){
+        const data = await response.json();
+        console.log('MY RESPONSE FROM THUNK UPDATE', data)
+        dispatch(updatePlant(data))
+    }
+}
+
 const initialState = {
     cart: []
 };
@@ -61,6 +84,16 @@ const cartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cart: [...state.cart, action.payload] };
+        case UPDATE_PLANT:
+            // console.log('-------STATE CART', state.cart)
+            // console.log('-------NEW PLANT', action.payload)
+            return {
+                ...state,
+                cart: {
+                    ...state.cart,
+                    orderPlants: action.payload.cart.orderPlants
+                }
+            }
         default:
             return state
 	}
