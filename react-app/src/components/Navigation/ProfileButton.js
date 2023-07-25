@@ -4,6 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -45,8 +46,12 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
+            <li>Welcome {user.username}.</li>
             <li>{user.username}</li>
             <li>{user.email}</li>
+            <li>
+              <NavLink to="/orders/current">My Orders</NavLink>
+            </li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>

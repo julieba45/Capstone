@@ -10,6 +10,7 @@ import GetAllPlants from "./components/GetAllPlants";
 import PlantDetails from "./PlantDetails";
 import PaymentForm from "./components/PaymentForm";
 import ConfirmationPage from "./components/ConfirmationPage";
+import CurrentUserOrders from "./CurrentUserOrders";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path='/confirmation/:orderId'>
             <ConfirmationPage/>
+          </Route>
+          <Route exact path='/orders/current'>
+            <CurrentUserOrders/>
           </Route>
         </Switch>
       )}
