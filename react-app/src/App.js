@@ -12,6 +12,7 @@ import PaymentForm from "./components/PaymentForm";
 import ConfirmationPage from "./components/ConfirmationPage";
 import CurrentUserOrders from "./CurrentUserOrders";
 import { getCart } from "./store/cart";
+import MyFavoritesPage from "./components/MyFavoritesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,9 @@ function App() {
           </Route>
           <Route exact path='/orders/current'>
             <CurrentUserOrders/>
+          </Route>
+          <Route exact path='/favorites'>
+            <MyFavoritesPage/>
           </Route>
         </Switch>
       )}

@@ -6,6 +6,7 @@ import plantsReducer from './plant';
 import reviewReducer from './review';
 import paymentReducer from './payment';
 import orderReducer from './order';
+import favoriteReducer from './favorite';
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   plants: plantsReducer,
   reviews: reviewReducer,
   payment: paymentReducer,
-  orders:orderReducer
+  orders:orderReducer,
+  favorites: favoriteReducer
 });
 
 
