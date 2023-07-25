@@ -6,7 +6,21 @@ from sqlalchemy import and_
 from .auth_routes import validation_errors_to_error_messages
 from flask_login import login_required, current_user
 
+
 cart_routes = Blueprint("cart", __name__)
+
+@cart_routes.route('/current', methods=['GET'])
+def get_current_cart():
+    """
+    Gets all details of current cart
+    """
+    orderId = session.get('orderId')
+    order = Order.query.get(orderId)
+
+    if order is None:
+        return jsonify({'error': 'Order not found'}), 404
+    else:
+        return jsonify(order.to_dict())
 
 @cart_routes.route('/<int:orderId>', methods=['GET'])
 @login_required
@@ -27,22 +41,28 @@ def add_plant_to_cart():
     """
     Add a plant to the user's cart
     """
+    print("add_plant_to_cart called")
+
     data = request.get_json()
-    plantId = data.get('plantId')
+    print(f"---------------Data received: {data}")
+    plantId = data.get('id')
     quantity = data.get('quantity', 1) #default to 1 for user friendliness
 
     plant = Plant.query.get(plantId)
     if plant is None:
+        print("Plant not found")
         return jsonify({'error': 'Plant not found'}), 404
 
     #Grabbing the orderId from session (if the user is not logged in)
     #Creating an order
     orderId = session.get('orderId')
+    print(f"orderId from session: {orderId}")
     if orderId is None:
         order = Order(isCheckedOut=False)
         db.session.add(order)
         db.session.commit()
         session['orderId'] = order.id
+        print(f"New orderId: {order.id}")
     else:
         order = Order.query.get(orderId)
 
@@ -57,7 +77,9 @@ def add_plant_to_cart():
         order_plant.quantity += quantity
 
     db.session.commit()
+    print("Operation completed successfully")
     return jsonify(order.to_dict())
+
 
 @cart_routes.route('<int:plantId>', methods=['PUT'])
 def update_plant_in_cart(plantId):
@@ -67,6 +89,7 @@ def update_plant_in_cart(plantId):
     data = request.get_json()
     quantity = data.get('quantity',1)
     orderId = session.get('orderId')
+    print(f"---------------Data received: {data}")
 
     if orderId is None:
         return jsonify({'error': 'No orderId, no order placed yet'}), 404
