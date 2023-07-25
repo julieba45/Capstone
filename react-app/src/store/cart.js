@@ -10,9 +10,9 @@ const setCart = (cart) => ({
     payload:cart
 })
 
-const addPlant = (plant, quantity) => ({
+const addPlant = (plant) => ({
     type: ADD_PLANT,
-    payload: {...plant, quantity}
+    payload: plant
 });
 
 const updatePlant = (plant) => ({
@@ -64,7 +64,7 @@ export const getOrder = (orderId) => async(dispatch) => {
 }
 
 export const addToCart = (plant, quantity) => async(dispatch) => {
-    console.log('FAILED BODY', JSON.stringify({...plant, quantity}))
+    console.log('FAILED BODY', JSON.stringify(plant))
     const response = await fetch('/api/cart', {
         method: "POST",
         credentials: 'include',
@@ -119,9 +119,14 @@ const cartReducer = (state = initialState, action) => {
                 cart: action.payload
             }
         case ADD_PLANT:
+            console.log('------CART', state.cart)
             return {
                 ...state,
-                cart: [...state.cart, action.payload] };
+                cart: {
+                    ...state.cart,
+                    orderPlants: [...action.payload.orderPlants]
+                }
+             }
         case UPDATE_PLANT:
             // console.log('-------STATE CART', state.cart)
             // console.log('-------NEW PLANT', action.payload)
@@ -151,3 +156,5 @@ const cartReducer = (state = initialState, action) => {
 }
 
 export default cartReducer
+
+//cart: [...state.cart, action.payload] };

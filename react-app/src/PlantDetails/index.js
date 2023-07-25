@@ -60,12 +60,13 @@ const PlantDetails = () => {
                 <div key={review.id}>
                     <p>{review.reviewText}</p>
                     <p>Rating: {review.rating}</p>
-                    {currentUser.id === review.userId && (
+                    {currentUser && currentUser.id === review.userId && (
                          <button onClick={() => handleDeleteReview(review.id)}>Delete Review</button>
                     )}
                 </div>
             ))}
             </div>
+            {currentUser &&
             <form onSubmit={handleReviewSubmit}>
                 <textarea value = {reviewText}
                 onChange={(e) => setReviewText(e.target.value)}
@@ -76,6 +77,7 @@ const PlantDetails = () => {
                 <button type="submit">Submit Review</button>
                 {error && <p>{error}</p>}
             </form>
+            }
         </div>
     )
 }
