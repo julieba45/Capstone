@@ -9,6 +9,7 @@ import CartPage from "./components/CartPage";
 import GetAllPlants from "./components/GetAllPlants";
 import PlantDetails from "./PlantDetails";
 import PaymentForm from "./components/PaymentForm";
+import ConfirmationPage from "./components/ConfirmationPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path="/cart/payment">
             <PaymentForm/>
+          </Route>
+          <Route path='/confirmation'>
+            <ConfirmationPage/>
           </Route>
         </Switch>
       )}
