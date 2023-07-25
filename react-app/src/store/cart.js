@@ -10,9 +10,9 @@ const setCart = (cart) => ({
     payload:cart
 })
 
-const addPlant = (plant) => ({
+const addPlant = (plant, quantity) => ({
     type: ADD_PLANT,
-    payload: plant
+    payload: {...plant, quantity}
 });
 
 const updatePlant = (plant) => ({
@@ -63,14 +63,15 @@ export const getOrder = (orderId) => async(dispatch) => {
     }
 }
 
-export const addToCart = (plant) => async(dispatch) => {
+export const addToCart = (plant, quantity) => async(dispatch) => {
+    console.log('FAILED BODY', JSON.stringify({...plant, quantity}))
     const response = await fetch('/api/cart', {
         method: "POST",
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(plant)
+        body: JSON.stringify({...plant, quantity})
     });
 
     if(response.ok){
