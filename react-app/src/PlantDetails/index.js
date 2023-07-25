@@ -15,6 +15,7 @@ const PlantDetails = () => {
     const [error, setError] = useState(null);
     const reviews = useSelector(state => state.reviews)
     const currentUser = useSelector(state => state.session.user);
+    const [quantity, setQuantity] = useState(1);
 
 
     useEffect(() => {
@@ -23,7 +24,7 @@ const PlantDetails = () => {
     }, [dispatch, plantId])
 
     const handleAddToCart = () => {
-        dispatch(addToCart(plant));
+        dispatch(addToCart(plant, quantity));
     }
 
     const handleReviewSubmit = async (e) => {
@@ -45,6 +46,13 @@ const PlantDetails = () => {
             <h1>Plant Detail</h1>
             <h2>{plant.name}</h2>
             <p>{plant.description}</p>
+            <label>Quantity</label>
+            <input
+                id="quantity"
+                type="number"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+            ></input>
             <button onClick={handleAddToCart}>Add to Cart</button>
             <div>
                 <h1>All the reviews below:</h1>
