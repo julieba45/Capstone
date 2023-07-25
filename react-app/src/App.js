@@ -11,12 +11,14 @@ import PlantDetails from "./PlantDetails";
 import PaymentForm from "./components/PaymentForm";
 import ConfirmationPage from "./components/ConfirmationPage";
 import CurrentUserOrders from "./CurrentUserOrders";
+import { getCart } from "./store/cart";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(getCart())
   }, [dispatch]);
 
   return (
