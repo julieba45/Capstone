@@ -16,6 +16,7 @@ from .api.favorite_routes import favorite_routes
 from .seeds import seed_commands
 from .config import Config
 
+
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
@@ -44,7 +45,7 @@ db.init_app(app)
 Migrate(app, db)
 
 # Application Security
-CORS(app)
+CORS(app, supports_credentials=True)
 
 
 # Since we are deploying with Docker and Flask,
