@@ -41,7 +41,7 @@ function App() {
           <Route exact path="/cart/payment">
             <PaymentForm/>
           </Route>
-          <Route path='/confirmation'>
+          <Route path='/confirmation/:orderId'>
             <ConfirmationPage/>
           </Route>
         </Switch>

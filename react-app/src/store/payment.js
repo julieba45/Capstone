@@ -8,7 +8,7 @@ const addPayment = (payment) => ({
 })
 
 export const createPayment = (paymentInfo) => async(dispatch) => {
-    console.log('--------FAILED BODY', paymentInfo)
+    // console.log('--------FAILED BODY', paymentInfo)
     const response = await fetch(`/api/payments`, {
         method: 'POST',
         credentials: 'include',
@@ -20,7 +20,8 @@ export const createPayment = (paymentInfo) => async(dispatch) => {
     if(response.ok){
         const data = await response.json()
         dispatch(addPayment(data))
-        return null
+        // console.log('-------PAYMENT RETURN', data)
+        return data
     }else {
         const errorData = await response.json();
         return errorData.errors || errorData.error

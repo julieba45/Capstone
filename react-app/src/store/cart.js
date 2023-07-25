@@ -1,5 +1,6 @@
 const SET_CART = "cart/SET_CART";
 const ADD_PLANT = "cart/ADD_PLANT";
+const SET_ORDER = "cart/SET_ORDER";
 const UPDATE_PLANT = "cart/UPDATE_PLANT";
 const DELETE_PLANT = "cart/DELETE_PLANT";
 
@@ -17,6 +18,11 @@ const addPlant = (plant) => ({
 const updatePlant = (plant) => ({
     type: UPDATE_PLANT,
     payload: plant
+})
+
+const setOrder = (order) => ({
+    type:SET_ORDER,
+    payload: order
 })
 
 const deletePlant = (plantId) => ({
@@ -38,6 +44,21 @@ export const getCart = () => async(dispatch) => {
             return data.errors;
         } else {
             return ('An error occurred. Please try again')
+        }
+    }
+}
+
+export const getOrder = (orderId) => async(dispatch) => {
+    const response = await fetch(`/api/cart/${orderId}`)
+    if(response.ok){
+        const order = await response.json()
+        dispatch(setOrder(order))
+    }else if(response.status < 500){
+        const data = response.json();
+        if(data.errors){
+            return data.errors;
+        }else{
+            return ('An error occurred. Please try again.')
         }
     }
 }
@@ -85,7 +106,8 @@ export const deletePlantFromCart= (plantId) => async(dispatch) => {
 }
 
 const initialState = {
-    cart: []
+    cart: [],
+    order: null
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -109,6 +131,11 @@ const cartReducer = (state = initialState, action) => {
                     orderPlants: [...action.payload.cart.orderPlants]
                 }
             }
+        case SET_ORDER:
+            return{
+                    ...state,
+                    order:action.payload
+                }
         case DELETE_PLANT:
             return {
                 cart: {
