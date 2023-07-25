@@ -16,7 +16,7 @@ def add_payment():
     data = request.get_json()
     orderId = session.get('orderId')
     payment_info = data.get('paymentInfo')
-    payment_amount = data.get('paymentAmount')
+    payment_amount = float(data.get('paymentAmount'))
     location = data.get('location')
     current_user_id = current_user.get_id()
 
@@ -25,7 +25,7 @@ def add_payment():
         return jsonify({'error':'Order not found'}), 404
 
     total_cost = sum(order_plant.plant.price * order_plant.quantity for order_plant in order.order_plants)
-
+    # print('---------COST COMP', payment_amount, total_cost)
     if payment_amount != total_cost:
         return jsonify({'error': 'Payment amount does not match totalcost'}), 400
     order.userId =  current_user_id
