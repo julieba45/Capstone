@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deletePlantFromCart, getCart, updatePlantInCart } from '../../store/cart';
+import { NavLink } from 'react-router-dom';
 
 const CartPage = () => {
     const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const CartPage = () => {
                 <button onClick ={() => handleDelete(plantItem.plantId)}>Delete</button>
             </div>
         ))}
+         <NavLink to="/cart/payment">Checkout</NavLink>
     </div>
     )
 }

@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import CartPage from "./components/CartPage";
 import GetAllPlants from "./components/GetAllPlants";
 import PlantDetails from "./PlantDetails";
+import PaymentForm from "./components/PaymentForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route path="/plants/:plantId">
             <PlantDetails/>
+          </Route>
+          <Route exact path="/cart/payment">
+            <PaymentForm/>
           </Route>
         </Switch>
       )}
