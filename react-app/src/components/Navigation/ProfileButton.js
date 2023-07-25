@@ -53,6 +53,9 @@ function ProfileButton({ user }) {
               <NavLink to="/orders/current">My Orders</NavLink>
             </li>
             <li>
+              <NavLink to="/favorites">My Favorites</NavLink>
+            </li>
+            <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
           </>
