@@ -34,7 +34,7 @@ def add_plant_to_favorites():
     Add a plant to the user's favorites
     """
     data = request.get_json()
-    plantId = data.get('plantId')
+    plantId = data.get('id')
     gardenName = data.get('gardenName', None)
 
     plant = Plant.query.get(plantId)
