@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchOrders } from "../store/order";
-import { cancelPayment } from "../store/payment";
+import { fetchOrders } from "../../store/order";
+import { cancelPayment } from "../../store/payment";
 
 const CurrentUserOrders = () => {
     const dispatch = useDispatch();

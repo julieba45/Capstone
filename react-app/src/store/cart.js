@@ -3,6 +3,7 @@ const ADD_PLANT = "cart/ADD_PLANT";
 const SET_ORDER = "cart/SET_ORDER";
 const UPDATE_PLANT = "cart/UPDATE_PLANT";
 const DELETE_PLANT = "cart/DELETE_PLANT";
+const CLEAR_CART = "cart/CLEAR_CART"
 
 
 const setCart = (cart) => ({
@@ -28,6 +29,10 @@ const setOrder = (order) => ({
 const deletePlant = (plantId) => ({
     type:DELETE_PLANT,
     payload: plantId
+})
+
+export const clearCart = () => ({
+    type:CLEAR_CART
 })
 
 
@@ -148,6 +153,11 @@ const cartReducer = (state = initialState, action) => {
                     ...state.cart,
                     orderPlants: state.cart.orderPlants.filter(plant => plant.plantId !== action.payload)
                 }
+            }
+        case CLEAR_CART:
+            return {
+                ...state,
+                cart: initialState.cart
             }
 
         default:

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPlant } from '../store/plant';
-import { addToCart } from '../store/cart';
+import { getPlant } from '../../store/plant';
+import { addToCart } from '../../store/cart';
 import { useParams } from 'react-router-dom';
-import { createReviewforPlant, deleteReviewById, getAllPlantReviews } from '../store/review';
+import { createReviewforPlant, deleteReviewById, getAllPlantReviews } from '../../store/review';
 
 
 const PlantDetails = () => {
@@ -16,6 +16,7 @@ const PlantDetails = () => {
     const reviews = useSelector(state => state.reviews)
     const currentUser = useSelector(state => state.session.user);
     const [quantity, setQuantity] = useState(1);
+
 
 
     useEffect(() => {

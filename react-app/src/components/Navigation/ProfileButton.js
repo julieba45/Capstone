@@ -6,6 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { NavLink } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import { clearCart } from "../../store/cart";
 
 
 function ProfileButton({ user }) {
@@ -37,6 +38,7 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    dispatch(clearCart());
     history.push('/');
   };
 
