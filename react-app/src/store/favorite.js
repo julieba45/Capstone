@@ -59,7 +59,7 @@ const favoriteReducer = (state = initialState, action) => {
         case GET_GARDEN_FAVORITES:
             return action.payload;
         case UPDATE_FAVORITE:
-            return state.map(favorite => favorite.id === action.payload ? action.payload : favorite)
+            return state.map(favorite => favorite.id === action.payload.id ? action.payload : favorite)
         default:
             return state
     }
