@@ -57,6 +57,11 @@ export const updateFavoritePlant = (favoriteId, newGardenName) => async (dispatc
 };
 
 export const addFavoritePlant = (plantId, gardenName, position) => async(dispatch) => {
+    console.log('--------FAILED BODY HERE',JSON.stringify({
+        id: plantId,
+        gardenName:gardenName,
+        position: position
+    }) )
     const response = await fetch(`/api/favorites`, {
         method: 'POST',
         headers:{

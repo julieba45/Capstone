@@ -4,15 +4,15 @@ import { getPlants } from '../../store/plant';
 import { useHistory } from 'react-router-dom';
 import { addFavoritePlant } from '../../store/favorite';
 import { fetchFavorites } from '../../store/favorite';
+import GardenSelectionModal from '../GardenSelectionModal';
+import { useModal } from '../../context/Modal';
 
 const GetAllPlants = () => {
     const dispatch = useDispatch()
     const plants = useSelector(state => state.plants.allPlants);
     const history = useHistory();
     const favorites = useSelector(state => state.favorites);
-    const [showDropdown, setShowDropdown] = useState(false);
-    const [selectedPlantId, setSelectedPlantId] = useState(null);
-    const [selectedGarden, setSelectedGarden] = useState('');
+    const {setModalContent} = useModal()
 
     useEffect(() => {
         // console.log(plants, 'HERE ARE ALL THE PLANTS')
@@ -25,15 +25,21 @@ const GetAllPlants = () => {
     }
 
     const handleAddToFavorite = (plantId) => {
-        setSelectedPlantId(plantId);
-        setShowDropdown(true);
+        if(gardenNames.length === 0){
+            dispatch(addFavoritePlant(plantId, "My favorites", 1))
+        } else {
+            setModalContent(
+                <GardenSelectionModal
+                gardenNames={gardenNames}
+                onGardenSelect={(gardenName) => handleSelectedGarden(plantId, gardenName)}
+                />
+            )
+        }
     }
 
-    const handleSelectedGarden = (gardenName) => {
-        dispatch(addFavoritePlant(selectedPlantId, gardenName, 1));
-        setShowDropdown(false);
-        setSelectedGarden('');
-
+    const handleSelectedGarden = (plantId, gardenName) => {
+        dispatch(addFavoritePlant(plantId, gardenName, 1));
+        setModalContent(null);
     }
 
     //removing dupes
@@ -49,13 +55,6 @@ const GetAllPlants = () => {
                         <p>{plant.description}</p>
                         <button onClick={() => handleClick(plant.id)}>See Details</button>
                         <button onClick={() => handleAddToFavorite(plant.id)}>Add to Favorites</button>
-                        {showDropdown && selectedPlantId === plant.id && (
-                            <select onChange={e => handleSelectedGarden(e.target.value)}>
-                                <option value="">Select Garden</option>
-                                {gardenNames.map((gardenName, i) => <option key={i} value={gardenName}>{gardenName}</option>)}
-
-                            </select>
-                        )}
                     </div>
                 ))
             }
