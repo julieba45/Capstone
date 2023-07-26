@@ -28,7 +28,7 @@ export const fetchFavorites = () => async(dispatch) => {
     const response = await fetch("/api/favorites/current")
     if(response.ok){
         const data = await response.json();
-        console.log('IN THE THUNK OF FAVORITES', data)
+        // console.log('IN THE THUNK OF FAVORITES', data)
         dispatch(getFavorites(data))
     }
 }
