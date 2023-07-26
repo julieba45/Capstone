@@ -1,6 +1,7 @@
 const GET_FAVORITES = "favorite/GET_FAVORITES";
 const GET_GARDEN_FAVORITES = "favorite/GET_GARDEN_FAVORITES";
 const UPDATE_FAVORITE = 'favorite/UPDATE_FAVORITE';
+const ADD_FAVORITE = 'favorite/ADD_FAVORITE';
 
 const getFavorites = (favorites) => ({
     type: GET_FAVORITES,
@@ -16,6 +17,11 @@ const updateFavorite = (favorite) => ({
     type: UPDATE_FAVORITE,
     payload: favorite
 });
+
+const addFavorite = (favorite) => ({
+    type: ADD_FAVORITE,
+    payload: favorite
+})
 
 export const fetchFavorites = () => async(dispatch) => {
 
@@ -50,6 +56,24 @@ export const updateFavoritePlant = (favoriteId, newGardenName) => async (dispatc
     }
 };
 
+export const addFavoritePlant = (plantId, gardenName, position) => async(dispatch) => {
+    const response = await fetch(`/api/favorites`, {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: plantId,
+            gardenName:gardenName,
+            position: position
+        })
+    });
+    if(response.ok){
+        const addedFavorite = await response.json();
+        dispatch(addFavorite(addedFavorite))
+    }
+}
+
 const initialState = [];
 
 const favoriteReducer = (state = initialState, action) => {
@@ -58,6 +82,8 @@ const favoriteReducer = (state = initialState, action) => {
             return action.payload;
         case GET_GARDEN_FAVORITES:
             return action.payload;
+        case ADD_FAVORITE:
+            return [...state, action.payload]
         case UPDATE_FAVORITE:
             return state.map(favorite => favorite.id === action.payload.id ? action.payload : favorite)
         default:

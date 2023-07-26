@@ -12,6 +12,8 @@ const GardenDetailsPage = () => {
         dispatch(fetchGardenFavorites(gardenName));
     }, [dispatch, gardenName]);
 
+
+
     return (
         <div>
         <h1>{gardenName}</h1>
