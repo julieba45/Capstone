@@ -13,6 +13,7 @@ import ConfirmationPage from "./components/ConfirmationPage";
 import CurrentUserOrders from "./CurrentUserOrders";
 import { getCart } from "./store/cart";
 import MyFavoritesPage from "./components/MyFavoritesPage";
+import GardenDetailsPage from "./components/GardenDetailsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,9 @@ function App() {
           </Route>
           <Route exact path='/favorites'>
             <MyFavoritesPage/>
+          </Route>
+          <Route path="/garden/:gardenName">
+            <GardenDetailsPage/>
           </Route>
         </Switch>
       )}
