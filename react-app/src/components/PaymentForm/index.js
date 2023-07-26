@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux"
 import { createPayment } from "../../store/payment";
 import { useHistory } from 'react-router-dom';
+import { clearCart } from "../../store/cart";
 
 
 const PaymentForm = () => {
@@ -34,6 +35,7 @@ const PaymentForm = () => {
             paymentAmount,
             location
         }))
+        await dispatch(clearCart())
         if (confirmation){
             history.push(`/confirmation/${confirmation.orderId}`)
         }
