@@ -37,10 +37,12 @@ const MyFavoritesPage = () => {
         return gardens;
     }, {});
 
+    const sortedGardens = Object.entries(gardens).sort((a, b) => a[0].localeCompare(b[0]));
+
     return (
         <div>
             <h1>Favorites</h1>
-            {Object.entries(gardens).map(([gardenName, gardenFavorites]) => (
+            {sortedGardens.map(([gardenName, gardenFavorites]) => (
                 <div key={gardenName}>
                     <h2>
                         Garden Name: <NavLink to={`/garden/${gardenName}`}>{gardenName}</NavLink>
