@@ -25,16 +25,12 @@ const GetAllPlants = () => {
     }
 
     const handleAddToFavorite = (plantId) => {
-        if(gardenNames.length === 0){
-            dispatch(addFavoritePlant(plantId, "My favorites", 1))
-        } else {
-            setModalContent(
-                <GardenSelectionModal
-                gardenNames={gardenNames}
-                onGardenSelect={(gardenName) => handleSelectedGarden(plantId, gardenName)}
-                />
-            )
-        }
+        setModalContent(
+            <GardenSelectionModal
+            gardenNames={gardenNames}
+            onGardenSelect={(gardenName) => handleSelectedGarden(plantId, gardenName)}
+            />
+        )
     }
 
     const handleSelectedGarden = (plantId, gardenName) => {
