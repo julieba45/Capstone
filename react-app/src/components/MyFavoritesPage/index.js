@@ -5,57 +5,64 @@ import { NavLink } from 'react-router-dom';
 import { updateFavoritePlant } from "../../store/favorite";
 
 const MyFavoritesPage = () => {
-    const dispatch = useDispatch()
-    const favorites = useSelector(state => state.favorites)
+    const dispatch = useDispatch();
+    const favorites = useSelector(state => state.favorites);
     const [reload, setReload] = useState(false);
 
-    const handleDragStart = (event, plantId) => {
-        event.dataTransfer.setData("plantId", plantId);
+    const handleDragStart = (event, favoriteId) => {
+        event.dataTransfer.setData("favoriteId", favoriteId);
     }
 
     const handleDrop = async (event, gardenName) => {
-        const plantId = event.dataTransfer.getData("plantId");
-        await dispatch(updateFavoritePlant(plantId, gardenName));
+        const favoriteId = event.dataTransfer.getData("favoriteId");
+        await dispatch(updateFavoritePlant(favoriteId, gardenName));
         setReload(!reload);
     }
 
     useEffect(() => {
-        // console.log('HEYYYY------', favorites)
-        dispatch(fetchFavorites())
-    }, [dispatch, reload])
+        console.log('HEYYYY------', favorites);
+        dispatch(fetchFavorites());
+    }, [dispatch, reload]);
 
-    // const handleUpdateClick = async (favoriteId) => {
-    //     await dispatch(updateFavoritePlant(favoriteId, "New Garden Name"));
-    //     setReload(!reload);
+    // Group favorites by garden
+    const gardens = favorites.reduce((gardens, favorite) => {
+        const gardenName = favorite.gardenName;
 
-    // }
+        if (!gardens[gardenName]) {
+            gardens[gardenName] = [];
+        }
+
+        gardens[gardenName].push(favorite);
+
+        return gardens;
+    }, {});
 
     return (
         <div>
             <h1>Favorites</h1>
-            {favorites.map((favorite) => (
-                <div
-                    key={favorite.id}>
+            {Object.entries(gardens).map(([gardenName, gardenFavorites]) => (
+                <div key={gardenName}>
                     <h2>
-                        Garden Name: <NavLink to={`/garden/${favorite.gardenName}`}>{favorite.gardenName}</NavLink>
+                        Garden Name: <NavLink to={`/garden/${gardenName}`}>{gardenName}</NavLink>
                     </h2>
-                    <div
-                        onDrop={(event) => handleDrop(event, favorite.gardenName)}
-                        onDragOver={(event) => event.preventDefault()}
-                    >
-                    <p
-                        draggable
-                        onDragStart={(event) => handleDragStart(event, favorite.plant.id)}
-                    >Plant Name:{favorite.plant.name}</p>
-                    </div>
-                    {/* <img src={favorite.plant.primary_image} alt="Plant" /> */}
-                    {/* <p>Created at: {new Date(favorite.createdAt).toLocaleString()}</p>
-                    <p>Updated at: {new Date(favorite.updatedAt).toLocaleString()}</p> */}
-                     {/* <button onClick={() => handleUpdateClick(favorite.id)}>Move to New Garden</button> */}
+                    {gardenFavorites.map((favorite) => (
+                        <div
+                            key={favorite.id}
+                            onDrop={(event) => handleDrop(event, gardenName)}
+                            onDragOver={(event) => event.preventDefault()}
+                        >
+                            <p
+                                draggable
+                                onDragStart={(event) => handleDragStart(event, favorite.id)}
+                            >
+                                Plant Name:{favorite.plant.name}
+                            </p>
+                        </div>
+                    ))}
                 </div>
             ))}
         </div>
-    )
+    );
 }
 
-export default MyFavoritesPage
+export default MyFavoritesPage;
