@@ -13,24 +13,30 @@ const GetAllPlants = () => {
     const history = useHistory();
     const favorites = useSelector(state => state.favorites);
     const {setModalContent} = useModal()
+    const user = useSelector(state => state.session.user)
 
     useEffect(() => {
         // console.log(plants, 'HERE ARE ALL THE PLANTS')
         dispatch(getPlants());
-        dispatch(fetchFavorites());
-    }, [dispatch])
+        console.log('THE USER',user)
+        if(user){
+            dispatch(fetchFavorites());
+        }
+    }, [dispatch, user])
 
     const handleClick = (plantId) => {
         history.push(`/plants/${plantId}`)
     }
 
     const handleAddToFavorite = (plantId) => {
+        if(user){
         setModalContent(
             <GardenSelectionModal
             gardenNames={gardenNames}
             onGardenSelect={(gardenName) => handleSelectedGarden(plantId, gardenName)}
             />
         )
+        }
     }
 
     const handleSelectedGarden = (plantId, gardenName) => {
@@ -50,7 +56,7 @@ const GetAllPlants = () => {
                         <h2>{plant.name}</h2>
                         <p>{plant.description}</p>
                         <button onClick={() => handleClick(plant.id)}>See Details</button>
-                        <button onClick={() => handleAddToFavorite(plant.id)}>Add to Favorites</button>
+                        {user && <button onClick={() => handleAddToFavorite(plant.id)}>Add to Favorites</button>}
                     </div>
                 ))
             }
