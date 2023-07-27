@@ -17,10 +17,16 @@ const CartPage = () => {
         console.log(cart, 'MY CART')
     }, [dispatch])
 
-    const handleUpdate = (plantItem) => {
+    const handleUpdate = (plantItem, increment = true) => {
+        console.log('HERE IS THE PLANTITEM', plantItem)
+        let newQuantity = increment ? plantItem.quantity + 1 : plantItem.quantity -1;
+
+        //quantity cannot go lower than 1
+        newQuantity = Math.max(newQuantity, 1);
+
         const updatePlant={
             ...plantItem,
-            quantity: plantItem.quantity + 1
+            quantity: newQuantity
         }
         dispatch(updatePlantInCart(updatePlant))
     }
@@ -48,7 +54,8 @@ const CartPage = () => {
                 <p>{plantItem.plant.description}</p>
                 <p>{`Quantity: ${plantItem.quantity}`}</p>
                 {/* <p>{plantItem.plantId}</p> */}
-                <button onClick={() => handleUpdate(plantItem)}>Update</button>
+                <button onClick={() => handleUpdate(plantItem, true)}>Increment</button>
+                <button onClick={() => handleUpdate(plantItem, false)}>decrement</button>
                 <button onClick ={() => handleDelete(plantItem.plantId)}>Delete</button>
             </div>
         ))}
