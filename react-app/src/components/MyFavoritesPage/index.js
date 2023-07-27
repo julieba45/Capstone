@@ -4,6 +4,7 @@ import { fetchFavorites } from "../../store/favorite";
 import { NavLink } from 'react-router-dom';
 import { updateFavoritePlant } from "../../store/favorite";
 
+
 const MyFavoritesPage = () => {
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.favorites);
