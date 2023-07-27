@@ -35,16 +35,16 @@ const PaymentForm = () => {
             paymentAmount,
             location
         }))
-        await dispatch(clearCart())
-        if (confirmation){
+
+        if(!confirmation.orderId){
+            console.log('-----------CONFIRMATION IN IF', confirmation)
+            setErrors({...errors, error: confirmation})
+        } else{
+            console.log('------------CONFIRMATION IN ELSE', confirmation)
+            console.log('ORDERID', confirmation.orderId)
+            await dispatch(clearCart())
             history.push(`/confirmation/${confirmation.orderId}`)
         }
-        // if(error){
-        //     setErrors({...errors, error: error})
-        // } else{
-        //     console.log('ORDERID', error.orderId)
-        //     history.push(`/confirmation/${error.orderId}`)
-        // }
     }
     return (
         <form onSubmit={handleSubmit}>

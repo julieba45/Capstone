@@ -21,6 +21,7 @@ const ConfirmationPage = () => {
             setLoading(false);
         });
     }, [dispatch, orderId]);
+
     if (loading) {
         return <div>Loading...</div>
     }
