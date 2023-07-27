@@ -4,10 +4,16 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { NavLink } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+import { clearCart } from "../../store/cart";
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const history = useHistory();
+
   const ulRef = useRef();
 
   const openMenu = () => {
@@ -32,6 +38,8 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    dispatch(clearCart());
+    history.push('/');
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -45,8 +53,15 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
+            <li>Welcome {user.username}.</li>
             <li>{user.username}</li>
             <li>{user.email}</li>
+            <li>
+              <NavLink to="/orders/current">My Orders</NavLink>
+            </li>
+            <li>
+              <NavLink to="/favorites">My Favorites</NavLink>
+            </li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>

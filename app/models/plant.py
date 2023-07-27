@@ -41,3 +41,8 @@ class Plant(db.Model):
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt,
         }
+    def to_dict_image(self):
+        primary_image = next((image.pictureURL for image in self.images if image.isPrimary), None)
+        return {
+            "primary_image": primary_image
+        }
