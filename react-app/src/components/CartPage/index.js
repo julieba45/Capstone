@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deletePlantFromCart, getCart, updatePlantInCart } from '../../store/cart';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory} from 'react-router-dom';
 
 const CartPage = () => {
     const dispatch = useDispatch();
     // const state =  useSelector(state => state);
     const cart = useSelector(state => state.cart.cart.orderPlants);
+    const history = useHistory();
+    const user = useSelector(state => state.session.user)
+
 
     useEffect(() => {
         dispatch(getCart())
@@ -26,6 +29,14 @@ const CartPage = () => {
         dispatch(deletePlantFromCart(plantId))
     }
 
+    const handleCheckout = () => {
+        if(user){
+            history.push('/cart/payment')
+        } else {
+            history.push('/login')
+        }
+    }
+
 
     return (
         <div>
@@ -41,7 +52,7 @@ const CartPage = () => {
                 <button onClick ={() => handleDelete(plantItem.plantId)}>Delete</button>
             </div>
         ))}
-         {cart && cart.length > 0 && <NavLink to="/cart/payment">Checkout</NavLink>}
+         {cart && cart.length > 0 && <button onClick={handleCheckout}>Checkout</button>}
     </div>
     )
 }
