@@ -44,10 +44,12 @@ export const getAllPlantReviews = (plantId) => async(dispatch) => {
 }
 
 export const deleteReviewById = (reviewId) => async(dispatch) => {
+
     const response = await fetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
     })
     if(response.ok){
+        console.log(response, 'IN THE DELETE THUNK')
         dispatch(deleteReview(reviewId))
     }
 }
