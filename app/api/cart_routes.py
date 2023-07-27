@@ -65,6 +65,12 @@ def add_plant_to_cart():
         print(f"New orderId: {order.id}")
     else:
         order = Order.query.get(orderId)
+        if order is None:
+            order = Order(isCheckedOut=False)
+            db.session.add(order)
+            db.session.commit()
+            session['orderId'] = order.id
+            print(f"New orderId: {order.id}")
 
     #checking if the plant is already in the cart
     #Adding to the OrderPlants table, adding the plant if it's not already in the OrderPlants
