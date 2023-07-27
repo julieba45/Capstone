@@ -14,6 +14,7 @@ import CurrentUserOrders from "./components/CurrentUserOrders";
 import { getCart } from "./store/cart";
 import MyFavoritesPage from "./components/MyFavoritesPage";
 import GardenDetailsPage from "./components/GardenDetailsPage";
+import HomePage from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,10 +29,13 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          <Route exact path ='/'>
+            <HomePage />
+          </Route>
+          <Route exact path="/login" >
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
           <Route exact path="/cart">
@@ -40,13 +44,13 @@ function App() {
           <Route exact path="/plants">
             <GetAllPlants/>
           </Route>
-          <Route path="/plants/:plantId">
+          <Route exact path="/plants/:plantId">
             <PlantDetails/>
           </Route>
           <Route exact path="/cart/payment">
             <PaymentForm/>
           </Route>
-          <Route path='/confirmation/:orderId'>
+          <Route exact path='/confirmation/:orderId'>
             <ConfirmationPage/>
           </Route>
           <Route exact path='/orders/current'>
@@ -55,7 +59,7 @@ function App() {
           <Route exact path='/favorites'>
             <MyFavoritesPage/>
           </Route>
-          <Route path="/garden/:gardenName">
+          <Route exact path="/garden/:gardenName">
             <GardenDetailsPage/>
           </Route>
         </Switch>
