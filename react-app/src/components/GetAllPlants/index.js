@@ -56,7 +56,9 @@ const GetAllPlants = () => {
                         <h2>{plant.name}</h2>
                         <p>{plant.description}</p>
                         <button onClick={() => handleClick(plant.id)}>See Details</button>
-                        {user && <button onClick={() => handleAddToFavorite(plant.id)}>Add to Favorites</button>}
+                        {user && <button onClick={() => handleAddToFavorite(plant.id)}>
+                            <i className="fa-regular fa-heart"></i>
+                            </button>}
                     </div>
                 ))
             }
