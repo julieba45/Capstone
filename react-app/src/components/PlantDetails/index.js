@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPlant } from '../../store/plant';
 import { addToCart } from '../../store/cart';
 import { useParams } from 'react-router-dom';
-import { createReviewforPlant, deleteReviewById, getAllPlantReviews } from '../../store/review';
+import { createReviewforPlant, getAllPlantReviews } from '../../store/review';
+import { useModal } from '../../context/Modal';
+import DeletePlantReviewModal from '../DeletePlantReviewModal';
 
 
 const PlantDetails = () => {
@@ -16,6 +18,7 @@ const PlantDetails = () => {
     const reviews = useSelector(state => state.reviews)
     const currentUser = useSelector(state => state.session.user);
     const [quantity, setQuantity] = useState(1);
+    const {setModalContent} = useModal();
 
 
 
@@ -38,8 +41,8 @@ const PlantDetails = () => {
         }
     }
 
-    const handleDeleteReview = (reviewId) => {
-        dispatch(deleteReviewById(reviewId))
+    const openDeleteModal = (reviewId) => {
+        setModalContent(<DeletePlantReviewModal reviewId={reviewId}/>)
     }
 
     return (
@@ -62,7 +65,7 @@ const PlantDetails = () => {
                     <p>{review.reviewText}</p>
                     <p>Rating: {review.rating}</p>
                     {currentUser && currentUser.id === review.userId && (
-                         <button onClick={() => handleDeleteReview(review.id)}>Delete Review</button>
+                         <button onClick={() => openDeleteModal(review.id)}>Delete Review</button>
                     )}
                 </div>
             ))}
