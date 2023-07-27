@@ -33,7 +33,7 @@ const CartPage = () => {
         if(user){
             history.push('/cart/payment')
         } else {
-            history.push('/login')
+            history.push("/login", { from: { pathname: "/cart/payment" } });
         }
     }
 
