@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPlant } from '../store/plant';
-import { addToCart } from '../store/cart';
+import { getPlant } from '../../store/plant';
+import { addToCart } from '../../store/cart';
 import { useParams } from 'react-router-dom';
-import { createReviewforPlant, deleteReviewById, getAllPlantReviews } from '../store/review';
+import { createReviewforPlant, deleteReviewById, getAllPlantReviews } from '../../store/review';
 
 
 const PlantDetails = () => {
@@ -15,6 +15,8 @@ const PlantDetails = () => {
     const [error, setError] = useState(null);
     const reviews = useSelector(state => state.reviews)
     const currentUser = useSelector(state => state.session.user);
+    const [quantity, setQuantity] = useState(1);
+
 
 
     useEffect(() => {
@@ -23,7 +25,7 @@ const PlantDetails = () => {
     }, [dispatch, plantId])
 
     const handleAddToCart = () => {
-        dispatch(addToCart(plant));
+        dispatch(addToCart(plant, quantity));
     }
 
     const handleReviewSubmit = async (e) => {
@@ -45,6 +47,13 @@ const PlantDetails = () => {
             <h1>Plant Detail</h1>
             <h2>{plant.name}</h2>
             <p>{plant.description}</p>
+            <label>Quantity</label>
+            <input
+                id="quantity"
+                type="number"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+            ></input>
             <button onClick={handleAddToCart}>Add to Cart</button>
             <div>
                 <h1>All the reviews below:</h1>
@@ -52,12 +61,13 @@ const PlantDetails = () => {
                 <div key={review.id}>
                     <p>{review.reviewText}</p>
                     <p>Rating: {review.rating}</p>
-                    {currentUser.id === review.userId && (
+                    {currentUser && currentUser.id === review.userId && (
                          <button onClick={() => handleDeleteReview(review.id)}>Delete Review</button>
                     )}
                 </div>
             ))}
             </div>
+            {currentUser &&
             <form onSubmit={handleReviewSubmit}>
                 <textarea value = {reviewText}
                 onChange={(e) => setReviewText(e.target.value)}
@@ -68,6 +78,7 @@ const PlantDetails = () => {
                 <button type="submit">Submit Review</button>
                 {error && <p>{error}</p>}
             </form>
+            }
         </div>
     )
 }

@@ -46,7 +46,7 @@ def add_plant_to_cart():
     data = request.get_json()
     print(f"---------------Data received: {data}")
     plantId = data.get('id')
-    quantity = data.get('quantity', 1) #default to 1 for user friendliness
+    quantity = int(data.get('quantity', 1)) #default to 1 for user friendliness
 
     plant = Plant.query.get(plantId)
     if plant is None:

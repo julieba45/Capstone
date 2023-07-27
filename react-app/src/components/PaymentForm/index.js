@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux"
 import { createPayment } from "../../store/payment";
 import { useHistory } from 'react-router-dom';
+import { clearCart } from "../../store/cart";
 
 
 const PaymentForm = () => {
@@ -29,16 +30,21 @@ const PaymentForm = () => {
             return
         }
 
-        const error = await dispatch(createPayment({
+        const confirmation = await dispatch(createPayment({
             paymentInfo,
             paymentAmount,
             location
         }))
-        if(error){
-            setErrors({...errors, error: error})
-        } else{
-            history.push('/confirmation')
+        await dispatch(clearCart())
+        if (confirmation){
+            history.push(`/confirmation/${confirmation.orderId}`)
         }
+        // if(error){
+        //     setErrors({...errors, error: error})
+        // } else{
+        //     console.log('ORDERID', error.orderId)
+        //     history.push(`/confirmation/${error.orderId}`)
+        // }
     }
     return (
         <form onSubmit={handleSubmit}>

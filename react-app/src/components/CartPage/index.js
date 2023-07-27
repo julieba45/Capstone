@@ -41,7 +41,7 @@ const CartPage = () => {
                 <button onClick ={() => handleDelete(plantItem.plantId)}>Delete</button>
             </div>
         ))}
-         <NavLink to="/cart/payment">Checkout</NavLink>
+         {cart && cart.length > 0 && <NavLink to="/cart/payment">Checkout</NavLink>}
     </div>
     )
 }

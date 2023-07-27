@@ -27,6 +27,7 @@ class Payment(db.Model):
 
     def to_dict_full(self):
         return {
+            'id': self.id,
             'userId': self.userId,
             'orderId': self.orderId,
             'paymentAmount': self.paymentAmount,
