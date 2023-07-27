@@ -5,13 +5,17 @@ import cartReducer from './cart';
 import plantsReducer from './plant';
 import reviewReducer from './review';
 import paymentReducer from './payment';
+import orderReducer from './order';
+import favoriteReducer from './favorite';
 
 const rootReducer = combineReducers({
   session,
   cart: cartReducer,
   plants: plantsReducer,
   reviews: reviewReducer,
-  payment: paymentReducer
+  payment: paymentReducer,
+  orders:orderReducer,
+  favorites: favoriteReducer
 });
 
 

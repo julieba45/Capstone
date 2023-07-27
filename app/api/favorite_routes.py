@@ -36,6 +36,7 @@ def add_plant_to_favorites():
     data = request.get_json()
     plantId = data.get('id')
     gardenName = data.get('gardenName', None)
+    position = data.get('position', None)
 
     plant = Plant.query.get(plantId)
     if plant is None:
@@ -44,7 +45,8 @@ def add_plant_to_favorites():
     favorite = Favorite(
         userId=current_user.id,
         plantId=plantId,
-        gardenName=gardenName
+        gardenName=gardenName,
+        position=position
     )
     db.session.add(favorite)
     db.session.commit()

@@ -30,5 +30,6 @@ class Order(db.Model):
             'isCheckedOut': self.isCheckedOut,
             'status': self.status,
             'orderPlants': [orderplants.to_dict() for orderplants in self.order_plants],
-            'payment': self.payments[0].to_dict() if self.payments else None
+            'payment': payment.to_dict_full() if payment else None
         }
+# 'payment': self.payments[0].to_dict() if self.payments else None

@@ -7,15 +7,20 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import CartPage from "./components/CartPage";
 import GetAllPlants from "./components/GetAllPlants";
-import PlantDetails from "./PlantDetails";
+import PlantDetails from "./components/PlantDetails";
 import PaymentForm from "./components/PaymentForm";
 import ConfirmationPage from "./components/ConfirmationPage";
+import CurrentUserOrders from "./components/CurrentUserOrders";
+import { getCart } from "./store/cart";
+import MyFavoritesPage from "./components/MyFavoritesPage";
+import GardenDetailsPage from "./components/GardenDetailsPage";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(getCart())
   }, [dispatch]);
 
   return (
@@ -41,8 +46,17 @@ function App() {
           <Route exact path="/cart/payment">
             <PaymentForm/>
           </Route>
-          <Route path='/confirmation'>
+          <Route path='/confirmation/:orderId'>
             <ConfirmationPage/>
+          </Route>
+          <Route exact path='/orders/current'>
+            <CurrentUserOrders/>
+          </Route>
+          <Route exact path='/favorites'>
+            <MyFavoritesPage/>
+          </Route>
+          <Route path="/garden/:gardenName">
+            <GardenDetailsPage/>
           </Route>
         </Switch>
       )}
