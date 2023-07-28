@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux"
 import { createPayment } from "../../store/payment";
 import { useHistory } from 'react-router-dom';
@@ -12,6 +12,16 @@ const PaymentForm = () => {
     const [location, setLocation] = useState('');
     const [errors, setErrors] = useState({});
     const history = useHistory();
+    const [suggestions, setSuggestions] = useState([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
+
+
+
+    const fetchSuggestions = async (input) => {
+        const response = await fetch(`/api/auth/autocomplete/${input}`);
+        const data = await response.json();
+        setSuggestions(data);
+    };
 
 
     const validate = () => {
@@ -22,9 +32,21 @@ const PaymentForm = () => {
         return newErrors
     }
 
+    useEffect(() => {
+        if(location && !suggestions.includes(location)){
+            fetchSuggestions(location)
+        } else {
+            setSuggestions([])
+        }
+    }, [location])
+
     const handleSubmit = async(e) => {
         e.preventDefault();
         const errors = validate();
+
+       if(!suggestions.some(suggestion => suggestion.description === location)){
+            errors.location = "Please select a valid location from the suggestions"
+        }
         if(Object.keys(errors).length > 0){
             setErrors(errors);
             return
@@ -37,11 +59,11 @@ const PaymentForm = () => {
         }))
 
         if(!confirmation.orderId){
-            console.log('-----------CONFIRMATION IN IF', confirmation)
+            // console.log('-----------CONFIRMATION IN IF', confirmation)
             setErrors({...errors, error: confirmation})
         } else{
-            console.log('------------CONFIRMATION IN ELSE', confirmation)
-            console.log('ORDERID', confirmation.orderId)
+            // console.log('------------CONFIRMATION IN ELSE', confirmation)
+            // console.log('ORDERID', confirmation.orderId)
             await dispatch(clearCart())
             history.push(`/confirmation/${confirmation.orderId}`)
         }
@@ -62,12 +84,32 @@ const PaymentForm = () => {
                 placeholder="Payment Amount"
             />
              {errors.paymentAmount && <p>{errors.paymentAmount}</p>}
+
             <input
                 type = "text"
                 value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                onChange={(e) => {
+                    setLocation(e.target.value)
+                    setShowSuggestions(true)
+                }}
                 placeholder="Location"
             />
+            <div className="location-suggestions">
+            {showSuggestions && suggestions.map((suggestion, index) => (
+            <div
+                key={index}
+                onMouseDown={(e) => {
+                    e.preventDefault();
+                    setLocation(suggestion.description);
+                    setSuggestions([]);
+                    setShowSuggestions(false);
+                }}
+            >
+                {suggestion.description}
+            </div>
+        ))}
+
+            </div>
             {errors.location && <p>{errors.location}</p>}
             <button type="submit">Submit Payment</button>
             {errors.error && <p>{errors.error}</p>}
