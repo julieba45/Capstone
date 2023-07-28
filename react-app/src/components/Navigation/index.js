@@ -22,6 +22,9 @@ function Navigation({ isLoaded }){
 				<NavLink to="/plants">Store</NavLink>
 			)}
 			{isLoaded && <CartCount />}
+			{isLoaded && (
+				<NavLink to='/care'>Care</NavLink>
+			)}
 		</ul>
 	);
 }
