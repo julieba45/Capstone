@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { createPayment } from "../../store/payment";
 import { useHistory } from 'react-router-dom';
 import { clearCart } from "../../store/cart";
+import FinalCart from "../FinalCart";
 
 
 const PaymentForm = () => {
@@ -15,13 +16,16 @@ const PaymentForm = () => {
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
 
-
-
     const fetchSuggestions = async (input) => {
         const response = await fetch(`/api/auth/autocomplete/${input}`);
         const data = await response.json();
         setSuggestions(data);
     };
+
+    const validateCreditCard = () => {
+        const CardPrefix = paymentInfo.slice(0,4);
+
+    }
 
 
     const validate = () => {
@@ -59,7 +63,6 @@ const PaymentForm = () => {
         }))
 
         if(!confirmation.orderId){
-            // console.log('-----------CONFIRMATION IN IF', confirmation)
             setErrors({...errors, error: confirmation})
         } else{
             // console.log('------------CONFIRMATION IN ELSE', confirmation)
@@ -113,7 +116,7 @@ const PaymentForm = () => {
             {errors.location && <p>{errors.location}</p>}
             <button type="submit">Submit Payment</button>
             {errors.error && <p>{errors.error}</p>}
-
+        <FinalCart/>
         </form>
     )
 
