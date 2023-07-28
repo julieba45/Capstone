@@ -2,6 +2,8 @@ const GET_FAVORITES = "favorite/GET_FAVORITES";
 const GET_GARDEN_FAVORITES = "favorite/GET_GARDEN_FAVORITES";
 const UPDATE_FAVORITE = 'favorite/UPDATE_FAVORITE';
 const ADD_FAVORITE = 'favorite/ADD_FAVORITE';
+const DELETE_FAVORITE = 'favorite/DELETE_FAVORITE';
+
 
 const getFavorites = (favorites) => ({
     type: GET_FAVORITES,
@@ -22,6 +24,12 @@ const addFavorite = (favorite) => ({
     type: ADD_FAVORITE,
     payload: favorite
 })
+
+const deleteFavorite = (favoriteId) => ({
+    type: DELETE_FAVORITE,
+    payload: favoriteId
+});
+
 
 export const fetchFavorites = () => async(dispatch) => {
 
@@ -79,6 +87,15 @@ export const addFavoritePlant = (plantId, gardenName, position) => async(dispatc
     }
 }
 
+export const deleteFavoritePlant = (favoriteId) => async(dispatch) => {
+    const response = await fetch(`/api/favorites/${favoriteId}`, {
+        method: 'DELETE'
+    })
+    if(response.ok){
+        dispatch(deleteFavorite(favoriteId))
+    }
+}
+
 const initialState = [];
 
 const favoriteReducer = (state = initialState, action) => {
@@ -91,6 +108,8 @@ const favoriteReducer = (state = initialState, action) => {
             return [...state, action.payload]
         case UPDATE_FAVORITE:
             return state.map(favorite => favorite.id === action.payload.id ? action.payload : favorite)
+        case DELETE_FAVORITE:
+            return state.filter(favorite => favorite.id !== action.payload);
         default:
             return state
     }
