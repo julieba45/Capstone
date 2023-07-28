@@ -1,22 +1,21 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOrders } from "../../store/order";
-import { cancelPayment } from "../../store/payment";
+import { useModal } from "../../context/Modal";
+import CancelPaymentModal from "../CancelPaymentModal";
 
 const CurrentUserOrders = () => {
     const dispatch = useDispatch();
     const orders = useSelector(state => state.orders.orders);
+    const {setModalContent} = useModal();
 
     useEffect(() => {
         // console.log(orders, 'THE ORDERS OF THE CURRENT USER ')
         dispatch(fetchOrders())
     }, [dispatch]);
 
-    const handleCancelPayment = async (paymentId) => {
-        const result  = await dispatch(cancelPayment(paymentId))
-        if(result.ok){
-            dispatch(fetchOrders())
-        }
+    const openCancelModal = (paymentId) => {
+        setModalContent(<CancelPaymentModal paymentId={paymentId}/>)
     }
 
     return(
@@ -28,7 +27,7 @@ const CurrentUserOrders = () => {
                     <p>Status: {order.status}</p>
                     {/* <p>'HEYY'{order.payment.id}</p> */}
                     {order.status !== 'Cancelled' && (
-                        <button onClick={() => handleCancelPayment(order.payment.id)}>
+                        <button onClick={() => openCancelModal(order.payment.id)}>
                             Cancel Payment
                         </button>
                     )}
