@@ -65,7 +65,7 @@ const ConfirmationPage = () => {
             <p>Order Status: {order.status}</p>
             <p>Shipped Location: {order.payment.location}</p>
             {mapData && mapData.results &&
-                <LoadScript googleMapsApiKey='AIzaSyCyV7tOD88GazFpAs6JWIUEzwibOnQE3kU'>
+                <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY}>
                     <GoogleMap
                         mapContainerStyle={mapStyles}
                         zoom={13}
