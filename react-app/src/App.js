@@ -15,6 +15,7 @@ import { getCart } from "./store/cart";
 import MyFavoritesPage from "./components/MyFavoritesPage";
 import GardenDetailsPage from "./components/GardenDetailsPage";
 import HomePage from "./components/HomePage";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,21 +48,21 @@ function App() {
           <Route exact path="/plants/:plantId">
             <PlantDetails/>
           </Route>
-          <Route exact path="/cart/payment">
+          <ProtectedRoute exact path="/cart/payment">
             <PaymentForm/>
-          </Route>
-          <Route exact path='/confirmation/:orderId'>
+          </ProtectedRoute>
+          <ProtectedRoute exact path='/confirmation/:orderId'>
             <ConfirmationPage/>
-          </Route>
-          <Route exact path='/orders/current'>
+          </ProtectedRoute>
+          <ProtectedRoute exact path='/orders/current'>
             <CurrentUserOrders/>
-          </Route>
-          <Route exact path='/favorites'>
+          </ProtectedRoute>
+          <ProtectedRoute exact path='/favorites'>
             <MyFavoritesPage/>
-          </Route>
-          <Route exact path="/garden/:gardenName">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/garden/:gardenName">
             <GardenDetailsPage/>
-          </Route>
+          </ProtectedRoute>
         </Switch>
       )}
     </>

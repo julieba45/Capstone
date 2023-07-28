@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchGardenFavorites } from '../../store/favorite';
+import { deleteFavoritePlant, fetchGardenFavorites } from '../../store/favorite';
+
 
 const GardenDetailsPage = () => {
     const dispatch = useDispatch();
@@ -12,7 +13,9 @@ const GardenDetailsPage = () => {
         dispatch(fetchGardenFavorites(gardenName));
     }, [dispatch, gardenName]);
 
-
+    const handleDelete = (favoriteId) => {
+        dispatch(deleteFavoritePlant(favoriteId))
+    }
 
     return (
         <div>
@@ -30,6 +33,7 @@ const GardenDetailsPage = () => {
                     <p>Watering Frequency: {favorite.plant.wateringFrequency}</p>
                     {/* <p>Created at: {new Date(favorite.createdAt).toLocaleString()}</p>
                     <p>Updated at: {new Date(favorite.updatedAt).toLocaleString()}</p> */}
+                    <button onClick={() => handleDelete(favorite.id)}>Remove</button>
                 </div>
             ))}
         </div>

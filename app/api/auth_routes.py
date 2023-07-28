@@ -3,6 +3,9 @@ from app.models import User, Order, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.config import Config
+import googlemaps
+import requests
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -91,3 +94,18 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': ['Unauthorized']}, 401
+
+@auth_routes.route('/autocomplete/<string:input>')
+def autocomplete(input):
+    gmaps = googlemaps.Client(key=Config.API_KEY)
+    autocomplete_result = gmaps.places_autocomplete(input, types='address')
+    return jsonify(autocomplete_result)
+
+@auth_routes.route('/map/<string:location>')
+def get_map(location):
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={location}&key={Config.API_KEY}"
+    try:
+        response = requests.get(url)
+        return jsonify(response.json())
+    except Exception as e:
+        return jsonify(error=str(e)), 500
