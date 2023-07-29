@@ -44,14 +44,16 @@ const PlantDetails = () => {
             <h1>Plant Detail</h1>
             <div className='product-details'>
                 <div className='product-images'>
+                {plant.images && plant.images.length > 0 && (
                     <Carousel>
-                    {plant.images && plant.images.length > 0 && plant.images[0].isPrimary &&
+                    {plant.images[0].isPrimary && (
                         <img className="plant-image" src={plant.images[0].pictureUrl} alt={plant.name}></img>
-                    }
-                    {plant.images && plant.images.filter(image => !image.isPrimary).map((image, index) => (
+                    )}
+                    {plant.images.filter(image => !image.isPrimary).map((image, index) => (
                         <img key={index} className="plant-image" src={image.pictureUrl} alt={plant.name}></img>
                     ))}
                     </Carousel>
+                )}
                 </div>
                 <div className='produce-info'>
                     <h2>{plant.name}</h2>
