@@ -66,7 +66,7 @@ const CarePage = () => {
                         <div key={orderPlant.id}>
                             <p>Plant Name: {orderPlant.plant.name}</p>
                             <p>Plant watering frequency: {orderPlant.plant.wateringFrequency} per day</p>
-                            <p>Adjusted watering amount based on precipitation: {wateringAmount} per day</p>
+                            <p>Adjusted watering amount based on precipitation: {wateringAmount.toFixed(2)} per day</p>
                             <p>Care Instructions: {orderPlant.plant.careInstructions}</p>
                         </div>
                     )
