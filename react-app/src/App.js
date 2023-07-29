@@ -16,6 +16,7 @@ import MyFavoritesPage from "./components/MyFavoritesPage";
 import GardenDetailsPage from "./components/GardenDetailsPage";
 import HomePage from "./components/HomePage";
 import ProtectedRoute from "./ProtectedRoute";
+import CarePage from "./components/CarePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
+          <ProtectedRoute exact path="/care">
+            <CarePage/>
+          </ProtectedRoute>
           <Route exact path="/cart">
             <CartPage />
           </Route>

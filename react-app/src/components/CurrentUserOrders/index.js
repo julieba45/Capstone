@@ -36,6 +36,7 @@ const CurrentUserOrders = () => {
                          <div key={orderPlant.id}>
                          <p>Plant Name: {orderPlant.plant.name}</p>
                          <p>Plant Quantity: {orderPlant.quantity}</p>
+                         <p>Plant watering frequency: {orderPlant.plant.wateringFrequency}</p>
                      </div>
                     ))}
                 </div>

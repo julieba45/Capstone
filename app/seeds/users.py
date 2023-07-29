@@ -9,21 +9,21 @@ def seed_users():
         lastName='Lition',
         username='Demo',
         email='demo@aa.io',
-        location='California',
+        location='New York 218, Highland Falls, NY, USA',
         password='password')
     marnie = User(
         firstName='Marnie',
         lastName='Barnie',
         username='marnie',
         email='marnie@aa.io',
-        location='California',
+        location='1369 W Grove St, Rialto, CA, USA',
         password='password')
     bobbie = User(
         firstName='Bobbie',
         lastName='Bobberson',
         username='bobbie',
         email='bobbie@aa.io',
-        location='California',
+        location='440 Benmar Drive, Houston, TX, USA',
         password='password')
 
     db.session.add(demo)
