@@ -42,6 +42,8 @@ const CarePage = () => {
         return <div>Loading...</div>
     }
 
+    let plantsRendered = new Set()
+
     return (
         <div>
             <h1>Care</h1>
@@ -54,11 +56,15 @@ const CarePage = () => {
             )}
             {orders.map(order => (
                  order.status === "Completed" && order.orderPlants.map(orderPlant => {
+                    if(plantsRendered.has(orderPlant.plant.id)){
+                        return null;
+                    } else {
+                        plantsRendered.add(orderPlant.plant.id)
+                    }
                     const wateringAmount = orderPlant.plant.wateringFrequency * (1 - (weatherData.days[0].precip));
                     return (
                         <div key={orderPlant.id}>
                             <p>Plant Name: {orderPlant.plant.name}</p>
-                            <p>Plant Quantity: {orderPlant.quantity}</p>
                             <p>Plant watering frequency: {orderPlant.plant.wateringFrequency} per day</p>
                             <p>Adjusted watering amount based on precipitation: {wateringAmount} per day</p>
                             <p>Care Instructions: {orderPlant.plant.careInstructions}</p>
