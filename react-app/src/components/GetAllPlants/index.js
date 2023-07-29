@@ -29,7 +29,8 @@ const GetAllPlants = () => {
         history.push(`/plants/${plantId}`)
     }
 
-    const handleAddToFavorite = (plantId) => {
+    const handleAddToFavorite = (plantId, e) => {
+        e.stopPropagation();
         if(user){
         setModalContent(
             <GardenSelectionModal
@@ -54,14 +55,14 @@ const GetAllPlants = () => {
             <div className='plants-grid'>
             {
                 plants.map(plant => (
-                    <div key={plant.id} className='plant-card'>
+                    <div key={plant.id} className='plant-card' onClick={() => handleClick(plant.id)}>
                         <h2>{plant.name}</h2>
                         <p>{plant.description}</p>
                         {plant.images && plant.images.length > 0 && plant.images[0].isPrimary &&
                         <img className="plant-image" src={plant.images[0].pictureUrl} alt={plant.name}></img>
                         }
-                        <button onClick={() => handleClick(plant.id)}>See Details</button>
-                        {user && <button onClick={() => handleAddToFavorite(plant.id)}>
+                        {/* <button onClick={() => handleClick(plant.id)}>See Details</button> */}
+                        {user && <button onClick={(e) => handleAddToFavorite(plant.id, e)}>
                             <i className="fa-regular fa-heart"></i>
                             </button>}
                     </div>
