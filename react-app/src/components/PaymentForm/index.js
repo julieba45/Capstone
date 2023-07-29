@@ -23,7 +23,20 @@ const PaymentForm = () => {
     };
 
     const validateCreditCard = () => {
-        const CardPrefix = paymentInfo.slice(0,4);
+        const cardPrefix = paymentInfo.slice(0,4);
+        const cardLength = paymentInfo.length;
+
+        if(cardPrefix === "3797" && cardLength === 15) {
+            return 'AMEX';
+        } else if(cardPrefix === "6011" && cardLength === 16) {
+            return 'DISCOVER';
+        } else if(cardPrefix.charAt(0) === "4" && cardLength === 16) {
+            return 'VISA';
+        } else if((cardPrefix.slice(0, 2) === "51" || cardPrefix.slice(0, 2) === "55") && cardLength === 16) {
+            return 'MASTERCARD';
+        } else {
+            return 'INVALID';
+        }
 
     }
 
@@ -33,6 +46,10 @@ const PaymentForm = () => {
         if (!paymentInfo) newErrors.paymentInfo = "Payment info is required";
         if (!paymentAmount) newErrors.paymentAmount = "Payment amount is required";
         if (!location) newErrors.location = "Location is required";
+
+        const cardInfo = validateCreditCard();
+        if (cardInfo === 'INVALID') newErrors.paymentInfo = "Invalid card number";
+
         return newErrors
     }
 
@@ -73,13 +90,16 @@ const PaymentForm = () => {
     }
     return (
         <form onSubmit={handleSubmit}>
+            Credite Card
             <input
-                type = "text"
-                value={paymentInfo}
-                onChange={(e) => setPaymentInfo(e.target.value)}
-                placeholder="Payment Info"
+                 type="text"
+                 maxLength="16"
+                 placeholder="xxxx xxxx xxxx xxxx"
+                 value={paymentInfo}
+                 onChange={(e) => setPaymentInfo(e.target.value)}
             />
              {errors.paymentInfo && <p>{errors.paymentInfo}</p>}
+             Payment
             <input
                 type = "number"
                 value={paymentAmount}
@@ -87,7 +107,7 @@ const PaymentForm = () => {
                 placeholder="Payment Amount"
             />
              {errors.paymentAmount && <p>{errors.paymentAmount}</p>}
-
+             Location
             <input
                 type = "text"
                 value={location}

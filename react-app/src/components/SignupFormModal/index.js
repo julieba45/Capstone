@@ -13,7 +13,7 @@ function SignupFormModal() {
 	const [location, setLocation] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [errors, setErrors] = useState([]);
+	const [errors, setErrors] = useState({});
 	const { closeModal } = useModal();
 	const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
@@ -26,8 +26,8 @@ function SignupFormModal() {
 
 	const validate = () => {
         const newErrors = {};
-        if (!location) newErrors.location = "Location is required";
-        return newErrors
+		if (!location) newErrors.location = "Location is required";
+		return newErrors;
     }
 
 	useEffect(() => {
@@ -38,78 +38,91 @@ function SignupFormModal() {
         }
     }, [location])
 
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const errors = validate();
+		let errors = validate();
+
 
 		if(!suggestions.some(suggestion => suggestion.description === location)){
-            errors.location = "Please select a valid location from the suggestions"
+			errors.location = "Please select a valid location from the suggestions";
         }
-		if(Object.keys(errors).length > 0){
-            setErrors(errors);
-            return
-        }
-		if (password === confirmPassword) {
+		if (password !== confirmPassword) {
+			console.log('-------------PW NOT MATCHING')
+			errors.confirmPassword = "Confirm Password field must be the same as the Password field";
+		}else {
 			const data = await dispatch(signUp(firstName, lastName, username, location, email, password));
 			if (data) {
-				setErrors(data);
+				data.forEach((item) => {
+					let parts = item.split(" : ");
+					let key = parts[0].trim();
+					let value = parts[1].trim();
+					errors[key] = value;
+				  });
+				//['username : Username is already in use.', 'email : Please use valid email address.']
+				// setErrors(data);
 			} else {
 				closeModal();
 			}
-		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
 		}
+
+		if(Object.keys(errors).length){
+			console.log('--------------ERRORS', errors)
+			setErrors(errors);
+			return;
+		  }
 	};
 
 	return (
 		<>
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit}>
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
 				<label>
 					First Name
 					<input
 						type="text"
 						placeholder="First Name"
+						maxLength="50"
 						value={firstName}
 						onChange={(e) => setFirstName(e.target.value)}
 						required
 					/>
 				</label>
+				{errors.firstName && <div>{errors.firstName}</div>}
 				<label>
 					Last Name
 					<input
 						type="text"
 						placeholder="Last Name"
+						maxLength="50"
 						value={lastName}
 						onChange={(e) => setLastName(e.target.value)}
 						required
 					/>
 				</label>
+				{errors.lastName && <div>{errors.lastName}</div>}
 				<label>
 					Email
 					<input
 						type="text"
 						value={email}
+						maxLength="255"
 						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
 				</label>
+				{errors.email && <div>{errors.email}</div>}
 				<label>
 					Username
 					<input
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
+						maxLength="40"
 						required
 					/>
 				</label>
+				{errors.username && <div>{errors.username}</div>}
 				<label>
 					Location
 					<input
@@ -136,12 +149,14 @@ function SignupFormModal() {
 					</div>
 					))}
 				</label>
+				{errors.location && <div>{errors.location}</div>}
 				<label>
 					Password
 					<input
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
+						maxLength="255"
 						required
 					/>
 				</label>
@@ -151,9 +166,11 @@ function SignupFormModal() {
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
+						maxLength="255"
 						required
 					/>
 				</label>
+				{errors.confirmPassword && <div>{errors.confirmPassword}</div>}
 				<button type="submit">Sign Up</button>
 			</form>
 		</>
