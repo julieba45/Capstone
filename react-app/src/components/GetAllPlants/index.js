@@ -6,6 +6,7 @@ import { addFavoritePlant } from '../../store/favorite';
 import { fetchFavorites } from '../../store/favorite';
 import GardenSelectionModal from '../GardenSelectionModal';
 import { useModal } from '../../context/Modal';
+import "./GetAllPlants.css";
 
 const GetAllPlants = () => {
     const dispatch = useDispatch()
@@ -48,13 +49,17 @@ const GetAllPlants = () => {
     const gardenNames = [...new Set(favorites.map(favorite => favorite.gardenName))];
 
     return (
-        <div>
+        <div className='plants-container'>
             <h1>Plant List</h1>
+            <div className='plants-grid'>
             {
                 plants.map(plant => (
-                    <div key={plant.id}>
+                    <div key={plant.id} className='plant-card'>
                         <h2>{plant.name}</h2>
                         <p>{plant.description}</p>
+                        {plant.images && plant.images.length > 0 && plant.images[0].isPrimary &&
+                        <img className="plant-image" src={plant.images[0].pictureUrl} alt={plant.name}></img>
+                        }
                         <button onClick={() => handleClick(plant.id)}>See Details</button>
                         {user && <button onClick={() => handleAddToFavorite(plant.id)}>
                             <i className="fa-regular fa-heart"></i>
@@ -62,6 +67,7 @@ const GetAllPlants = () => {
                     </div>
                 ))
             }
+            </div>
         </div>
     )
 }
