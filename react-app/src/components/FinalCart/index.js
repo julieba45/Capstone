@@ -11,6 +11,11 @@ const FinalCart = () => {
         dispatch(getCart())
     }, [dispatch])
 
+    let totalCartCost = 0;
+    if (cart) {
+        totalCartCost = cart.reduce((acc, plantItem) => acc + (plantItem.quantity * plantItem.plant.price), 0);
+    }
+
     return (
         <div>
         <h1>Cart</h1>
@@ -23,10 +28,11 @@ const FinalCart = () => {
                 <p>{plantItem.plant.description}</p>
                 <p>{`Quantity: ${plantItem.quantity}`}</p>
                 <p>Price: ${plantItem.plant.price}</p>
-                <p>Total Cost: ${totalCost}</p>
+                {/* <p>Total Cost: ${totalCost}</p> */}
             </div>
             )
         })}
+         <h2>Total Cost: ${totalCartCost}</h2>
     </div>
     )
 
