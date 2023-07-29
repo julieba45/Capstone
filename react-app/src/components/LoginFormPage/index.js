@@ -43,6 +43,7 @@ function LoginFormPage() {
           <input
             type="text"
             value={email}
+            maxLength="255"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
@@ -53,6 +54,7 @@ function LoginFormPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            maxLength="255"
             required
           />
         </label>

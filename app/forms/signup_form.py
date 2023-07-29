@@ -1,7 +1,20 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
+from email_validator import validate_email, EmailNotValidError
 from app.models import User
+
+def email_is_valid(form, field):
+    # Checking if email is valid
+    email = field.data
+    print(email, "***********************EMAIL***********************")
+    try:
+        emailinfo = validate_email(email, check_deliverability=False)
+        print(emailinfo, "*****EMAILINFO******")
+        emailinfo = emailinfo.normalized
+    except EmailNotValidError as e:
+        print(str(e))
+        raise ValidationError('Please use valid email address.')
 
 
 def user_exists(form, field):
@@ -23,7 +36,7 @@ def username_exists(form, field):
 class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
+    email = StringField('email', validators=[DataRequired(), user_exists, email_is_valid])
     firstName = StringField('firstName', validators=[DataRequired()])
     lastName = StringField('lastName', validators=[DataRequired()])
     location = StringField('location', validators=[DataRequired()])
