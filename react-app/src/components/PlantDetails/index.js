@@ -6,21 +6,18 @@ import { useParams } from 'react-router-dom';
 import { createReviewforPlant, getAllPlantReviews } from '../../store/review';
 import { useModal } from '../../context/Modal';
 import DeletePlantReviewModal from '../DeletePlantReviewModal';
+import ReviewModal from '../ReviewModal';
 
 
 const PlantDetails = () => {
     const dispatch = useDispatch();
     const { plantId } = useParams();
     const plant = useSelector(state => state.plants.currentPlant);
-    const [reviewText, setReviewText] = useState('');
-    const [rating, setRating] =useState(5);
-    const [error, setError] = useState(null);
     const reviews = useSelector(state => state.reviews)
     const currentUser = useSelector(state => state.session.user);
     const [quantity, setQuantity] = useState(1);
     const {setModalContent} = useModal();
-
-
+    const { closeModal } = useModal();
 
     useEffect(() => {
         dispatch(getPlant(plantId));
@@ -31,18 +28,12 @@ const PlantDetails = () => {
         dispatch(addToCart(plant, quantity));
     }
 
-    const handleReviewSubmit = async (e) => {
-        e.preventDefault();
-        const error = await dispatch(createReviewforPlant(plantId, {reviewText, rating}))
-        if(error){
-            setError(error)
-        } else {
-            setError(null)
-        }
-    }
-
     const openDeleteModal = (reviewId) => {
         setModalContent(<DeletePlantReviewModal reviewId={reviewId}/>)
+    }
+
+    const openReviewModal = () => {
+        setModalContent(<ReviewModal plantId={plantId} closeModal={closeModal}/>)
     }
 
     return (
@@ -70,17 +61,7 @@ const PlantDetails = () => {
                 </div>
             ))}
             </div>
-            {currentUser &&
-            <form onSubmit={handleReviewSubmit}>
-                <textarea value = {reviewText}
-                onChange={(e) => setReviewText(e.target.value)}
-                />
-                <input type="number" min="1" max="5" value={rating}
-                onChange={(e) => setRating(e.target.value)}
-                />
-                <button type="submit">Submit Review</button>
-                {error && <p>{error}</p>}
-            </form>
+            {currentUser && <button onClick={openReviewModal}>Create a Review</button>
             }
         </div>
     )
