@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createReviewforPlant } from '../../store/review';
+import StarRatings from 'react-star-ratings';
 
 const ReviewModal = ({plantId, closeModal}) => {
     const dispatch = useDispatch();
@@ -19,6 +20,10 @@ const ReviewModal = ({plantId, closeModal}) => {
         }
     }
 
+    const changeRating = (newRating) => {
+        setRating(newRating);
+    }
+
     return (
         <form onSubmit={handleReviewSubmit}>
             Description
@@ -27,12 +32,21 @@ const ReviewModal = ({plantId, closeModal}) => {
                     onChange={(e) => setReviewText(e.target.value)}
                 />
             Rating
+                <StarRatings
+                    rating={rating}
+                    starRatedColor="gray"
+                    starHoverColor="red"
+                    changeRating={changeRating}
+                    numberOfStars={5}
+                    name='rating'
+                />
                 <input
                     type="number"
                     min="1"
                     max="5"
+                    step="0.5"
                     value={rating}
-                    onChange={(e) => setRating(e.target.value)}
+                    onChange={(e) => setRating(parseFloat(e.target.value))}
                 />
                 <button type="submit">Submit Review</button>
                 {error && <p>{error}</p>}
