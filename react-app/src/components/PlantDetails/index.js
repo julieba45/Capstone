@@ -53,8 +53,11 @@ const PlantDetails = () => {
                 <h1>All the reviews below:</h1>
             {reviews.map(review => (
                 <div key={review.id}>
+                    <p>{review.user.firstName}</p>
+                    <p>{review.createdAt}</p>
                     <p>{review.reviewText}</p>
                     <p>Rating: {review.rating}</p>
+
                     {currentUser && currentUser.id === review.userId && (
                          <button onClick={() => openDeleteModal(review.id)}>Delete Review</button>
                     )}
