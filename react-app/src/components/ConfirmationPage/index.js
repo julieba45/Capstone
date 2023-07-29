@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -16,7 +16,7 @@ const ConfirmationPage = () => {
 
 
     useEffect(() => {
-        console.log("---------ORDER AND ORDERID",order, orderId)
+        // console.log("---------ORDER AND ORDERID",order, orderId)
         if (!order) {
             dispatch(getOrder(orderId))
             .catch(err => {
