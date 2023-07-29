@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { createPayment } from "../../store/payment";
 import { useHistory } from 'react-router-dom';
 import { clearCart } from "../../store/cart";
+import FinalCart from "../FinalCart";
 
 
 const PaymentForm = () => {
@@ -15,13 +16,29 @@ const PaymentForm = () => {
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
 
-
-
     const fetchSuggestions = async (input) => {
         const response = await fetch(`/api/auth/autocomplete/${input}`);
         const data = await response.json();
         setSuggestions(data);
     };
+
+    const validateCreditCard = () => {
+        const cardPrefix = paymentInfo.slice(0,4);
+        const cardLength = paymentInfo.length;
+
+        if(cardPrefix === "3797" && cardLength === 15) {
+            return 'AMEX';
+        } else if(cardPrefix === "6011" && cardLength === 16) {
+            return 'DISCOVER';
+        } else if(cardPrefix.charAt(0) === "4" && cardLength === 16) {
+            return 'VISA';
+        } else if((cardPrefix.slice(0, 2) === "51" || cardPrefix.slice(0, 2) === "55") && cardLength === 16) {
+            return 'MASTERCARD';
+        } else {
+            return 'INVALID';
+        }
+
+    }
 
 
     const validate = () => {
@@ -29,6 +46,10 @@ const PaymentForm = () => {
         if (!paymentInfo) newErrors.paymentInfo = "Payment info is required";
         if (!paymentAmount) newErrors.paymentAmount = "Payment amount is required";
         if (!location) newErrors.location = "Location is required";
+
+        const cardInfo = validateCreditCard();
+        if (cardInfo === 'INVALID') newErrors.paymentInfo = "Invalid card number";
+
         return newErrors
     }
 
@@ -59,7 +80,6 @@ const PaymentForm = () => {
         }))
 
         if(!confirmation.orderId){
-            // console.log('-----------CONFIRMATION IN IF', confirmation)
             setErrors({...errors, error: confirmation})
         } else{
             // console.log('------------CONFIRMATION IN ELSE', confirmation)
@@ -70,13 +90,16 @@ const PaymentForm = () => {
     }
     return (
         <form onSubmit={handleSubmit}>
+            Credite Card
             <input
-                type = "text"
-                value={paymentInfo}
-                onChange={(e) => setPaymentInfo(e.target.value)}
-                placeholder="Payment Info"
+                 type="text"
+                 maxLength="16"
+                 placeholder="xxxx xxxx xxxx xxxx"
+                 value={paymentInfo}
+                 onChange={(e) => setPaymentInfo(e.target.value)}
             />
              {errors.paymentInfo && <p>{errors.paymentInfo}</p>}
+             Payment
             <input
                 type = "number"
                 value={paymentAmount}
@@ -84,7 +107,7 @@ const PaymentForm = () => {
                 placeholder="Payment Amount"
             />
              {errors.paymentAmount && <p>{errors.paymentAmount}</p>}
-
+             Location
             <input
                 type = "text"
                 value={location}
@@ -113,7 +136,7 @@ const PaymentForm = () => {
             {errors.location && <p>{errors.location}</p>}
             <button type="submit">Submit Payment</button>
             {errors.error && <p>{errors.error}</p>}
-
+        <FinalCart/>
         </form>
     )
 
