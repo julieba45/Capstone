@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import { getPlants } from '../../store/plant';
 import { useDispatch, useSelector } from 'react-redux';
+import "./ChatBot.css"
 
 
 
@@ -10,7 +11,7 @@ const HomePage = () => {
     const [input, setInput] = useState('');
     const dispatch = useDispatch()
     const plants = useSelector(state => state.plants.allPlants);
-
+    const [error, setError] = useState({})
     useEffect(() => {
         dispatch(getPlants());
     }, [dispatch])
@@ -20,45 +21,52 @@ const HomePage = () => {
     }, [history])
 
     const handleSubmit = async() => {
-        const newMessage = {
-            role:'user',
-            content: input
-        };
-        setHistory([...history, newMessage])
-
-    try{
-        const plantsList = plants.map(plant => `'${plant.name}'`).join(", ");
-        // const systemMessageContent = `You are a helpful assistant. Current plants in inventory: ${plantsList}.`;
-        console.log('---------------REQUEST BODY', JSON.stringify({
-            message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee with fewer than 31 words.`
-        }))
-        const response = await fetch('/api/chat/', {
-            method: 'POST',
-            // mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee with fewer than 31 words.`
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error(`An error has occured. status: ${response.status}`);
+        let errors = {};
+        if(input.trim() === '') {
+            errors.message = 'Please enter a message.';
         }
+        setError(errors);
 
-        const data = await response.json();
-        const assistantMessage = {
-            role: 'assistant',
-            content: data.response
-        };
-        setHistory(prevHistory => [...prevHistory, assistantMessage]);
-        setInput('');
+         if (Object.keys(errors).length === 0){
+            const newMessage = {
+                role:'user',
+                content: input
+            };
+            setHistory([...history, newMessage])
 
-    }catch(error){
-        console.error('Fetch error:', error);
+            try{
+                const plantsList = plants.map(plant => `'${plant.name}'`).join(", ");
+                // const systemMessageContent = `You are a helpful assistant. Current plants in inventory: ${plantsList}.`;
+                // console.log('---------------REQUEST BODY', JSON.stringify({
+                //     message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee with fewer than 31 words.`
+                // }))
+                const response = await fetch('/api/chat/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee with fewer than 31 words.`
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`An error has occured. status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const assistantMessage = {
+                    role: 'assistant',
+                    content: data.response
+                };
+                setHistory(prevHistory => [...prevHistory, assistantMessage]);
+                setInput('');
+
+            }catch(error){
+                console.error('Fetch error:', error);
+            }
+        }
     }
-}
     const handleInputChange = (event) => {
         setInput(event.target.value);
     };
@@ -74,17 +82,26 @@ const HomePage = () => {
     return (
         <div>
             <h1>HomePage</h1>
-            <button onClick={toggleChat}>{isOpen ? 'Close Chat' : 'Open Chat'}</button>
+            <div className="chat-container">
+            <button onClick={toggleChat} className="chat-button">
+                {isOpen ? 'Close Chat' : 'Open Chat'}</button>
             {isOpen && (
-                <div>
+                <div className="chat-content">
                     {history.map((message, index) => (
                         <p key={index}><strong>{message.role}:</strong> {message.content}</p>
                     ))}
-                    <input value={input} onChange={handleInputChange} />
-                    <button onClick={handleSubmit}>Send</button>
+                    <textarea
+                        value={input}
+                        onChange={handleInputChange}
+                        maxLength="150"
+                    />
+                    <button onClick={handleSubmit} className="chat-submit" >Send</button>
+                    {error.message && (
+                    <p className="error-message">{error.message}</p>
+                )}
                 </div>
-            )
-            }
+            )}
+            </div>
 
 
         </div>
