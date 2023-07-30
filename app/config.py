@@ -4,6 +4,7 @@ import os
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     API_KEY = os.environ.get('GOOGLE_API')
+    OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # SQLAlchemy 1.4 no longer supports url strings that start with 'postgres'
     # (only 'postgresql') but heroku's postgres add-on automatically sets the

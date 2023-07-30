@@ -6,21 +6,21 @@ import { useParams } from 'react-router-dom';
 import { createReviewforPlant, getAllPlantReviews } from '../../store/review';
 import { useModal } from '../../context/Modal';
 import DeletePlantReviewModal from '../DeletePlantReviewModal';
+import ReviewModal from '../ReviewModal';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "./PlantDetails.css"
 
 
 const PlantDetails = () => {
     const dispatch = useDispatch();
     const { plantId } = useParams();
     const plant = useSelector(state => state.plants.currentPlant);
-    const [reviewText, setReviewText] = useState('');
-    const [rating, setRating] =useState(5);
-    const [error, setError] = useState(null);
     const reviews = useSelector(state => state.reviews)
     const currentUser = useSelector(state => state.session.user);
     const [quantity, setQuantity] = useState(1);
     const {setModalContent} = useModal();
-
-
+    const { closeModal } = useModal();
 
     useEffect(() => {
         dispatch(getPlant(plantId));
@@ -31,57 +31,68 @@ const PlantDetails = () => {
         dispatch(addToCart(plant, quantity));
     }
 
-    const handleReviewSubmit = async (e) => {
-        e.preventDefault();
-        const error = await dispatch(createReviewforPlant(plantId, {reviewText, rating}))
-        if(error){
-            setError(error)
-        } else {
-            setError(null)
-        }
-    }
-
     const openDeleteModal = (reviewId) => {
         setModalContent(<DeletePlantReviewModal reviewId={reviewId}/>)
+    }
+
+    const openReviewModal = () => {
+        setModalContent(<ReviewModal plantId={plantId} closeModal={closeModal}/>)
     }
 
     return (
         <div>
             <h1>Plant Detail</h1>
-            <h2>{plant.name}</h2>
-            <p>{plant.description}</p>
-            <label>Quantity</label>
-            <input
-                id="quantity"
-                type="number"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-            ></input>
-            <button onClick={handleAddToCart}>Add to Cart</button>
-            <div>
-                <h1>All the reviews below:</h1>
-            {reviews.map(review => (
-                <div key={review.id}>
-                    <p>{review.reviewText}</p>
-                    <p>Rating: {review.rating}</p>
-                    {currentUser && currentUser.id === review.userId && (
-                         <button onClick={() => openDeleteModal(review.id)}>Delete Review</button>
+            <div className='product-details'>
+                <div className='product-images'>
+                {plant.images && plant.images.length > 0 && (
+                    <Carousel>
+                    {plant.images[0].isPrimary && (
+                        <img className="plant-image" src={plant.images[0].pictureUrl} alt={plant.name}></img>
                     )}
+                    {plant.images.filter(image => !image.isPrimary).map((image, index) => (
+                        <img key={index} className="plant-image" src={image.pictureUrl} alt={plant.name}></img>
+                    ))}
+                    </Carousel>
+                )}
                 </div>
-            ))}
+                <div className='produce-info'>
+                    <h2>{plant.name}</h2>
+                    <p>{plant.description}</p>
+                    <p>{plant.careInstructions}</p>
+
+                <div className='add-to-cart'>
+                    <label>Quantity</label>
+                    <input
+                        id="quantity"
+                        type="number"
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                    ></input>
+                    <button onClick={handleAddToCart}>Add to Cart</button>
+                </div>
+                <div className='product-specs'>
+                    {/* will add instructions possiblly here not sure how i want this */}
+                </div>
+                <div className='plant-detail-reviews'>
+                    <h2>Reviews:</h2>
+                    {reviews.map(review => (
+                        <div key={review.id}>
+                            <p>{review.user.firstName}</p>
+                            <p>{review.createdAt}</p>
+                            <p>{review.reviewText}</p>
+                            <p>Rating: {review.rating}</p>
+
+                            {currentUser && currentUser.id === review.userId && (
+                                <button onClick={() => openDeleteModal(review.id)}>Delete Review</button>
+                            )}
+
+                        </div>
+                    ))}
+                    {currentUser && <button onClick={openReviewModal}>Create a Review</button>}
+                     </div>
+                </div>
+
             </div>
-            {currentUser &&
-            <form onSubmit={handleReviewSubmit}>
-                <textarea value = {reviewText}
-                onChange={(e) => setReviewText(e.target.value)}
-                />
-                <input type="number" min="1" max="5" value={rating}
-                onChange={(e) => setRating(e.target.value)}
-                />
-                <button type="submit">Submit Review</button>
-                {error && <p>{error}</p>}
-            </form>
-            }
         </div>
     )
 }
