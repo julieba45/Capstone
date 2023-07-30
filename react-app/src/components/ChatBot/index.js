@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react"
 import { getPlants } from '../../store/plant';
 import { useDispatch, useSelector } from 'react-redux';
+// import { NavLink } from 'react-router-dom';
 import "./ChatBot.css"
 
 
 
-const HomePage = () => {
+const ChatBot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [history, setHistory] = useState(JSON.parse(sessionStorage.getItem('chatHistory')) || []);
     const [input, setInput] = useState('');
@@ -46,7 +47,7 @@ const HomePage = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee with fewer than 31 words.`
+                        message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee with fewer than 31 words and be welcoming.`
                     }),
                 });
 
@@ -81,7 +82,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <h1>HomePage</h1>
+            {/* <h1>HomePage</h1> */}
             <div className="chat-container">
             <button onClick={toggleChat} className="chat-button">
                 {isOpen ? 'Close Chat' : 'Open Chat'}</button>
@@ -108,4 +109,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage
+export default ChatBot

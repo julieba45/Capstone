@@ -14,7 +14,7 @@ import CurrentUserOrders from "./components/CurrentUserOrders";
 import { getCart } from "./store/cart";
 import MyFavoritesPage from "./components/MyFavoritesPage";
 import GardenDetailsPage from "./components/GardenDetailsPage";
-import HomePage from "./components/HomePage";
+import Home from "./components/Home";
 import ProtectedRoute from "./ProtectedRoute";
 import CarePage from "./components/CarePage";
 
@@ -32,7 +32,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path ='/'>
-            <HomePage />
+            <Home />
           </Route>
           <Route exact path="/login" >
             <LoginFormPage />
