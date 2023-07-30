@@ -13,6 +13,7 @@ from .api.order_routes import order_routes
 from .api.payment_routes import payment_routes
 from .api.review_routes import review_routes
 from .api.favorite_routes import favorite_routes
+from .api.chat_routes import chat_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -41,6 +42,7 @@ app.register_blueprint(order_routes, url_prefix='/api/orders')
 app.register_blueprint(payment_routes, url_prefix='/api/payments')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(favorite_routes, url_prefix='/api/favorites')
+app.register_blueprint(chat_routes, url_prefix='/api/chat')
 db.init_app(app)
 Migrate(app, db)
 

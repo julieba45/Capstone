@@ -72,6 +72,13 @@ const CarePage = () => {
                     )
                 })
             ))}
+            <iframe
+                style={{border: "none"}}
+                width="300"
+                height="500"
+                src="https://rive.app/s/ZA3G626QRkOXhfq1gXAP1g/embed"
+                allowFullScreen
+            />
 
         </div>
     )

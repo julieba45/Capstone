@@ -85,10 +85,10 @@ const PlantDetails = () => {
                             {currentUser && currentUser.id === review.userId && (
                                 <button onClick={() => openDeleteModal(review.id)}>Delete Review</button>
                             )}
-                             {currentUser && <button onClick={openReviewModal}>Create a Review</button>
-                }
+
                         </div>
                     ))}
+                    {currentUser && <button onClick={openReviewModal}>Create a Review</button>}
                      </div>
                 </div>
 
