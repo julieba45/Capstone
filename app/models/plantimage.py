@@ -15,3 +15,10 @@ class PlantImage(db.Model):
     isPrimary = db.Column(db.Boolean)
 
     plant = db.relationship('Plant', back_populates='images')
+
+    def to_dict(self):
+        return {
+            'plantId':self.plantId,
+            'pictureUrl': self.pictureURL,
+            'isPrimary': self.isPrimary
+        }

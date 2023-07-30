@@ -1,0 +1,10 @@
+.product-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px;
+}
+
+.reviews {
+    grid-column: span 2;
+}
