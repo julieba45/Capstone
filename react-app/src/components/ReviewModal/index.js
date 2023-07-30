@@ -30,6 +30,8 @@ const ReviewModal = ({plantId, closeModal}) => {
                 <textarea
                     value = {reviewText}
                     onChange={(e) => setReviewText(e.target.value)}
+                    maxLength="150"
+                    required
                 />
             Rating
                 <StarRatings
@@ -46,6 +48,7 @@ const ReviewModal = ({plantId, closeModal}) => {
                     max="5"
                     step="0.5"
                     value={rating}
+                    required
                     onChange={(e) => setRating(parseFloat(e.target.value))}
                 />
                 <button type="submit">Submit Review</button>
