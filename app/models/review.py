@@ -28,5 +28,6 @@ class Review(db.Model):
             'userId': self.userId,
             'plantId': self.plantId,
             'createdAt': self.createdAt,
-            'updatedAt': self.updatedAt
+            'updatedAt': self.updatedAt,
+            'user': self.user.to_dict() if self.user else None,
         }

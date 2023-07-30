@@ -5,9 +5,9 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_plants():
     plant1 = Plant(
-        name='Rose',
-        species='Rosa',
-        description='A beautiful red rose',
+        name='Arbequina Olive Tree',
+        species='Olea europaea',
+        description='An olive variety from Spain that has a high yield of mild oil and high, constant productivity. Very compact tree, good for intensive planting, small spaces and a great indoor plant.',
         careInstructions='Water daily',
         wateringFrequency=1,
         isInBloom=True,
@@ -15,21 +15,21 @@ def seed_plants():
         size='small',
     )
     plant2 = Plant(
-        name='Weeping Willow Tree',
-        species='Salix babylonica ',
+        name='Meyer Lemon Tree',
+        species='Citrus meyeri ',
         description='sleepy tree',
-        careInstructions='Water daily, prefers well-drained soils that have medium to wet moisture.',
+        careInstructions='Arriving ready to be displayed in your favorite planter or planted into the ground,, the Meyer lemon tree develops golden color at maturity and has a sweet fruit flavor beloved by home cooks and professional chefs alike. With abundant fragrant flowers and/or fruit nearly year round.',
         wateringFrequency=1,
         isInBloom=True,
         price=190.0,
-        size='large',
+        size='medium',
     )
     plant3 = Plant(
-        name='Venus flytrap',
-        species='D. muscipula',
-        description='A trapping plant that eats insects',
+        name='Ficus Bonsai Kokedama',
+        species='Ficus microcarpa',
+        description="Native to Southwest Asia, this Ficus Bonsai is a member of the fig family and has a sprawling habit with beautiful Banyan tree style roots. The Ficus Bonsai is one of the most popular trees for indoor Bonsai because it is virtually carefree and easy-to-grow for both beginners and Kokedama pros.",
         careInstructions='Water daily',
-        wateringFrequency=2,
+        wateringFrequency=3,
         isInBloom=False,
         price=70.0,
         size='medium',

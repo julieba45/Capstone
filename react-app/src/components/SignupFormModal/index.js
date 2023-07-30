@@ -48,7 +48,7 @@ function SignupFormModal() {
 			errors.location = "Please select a valid location from the suggestions";
         }
 		if (password !== confirmPassword) {
-			console.log('-------------PW NOT MATCHING')
+			// console.log('-------------PW NOT MATCHING')
 			errors.confirmPassword = "Confirm Password field must be the same as the Password field";
 		}else {
 			const data = await dispatch(signUp(firstName, lastName, username, location, email, password));
@@ -67,7 +67,7 @@ function SignupFormModal() {
 		}
 
 		if(Object.keys(errors).length){
-			console.log('--------------ERRORS', errors)
+			// console.log('--------------ERRORS', errors)
 			setErrors(errors);
 			return;
 		  }
