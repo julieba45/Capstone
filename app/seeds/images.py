@@ -6,24 +6,48 @@ from sqlalchemy.sql import text
 def seed_plantimages():
     plant_image1 = PlantImage(
         plantId=1,
-        pictureURL='https://heirloomroses.com/cdn/shop/products/portlandia-1_8_1800x1800.jpg?v=1666321175',
+        pictureURL='https://s7d1.scene7.com/is/image/terrain/68255488_000_a?$zoom2$',
         isPrimary=True
+    )
+    plant_image1_1 = PlantImage(
+        plantId=1,
+        pictureURL='https://s7d1.scene7.com/is/image/terrain/68255488_000_b?$zoom2$',
+        isPrimary=False
     )
     plant_image2 = PlantImage(
         plantId=2,
-        pictureURL='https://m.media-amazon.com/images/I/41IR0KBJyrL._AC_.jpg',
+        pictureURL='https://s7d1.scene7.com/is/image/terrain/68265743_000_a?$zoom2$',
         isPrimary=True
+    )
+    plant_image2_1 = PlantImage(
+        plantId=2,
+        pictureURL='https://s7d1.scene7.com/is/image/terrain/68265743_000_b?$zoom2$',
+        isPrimary=False
     )
     plant_image3 = PlantImage(
         plantId=3,
-        pictureURL='https://www.blueridgeexotics.com/cdn/shop/products/IMG_20220528_131002_432_1024x1024.jpg?v=1653757955',
+        pictureURL='https://bloomist.com/cdn/shop/products/Bot_Live_Kokedama_Ficus_062421_DC_01_0737_1_700x.jpg?v=1679545147',
         isPrimary=True
+    )
+    plant_image3_1 = PlantImage(
+        plantId=3,
+        pictureURL='https://bloomist.com/cdn/shop/products/Bot_Live_Kokedama_Ficus_062421_DC_01_0754_1_700x.jpg?v=1679545147',
+        isPrimary=False
+    )
+    plant_image3_2 = PlantImage(
+        plantId=3,
+        pictureURL='https://bloomist.com/cdn/shop/products/DecAcc_Objets_Atuto_BookEnds_Stone_Books_121421_DC_1186_700x.jpg?v=1679545147',
+        isPrimary=False
     )
 
 
     db.session.add(plant_image1)
+    db.session.add(plant_image1_1)
     db.session.add(plant_image2)
+    db.session.add(plant_image2_1)
     db.session.add(plant_image3)
+    db.session.add(plant_image3_1)
+    db.session.add(plant_image3_2)
     db.session.commit()
 
 

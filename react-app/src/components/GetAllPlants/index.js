@@ -6,6 +6,7 @@ import { addFavoritePlant } from '../../store/favorite';
 import { fetchFavorites } from '../../store/favorite';
 import GardenSelectionModal from '../GardenSelectionModal';
 import { useModal } from '../../context/Modal';
+import "./GetAllPlants.css";
 
 const GetAllPlants = () => {
     const dispatch = useDispatch()
@@ -28,7 +29,8 @@ const GetAllPlants = () => {
         history.push(`/plants/${plantId}`)
     }
 
-    const handleAddToFavorite = (plantId) => {
+    const handleAddToFavorite = (plantId, e) => {
+        e.stopPropagation();
         if(user){
         setModalContent(
             <GardenSelectionModal
@@ -48,20 +50,25 @@ const GetAllPlants = () => {
     const gardenNames = [...new Set(favorites.map(favorite => favorite.gardenName))];
 
     return (
-        <div>
+        <div className='plants-container'>
             <h1>Plant List</h1>
+            <div className='plants-grid'>
             {
                 plants.map(plant => (
-                    <div key={plant.id}>
+                    <div key={plant.id} className='plant-card' onClick={() => handleClick(plant.id)}>
                         <h2>{plant.name}</h2>
                         <p>{plant.description}</p>
-                        <button onClick={() => handleClick(plant.id)}>See Details</button>
-                        {user && <button onClick={() => handleAddToFavorite(plant.id)}>
+                        {plant.images && plant.images.length > 0 && plant.images[0].isPrimary &&
+                        <img className="plant-image" src={plant.images[0].pictureUrl} alt={plant.name}></img>
+                        }
+                        {/* <button onClick={() => handleClick(plant.id)}>See Details</button> */}
+                        {user && <button onClick={(e) => handleAddToFavorite(plant.id, e)}>
                             <i className="fa-regular fa-heart"></i>
                             </button>}
                     </div>
                 ))
             }
+            </div>
         </div>
     )
 }

@@ -27,6 +27,7 @@ greenlet = "==2.0.1"
 Mako = "==1.2.4"
 googlemaps = "==4.2.0"
 email-validator = "*"
+openai = "*"
 
 [dev-packages]
 
