@@ -11,6 +11,7 @@ chat_routes = Blueprint('chat', __name__)
 openai.api_key = Config.OPENAI_API_KEY
 
 @chat_routes.route('/', methods=['POST'])
+@login_required
 def chat():
     try:
         if 'message' not in request.json:

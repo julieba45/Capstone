@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 const HomePage = () => {
+    const [isOpen, setIsOpen] = useState(false);
     const [history, setHistory] = useState(JSON.parse(sessionStorage.getItem('chatHistory')) || []);
     const [input, setInput] = useState('');
     const dispatch = useDispatch()
@@ -27,21 +28,18 @@ const HomePage = () => {
 
     try{
         const plantsList = plants.map(plant => `'${plant.name}'`).join(", ");
-        const systemMessageContent = `You are a helpful assistant. Current plants in inventory: ${plantsList}.`;
-        const response = await fetch('/api/chat', {
+        // const systemMessageContent = `You are a helpful assistant. Current plants in inventory: ${plantsList}.`;
+        console.log('---------------REQUEST BODY', JSON.stringify({
+            message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee with fewer than 31 words.`
+        }))
+        const response = await fetch('/api/chat/', {
             method: 'POST',
             // mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                messages: [
-                    {
-                        role: "system",
-                        content: systemMessageContent
-                    },
-                    newMessage
-                ]
+                message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee with fewer than 31 words.`
             }),
         });
 
@@ -65,16 +63,29 @@ const HomePage = () => {
         setInput(event.target.value);
     };
 
+    const toggleChat = () => {
+        setIsOpen(!isOpen);
+        if (isOpen) {
+            setHistory([]);
+            sessionStorage.removeItem('chatHistory');
+        }
+    };
+
     return (
         <div>
             <h1>HomePage</h1>
-            <div>
-                {history.map((message, index) => (
-                    <p key={index}><strong>{message.role}:</strong> {message.content}</p>
-                ))}
-            </div>
-            <input value={input} onChange={handleInputChange} />
-            <button onClick={handleSubmit}>Send</button>
+            <button onClick={toggleChat}>{isOpen ? 'Close Chat' : 'Open Chat'}</button>
+            {isOpen && (
+                <div>
+                    {history.map((message, index) => (
+                        <p key={index}><strong>{message.role}:</strong> {message.content}</p>
+                    ))}
+                    <input value={input} onChange={handleInputChange} />
+                    <button onClick={handleSubmit}>Send</button>
+                </div>
+            )
+            }
+
 
         </div>
     )
