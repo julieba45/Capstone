@@ -19,7 +19,7 @@ def seed_plants():
         species='Citrus meyeri ',
         description='sleepy tree',
         careInstructions='Care : For detailed instructions on watering, pruning, and fertilizing, you may want to refer to a comprehensive guide on Meyer Lemon Tree care. Sunlight : Meyer Lemon Trees require plenty of sunlight, ideally 6-8 hours a day. If you\'re growing the tree indoors, place it near a south-facing window or supplement natural light with grow lights. Watering & Drought : Water the tree deeply but infrequently. Allow the top 2-3 inches of soil to dry out before watering again. Overwatering can lead to root rot. Pruning & Fertilizing : Prune the tree to maintain its shape and size. Remove any dead, diseased, or crossing branches. Use a slow-release, balanced fertilizer to provide the necessary nutrients. Fertilize in the spring and fall. Please note : Meyer Lemon Trees prefer temperatures between 50-80 degrees Fahrenheit. Protect the tree from freezing temperatures.',
-        wateringFrequency=1,
+        wateringFrequency=2,
         isInBloom=True,
         price=190.0,
         size='medium',
