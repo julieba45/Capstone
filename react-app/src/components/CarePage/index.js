@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOrders } from "../../store/order";
+import { Carousel } from 'react-responsive-carousel';
 
 const CarePage = () => {
     const location = useSelector(state => state.session.user.location)
@@ -64,21 +65,32 @@ const CarePage = () => {
                     const wateringAmount = orderPlant.plant.wateringFrequency * (1 - (weatherData.days[0].precip));
                     return (
                         <div key={orderPlant.id}>
+
                             <p>Plant Name: {orderPlant.plant.name}</p>
                             <p>Plant watering frequency: {orderPlant.plant.wateringFrequency} per day</p>
                             <p>Adjusted watering amount based on precipitation: {wateringAmount.toFixed(2)} per day</p>
-                            <p>Care Instructions: {orderPlant.plant.careInstructions}</p>
+                            {/* <p>Care Instructions: {orderPlant.plant.careInstructions}</p> */}
+                            {orderPlant.plant.images && orderPlant.plant.images.length > 0 && (
+                                <Carousel>
+                                {orderPlant.plant.images[0].isPrimary && (
+                                    <img className="plant-image" src={orderPlant.plant.images[0].pictureUrl} alt={orderPlant.plant.name}></img>
+                                )}
+                                {/* {plant.images.filter(image => !image.isPrimary).map((image, index) => (
+                                    <img key={index} className="plant-image" src={image.pictureUrl} alt={plant.name}></img>
+                                ))} */}
+                                </Carousel>
+                            )}
                         </div>
                     )
                 })
             ))}
-            <iframe
+            {/* <iframe
                 style={{border: "none"}}
                 width="300"
                 height="500"
                 src="https://rive.app/s/ZA3G626QRkOXhfq1gXAP1g/embed"
                 allowFullScreen
-            />
+            /> */}
 
         </div>
     )
