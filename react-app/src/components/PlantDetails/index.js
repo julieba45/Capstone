@@ -41,7 +41,14 @@ const PlantDetails = () => {
 
     return (
         <div>
-            <h1>Plant Detail</h1>
+            {/* <h2 className='plant-details'>{plant.name} */}
+            {plant && plant.name && (
+                <>
+                <span className='font-one'>{plant.name.split(' ').slice(0, 2).join(' ')}</span>
+                <span className='font-two'>{plant.name.split(' ').slice(2).join(' ')}</span>
+                </>
+            )}
+            {/* </h2> */}
             <div className='product-details'>
                 <div className='product-images'>
                 {plant.images && plant.images.length > 0 && (

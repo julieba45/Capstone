@@ -51,20 +51,23 @@ const GetAllPlants = () => {
 
     return (
         <div className='plants-container'>
-            <h1>Plant List</h1>
+            <h1>Plants</h1>
             <div className='plants-grid'>
             {
                 plants.map(plant => (
                     <div key={plant.id} className='plant-card' onClick={() => handleClick(plant.id)}>
-                        <h2>{plant.name}</h2>
-                        <p>{plant.description}</p>
+                        {/* <p>{plant.description}</p> */}
                         {plant.images && plant.images.length > 0 && plant.images[0].isPrimary &&
                         <img className="plant-image" src={plant.images[0].pictureUrl} alt={plant.name}></img>
                         }
                         {/* <button onClick={() => handleClick(plant.id)}>See Details</button> */}
+                        <h3>{plant.name}</h3>
+                        <p>from ${plant.price}</p>
+                        <p>{plant.size}</p>
                         {user && <button onClick={(e) => handleAddToFavorite(plant.id, e)}>
                             <i className="fa-regular fa-heart"></i>
                             </button>}
+                        <p>Ready to Ship</p>
                     </div>
                 ))
             }
