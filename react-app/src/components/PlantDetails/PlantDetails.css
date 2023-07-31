@@ -21,3 +21,11 @@
      font-family: 'Fraunces', serif;
      font-size: 18px;
 }
+
+.show-arrow {
+    display: inline;
+}
+
+.hide-arrow {
+    display: none;
+}

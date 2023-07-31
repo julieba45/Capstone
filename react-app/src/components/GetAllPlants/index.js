@@ -15,6 +15,17 @@ const GetAllPlants = () => {
     const favorites = useSelector(state => state.favorites);
     const {setModalContent} = useModal()
     const user = useSelector(state => state.session.user)
+    const [hoverStates, setHoverStates] = useState({});
+
+    //Some hovering effect fcts
+    const handleMouseEnter = (plantId) => {
+        setHoverStates(prevStates => ({ ...prevStates, [plantId]: true }));
+    };
+
+    const handleMouseLeave = (plantId) => {
+        setHoverStates(prevStates => ({ ...prevStates, [plantId]: false }));
+    };
+
 
     useEffect(() => {
         // console.log(plants, 'HERE ARE ALL THE PLANTS')
@@ -55,19 +66,26 @@ const GetAllPlants = () => {
             <div className='plants-grid'>
             {
                 plants.map(plant => (
-                    <div key={plant.id} className='plant-card' onClick={() => handleClick(plant.id)}>
+                    <div key={plant.id} className='plant-card'  onMouseEnter={() => handleMouseEnter(plant.id)} onMouseLeave={() => handleMouseLeave(plant.id)} onClick={() => handleClick(plant.id)}>
                         {/* <p>{plant.description}</p> */}
                         {plant.images && plant.images.length > 0 && plant.images[0].isPrimary &&
-                        <img className="plant-image" src={plant.images[0].pictureUrl} alt={plant.name}></img>
+                        <img className="plant-image" src={hoverStates[plant.id] ? (plant.images[1] ? plant.images[1].pictureUrl : plant.images[0].pictureUrl) : plant.images[0].pictureUrl} alt={plant.name}></img>
                         }
                         {/* <button onClick={() => handleClick(plant.id)}>See Details</button> */}
-                        <h3>{plant.name}</h3>
-                        <p>from ${plant.price}</p>
-                        <p>{plant.size}</p>
-                        {user && <button onClick={(e) => handleAddToFavorite(plant.id, e)}>
-                            <i className="fa-regular fa-heart"></i>
-                            </button>}
-                        <p>Ready to Ship</p>
+                        <hr className="line-after-image" />
+                        <div className='tile-name-price'>
+                            <h3>{plant.name}<i className={`fa fa-arrow-right ${hoverStates[plant.id] ? 'show-arrow' : 'hide-arrow'}`}></i></h3>
+                            <p className="plant-price">from ${plant.price.toFixed(2)}</p>
+                        </div>
+
+                        <div className='tile-name-price'>
+                            <p className="plant-size">{plant.size}</p>
+                            {user && <button className="favorite-button" onClick={(e) => handleAddToFavorite(plant.id, e)}>
+                                <i className="fa-regular fa-heart"></i>
+                                </button>}
+                        </div>
+                        <p className="plant-ready">Ready to Ship</p>
+
                     </div>
                 ))
             }

@@ -7,7 +7,7 @@
 
 .plants-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: 100%;
     padding: 20px;
@@ -17,12 +17,52 @@
     flex-direction: column;
     align-items: center;
     /* border: 1px solid #ccc; */
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
 }
 
 .plant-image {
     width: 100%;
     height: auto;
     object-fit: contain;
+}
+
+.line-after-image {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid #ccc;
+    /* margin: 10px 0; */
+}
+
+.plant-price {
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: 'Fraunces', serif;
+}
+
+.plant-size {
+    color: #888;
+}
+
+.plant-ready {
+    color: #888;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 0;
+}
+
+.favorite-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+}
+
+.tile-name-price{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 0;
 }
