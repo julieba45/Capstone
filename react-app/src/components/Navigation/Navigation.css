@@ -5,3 +5,39 @@
 .hidden {
   display: none;
 }
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #f8f9fa;
+  /* padding: 5px 0; */
+  /* font-family: 'Fraunces', serif; */
+}
+
+.navbar > ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  width: 80%;
+}
+
+.navbar > ul > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoimg {
+  width: 100px;
+  height: auto;
+}
+
+.care-cart-profile > *{
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.home-store{
+  text-decoration: none;
+}

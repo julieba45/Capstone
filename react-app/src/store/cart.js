@@ -74,7 +74,7 @@ export const getOrder = (orderId) => async(dispatch) => {
 }
 
 export const addToCart = (plant, quantity) => async(dispatch) => {
-    console.log('FAILED BODY', JSON.stringify(plant))
+    // console.log('FAILED BODY', JSON.stringify(plant))
     const response = await fetch('/api/cart', {
         method: "POST",
         credentials: 'include',

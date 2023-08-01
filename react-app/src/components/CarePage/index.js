@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOrders } from "../../store/order";
+import { Carousel } from 'react-responsive-carousel';
+import "./CarePage.css"
 
 const CarePage = () => {
     const location = useSelector(state => state.session.user.location)
@@ -8,6 +10,7 @@ const CarePage = () => {
     const [loading, setLoading] = useState(true);
     const orders = useSelector(state => state.orders.orders);
     const dispatch = useDispatch();
+    const [currentPlant, setCurrentPlant] = useState(null);
 
     useEffect(() => {
         dispatch(fetchOrders())
@@ -42,10 +45,32 @@ const CarePage = () => {
         return <div>Loading...</div>
     }
 
-    let plantsRendered = new Set()
+    let plantsRendered = new Set() //only unique plants
+    let plants = [];
+
+    orders.forEach(order => {
+        if (order.status === "Completed") {
+            order.orderPlants.forEach(orderPlant => {
+                if (!plantsRendered.has(orderPlant.plant.id)) {
+                    plantsRendered.add(orderPlant.plant.id);
+                    plants.push(orderPlant);
+                }
+            });
+        }
+    });
+
+    if (plants.length > 0 && currentPlant === null) {
+        setCurrentPlant(plants[0]);
+    }
+
+    const handleSlideChange = (index) => {
+        setCurrentPlant(plants[index]);
+    }
+
 
     return (
-        <div>
+        <div className="care-page-main">
+            <div>
             <h1>Care</h1>
             {weatherData && (
                 <>
@@ -54,31 +79,41 @@ const CarePage = () => {
                     <p>Precipitation: {Math.round(weatherData.days[0].precip*100)}%</p>
                 </>
             )}
-            {orders.map(order => (
-                 order.status === "Completed" && order.orderPlants.map(orderPlant => {
-                    if(plantsRendered.has(orderPlant.plant.id)){
-                        return null;
-                    } else {
-                        plantsRendered.add(orderPlant.plant.id)
-                    }
-                    const wateringAmount = orderPlant.plant.wateringFrequency * (1 - (weatherData.days[0].precip));
-                    return (
-                        <div key={orderPlant.id}>
-                            <p>Plant Name: {orderPlant.plant.name}</p>
-                            <p>Plant watering frequency: {orderPlant.plant.wateringFrequency} per day</p>
-                            <p>Adjusted watering amount based on precipitation: {wateringAmount.toFixed(2)} per day</p>
-                            <p>Care Instructions: {orderPlant.plant.careInstructions}</p>
+            {currentPlant && (
+                    <>
+                        <p>Plant Name: {currentPlant.plant.name}</p>
+                        <p>Plant watering frequency: {currentPlant.plant.wateringFrequency} per day</p>
+                        {/* const wateringAmount = currentPlant.plant.wateringFrequency * (1 - (weatherData.days[0].precip)); */}
+                        <p>Adjusted watering amount based on precipitation: {(currentPlant.plant.wateringFrequency * (1 - (weatherData.days[0].precip))).toFixed(2)} per day</p>
+                        {/* <p>Care Instructions: {currentPlant.plant.careInstructions}</p> */}
+                    </>
+                )}
+
+            </div>
+
+             <Carousel onChange={handleSlideChange}>
+             {plants.map((orderPlant, index) => (
+                    orderPlant.plant.images && orderPlant.plant.images.length > 0 && (
+                        <div key={index}>
+                            {orderPlant.plant.images[0].isPrimary && (
+                                <img className="care-plant-image" src={orderPlant.plant.images[0].pictureUrl} alt={orderPlant.plant.name}></img>
+                            )}
+                            {/* {plant.images.filter(image => !image.isPrimary).map((image, index) => (
+                                <img key={index} className="plant-image" src={image.pictureUrl} alt={plant.name}></img>
+                            ))} */}
                         </div>
                     )
-                })
-            ))}
-            <iframe
+                ))}
+
+
+            {/* <iframe
                 style={{border: "none"}}
                 width="300"
                 height="500"
                 src="https://rive.app/s/ZA3G626QRkOXhfq1gXAP1g/embed"
                 allowFullScreen
-            />
+            /> */}
+            </Carousel>
 
         </div>
     )

@@ -5,7 +5,8 @@ const GardenSelectionModal = ({onGardenSelect, gardenNames}) => {
 
     const handleNewGardenSubmit = (e) => {
         e.preventDefault()
-        onGardenSelect(newGardenName)
+        const gardenName = newGardenName || 'My Favorites';
+        onGardenSelect(gardenName)
         setNewGardenName('');
     }
     return (
