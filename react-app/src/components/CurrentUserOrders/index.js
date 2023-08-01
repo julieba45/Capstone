@@ -22,7 +22,7 @@ const CurrentUserOrders = () => {
     return(
         <div className="orders-container">
             {orders.map(order => (
-                <>
+                <React.Fragment key={order.id}>
                 <p> Order placed: {new Date(order.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 <div className="order-grid" key={order.id}>
                     <h3>Order ID: {order.id}</h3>
@@ -44,7 +44,7 @@ const CurrentUserOrders = () => {
                      </div>
                     ))}
                 </div>
-                </>
+                </React.Fragment>
             ))}
         </div>
     )

@@ -21,9 +21,9 @@ function Navigation({ isLoaded }){
 					)}
 				 </li>
 				 <li>
-				<NavLink exact to="/">
-					<img className='logoimg' src={BloomLogo} alt='logo' />
-				</NavLink>
+					<NavLink exact to="/">
+						<img className='logoimg' src={BloomLogo} alt='logo' />
+					</NavLink>
 				</li>
 				<li className='care-cart-profile'>
 				{isLoaded && sessionUser &&(
