@@ -19,8 +19,12 @@ const GardenDetailsPage = () => {
     }
 
     return (
+        <div>
+        <div className='garden-title-container'>
+            <h1 className='garden-title'>{gardenName}</h1>
+            <p className='collection-number'>248</p>
+        </div>
         <div className='grid-favorite-details'>
-        <h1>{gardenName}</h1>
         {favorites.map((favorite) => (
                 <div key={favorite.id} className='grid-favorite-item'>
                     <div className='favorite-image-container'>
@@ -40,6 +44,7 @@ const GardenDetailsPage = () => {
                     <button onClick={() => handleDelete(favorite.id)}>Remove</button>
                 </div>
             ))}
+        </div>
         </div>
     )
 }
