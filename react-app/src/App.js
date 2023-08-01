@@ -17,6 +17,7 @@ import GardenDetailsPage from "./components/GardenDetailsPage";
 import Home from "./components/Home";
 import ProtectedRoute from "./ProtectedRoute";
 import CarePage from "./components/CarePage";
+import Footer from "./components/Footer.js";
 
 function App() {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ function App() {
           </ProtectedRoute>
         </Switch>
       )}
+      {isLoaded && <Footer/>}
     </>
   );
 }

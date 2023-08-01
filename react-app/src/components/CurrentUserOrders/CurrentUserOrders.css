@@ -1,0 +1,14 @@
+.orders-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.order-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap:10px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    align-items: center;
+}
