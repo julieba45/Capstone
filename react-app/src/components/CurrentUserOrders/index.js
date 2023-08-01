@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOrders } from "../../store/order";
 import { useModal } from "../../context/Modal";
 import CancelPaymentModal from "../CancelPaymentModal";
+import "./CurrentUserOrders.css"
 
 const CurrentUserOrders = () => {
     const dispatch = useDispatch();
@@ -19,27 +20,31 @@ const CurrentUserOrders = () => {
     }
 
     return(
-        <div>
+        <div className="orders-container">
             {orders.map(order => (
-                <div key={order.id}>
+                <>
+                <p> Order placed: {new Date(order.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                <div className="order-grid" key={order.id}>
                     <h3>Order ID: {order.id}</h3>
+                    {/* <p>{order.userFirstName}</p> */}
                     {order.payment && <p>Payment: $ {order.payment.paymentAmount}</p>}
-                    <p>Status: {order.status}</p>
+                    <p className="order-status">Status: {order.status}</p>
                     {/* <p>'HEYY'{order.payment.id}</p> */}
                     {order.status !== 'Cancelled' && (
-                        <button onClick={() => openCancelModal(order.payment.id)}>
+                        <button  className="cancel-button" onClick={() => openCancelModal(order.payment.id)}>
                             Cancel Payment
                         </button>
                     )}
                     <h4>Plants:</h4>
                     {order.orderPlants.map(orderPlant => (
-                         <div key={orderPlant.id}>
+                         <div className="order-plants-info"key={orderPlant.id}>
                          <p>Plant Name: {orderPlant.plant.name}</p>
                          <p>Plant Quantity: {orderPlant.quantity}</p>
                          <p>Plant watering frequency: {orderPlant.plant.wateringFrequency}</p>
                      </div>
                     ))}
                 </div>
+                </>
             ))}
         </div>
     )

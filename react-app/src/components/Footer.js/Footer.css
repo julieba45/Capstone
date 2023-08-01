@@ -1,0 +1,53 @@
+
+.footer{
+    position:relative;
+    background-color:#3b392b;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: start;
+}
+
+.footer-content{
+    padding: 20px;
+}
+
+.footer-links{
+    margin-bottom: 1rem;
+    display: flex;
+}
+
+.social-links a{
+    text-decoration: none;
+    padding: 4px;
+}
+
+.followus{
+    color: #B1B9C3;
+}
+
+.footer a:visited{
+    color: white;
+    outline: none;
+}
+
+.footer-title {
+    color: #B1B9C3;
+}
+
+.footer-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1rem;
+}
+
+.footer{
+    margin-top: auto;
+}
+
+.App{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
