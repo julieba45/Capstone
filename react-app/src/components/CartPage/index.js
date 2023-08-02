@@ -57,7 +57,7 @@ const CartPage = () => {
                 </div>
                 <hr className="line-after-image" />
                 {cart && cart.map(plantItem => (
-                    <>
+                    <React.Fragment key={plantItem.id}>
                     <div key={plantItem.id}  className="cart-page-item">
                         <div className="cart-name-img">
                             {plantItem.plant.images.filter(image => image.isPrimary).map((image, index) => (
@@ -79,7 +79,7 @@ const CartPage = () => {
                         <button className="cart-removal-btns"onClick ={() => handleDelete(plantItem.plantId)}>Remove</button>
                     </div>
                         <hr className="line-after-image" />
-                    </>
+                    </React.Fragment>
                 ))}
             </div>
             {cart && cart.length > 0 && <button className="custom-green-btn" onClick={handleCheckout}>Checkout</button>}
