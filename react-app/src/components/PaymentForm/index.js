@@ -4,6 +4,7 @@ import { createPayment } from "../../store/payment";
 import { useHistory } from 'react-router-dom';
 import { clearCart } from "../../store/cart";
 import FinalCart from "../FinalCart";
+import "./PaymentForm.css"
 
 
 const PaymentForm = () => {
@@ -89,55 +90,65 @@ const PaymentForm = () => {
         }
     }
     return (
-        <form onSubmit={handleSubmit}>
-            Credite Card
-            <input
-                 type="text"
-                 maxLength="16"
-                 placeholder="xxxx xxxx xxxx xxxx"
-                 value={paymentInfo}
-                 onChange={(e) => setPaymentInfo(e.target.value)}
-            />
-             {errors.paymentInfo && <p>{errors.paymentInfo}</p>}
-             Payment
-            <input
-                type = "number"
-                value={paymentAmount}
-                onChange={(e) => setPaymentAmount(e.target.value)}
-                placeholder="Payment Amount"
-            />
-             {errors.paymentAmount && <p>{errors.paymentAmount}</p>}
-             Location
-            <input
-                type = "text"
-                value={location}
-                onChange={(e) => {
-                    setLocation(e.target.value)
-                    setShowSuggestions(true)
-                }}
-                placeholder="Location"
-            />
-            <div className="location-suggestions">
-            {showSuggestions && suggestions.map((suggestion, index) => (
-            <div
-                key={index}
-                onMouseDown={(e) => {
-                    e.preventDefault();
-                    setLocation(suggestion.description);
-                    setSuggestions([]);
-                    setShowSuggestions(false);
-                }}
-            >
-                {suggestion.description}
-            </div>
-        ))}
+        <div className="payment-page-container">
+        <div className="payment-form-container">
+            <form className="payment-form"onSubmit={handleSubmit}>
+                <p className="payment-form-title">Credite Card</p>
+                <input
+                    className="payment-input"
+                    type="text"
+                    maxLength="16"
+                    placeholder="xxxx xxxx xxxx xxxx"
+                    value={paymentInfo}
+                    onChange={(e) => setPaymentInfo(e.target.value)}
+                />
+                {errors.paymentInfo && <p>{errors.paymentInfo}</p>}
+                <p className="payment-form-title">Payment Method</p>
+                <input
+                    className="payment-input"
+                    type = "number"
+                    value={paymentAmount}
+                    onChange={(e) => setPaymentAmount(e.target.value)}
+                    placeholder="Payment Amount"
+                />
+                {errors.paymentAmount && <p>{errors.paymentAmount}</p>}
+                <p className="payment-form-title">Delivery Location</p>
+                <input
+                    className="payment-input"
+                    type = "text"
+                    value={location}
+                    onChange={(e) => {
+                        setLocation(e.target.value)
+                        setShowSuggestions(true)
+                    }}
+                    placeholder="Location"
+                />
+                <div className="location-suggestions">
+                {showSuggestions && suggestions.map((suggestion, index) => (
+                <div
+                    key={index}
+                    onMouseDown={(e) => {
+                        e.preventDefault();
+                        setLocation(suggestion.description);
+                        setSuggestions([]);
+                        setShowSuggestions(false);
+                    }}
+                >
+                    {suggestion.description}
+                </div>
+                ))}
 
-            </div>
-            {errors.location && <p>{errors.location}</p>}
-            <button type="submit">Submit Payment</button>
-            {errors.error && <p>{errors.error}</p>}
-        <FinalCart/>
-        </form>
+                </div>
+                {errors.location && <p>{errors.location}</p>}
+                <button type="submit">Submit Payment</button>
+                {errors.error && <p>{errors.error}</p>}
+            </form>
+        </div>
+        <div className="final-cart-container">
+            <FinalCart/>
+        </div>
+
+        </div>
     )
 
 }

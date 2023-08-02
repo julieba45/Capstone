@@ -1,0 +1,47 @@
+.final-cart-page-container{
+    display: flex;
+    flex-direction: column;
+}
+.final-cart-page-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 16px;
+    padding-left: 20px;
+    font-family:'Cormorant Garamond', serif;;
+}
+.final-cart-page-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 16px;
+    align-items: center;
+}
+
+
+.final-cart-page-item img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+}
+
+/* .final-cart-name-img{
+    display: flex;
+    align-items: center;
+    gap:40px
+} */
+
+.plant-name-cart{
+    font-family:'Cormorant Garamond', serif;;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.Final-MainCart{
+    font-size: 6rem;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
+}
+
+/* .final-cart-div{
+
+} */

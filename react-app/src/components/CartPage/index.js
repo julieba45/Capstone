@@ -55,7 +55,7 @@ const CartPage = () => {
                     <h4>QTY</h4>
                     <h4>Price</h4>
                 </div>
-                <hr class="line-after-image"></hr>
+                <hr className="line-after-image" />
                 {cart && cart.map(plantItem => (
                     <>
                     <div key={plantItem.id}  className="cart-page-item">
@@ -78,7 +78,7 @@ const CartPage = () => {
 
                         <button className="cart-removal-btns"onClick ={() => handleDelete(plantItem.plantId)}>Remove</button>
                     </div>
-                      <hr class="line-after-image"></hr>
+                        <hr className="line-after-image" />
                     </>
                 ))}
             </div>
