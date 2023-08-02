@@ -21,21 +21,19 @@ const CurrentUserOrders = () => {
 
     return(
         <div className="orders-container">
+            <h1 className="orderhistory-title">Order History</h1>
             {orders.map(order => (
                 <React.Fragment key={order.id}>
-                <p> Order placed: {new Date(order.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                <p className="order-placed"> Order placed: {new Date(order.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 <div className="order-grid" key={order.id}>
-                    <h3>Order ID: {order.id}</h3>
+                    <h3>Order No. {order.id}</h3>
                     {/* <p>{order.userFirstName}</p> */}
-                    {order.payment && <p>Payment: $ {order.payment.paymentAmount}</p>}
+
                     <p className="order-status">Status: {order.status}</p>
                     {/* <p>'HEYY'{order.payment.id}</p> */}
-                    {order.status !== 'Cancelled' && (
-                        <button  className="cancel-button" onClick={() => openCancelModal(order.payment.id)}>
-                            Cancel Payment
-                        </button>
-                    )}
-                    <h4>Plants:</h4>
+                    {order.payment && <p>Payment: $ {order.payment.paymentAmount}</p>}
+
+                    <h4 className="products-bought-title">Products:</h4>
                     {order.orderPlants.map(orderPlant => (
                          <div className="order-plants-info"key={orderPlant.id}>
                          <p>Plant Name: {orderPlant.plant.name}</p>
@@ -43,6 +41,11 @@ const CurrentUserOrders = () => {
                          <p>Plant watering frequency: {orderPlant.plant.wateringFrequency}</p>
                      </div>
                     ))}
+                     {order.status !== 'Cancelled' && (
+                        <button  className="cancel-btn-orders" onClick={() => openCancelModal(order.payment.id)}>
+                            Cancel Payment
+                        </button>
+                    )}
                 </div>
                 </React.Fragment>
             ))}

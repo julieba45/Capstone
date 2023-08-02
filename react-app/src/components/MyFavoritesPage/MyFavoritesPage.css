@@ -1,0 +1,33 @@
+.favorites-container {
+    margin: 20px;
+}
+
+.gardens-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+.garden-column {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.favorite {
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+/* .favorite p {
+    margin: 0;
+    cursor: grab;
+}
+
+.favorite p:active {
+    cursor: grabbing;
+} */
+
+.favorite-garden-name{
+    text-decoration: none;
+}
