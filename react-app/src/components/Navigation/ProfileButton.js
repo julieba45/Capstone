@@ -7,6 +7,7 @@ import SignupFormModal from "../SignupFormModal";
 import { NavLink } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 import { clearCart } from "../../store/cart";
+import "./ProfileButton.css";
 
 
 function ProfileButton({ user }) {
@@ -57,13 +58,13 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.email}</li>
             <li>
-              <NavLink to="/orders/current">My Orders</NavLink>
+              <NavLink className='text-link' to="/orders/current">My Orders</NavLink>
             </li>
             <li>
-              <NavLink to="/favorites">My Favorites</NavLink>
+              <NavLink className='text-link' to="/favorites">My Favorites</NavLink>
             </li>
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+              <button className="profile-logout" onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (
