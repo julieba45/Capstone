@@ -40,6 +40,38 @@ def seed_plantimages():
         isPrimary=False
     )
 
+    plant_image4 = PlantImage(
+        plantId=4,
+        pictureURL ='https://bloomist.com/cdn/shop/products/bloomist_angelwings_grey_1000x.jpg?v=1681761359',
+        isPrimary=True
+    )
+    plant_image4_1 = PlantImage(
+        plantId=4,
+        pictureURL ='https://bloomist.com/cdn/shop/products/bloomist_angelwings_white_1000x.jpg?v=1681761359',
+        isPrimary=False
+    )
+    plant_image4_2 = PlantImage(
+        plantId=4,
+        pictureURL = 'https://bloomist.com/cdn/shop/products/bloomist_escargot_angelwings_ironcross_bookscopy2_1000x.jpg?v=1681761359',
+        isPrimary=False
+    )
+    plant_image5 = PlantImage(
+        plantId=5,
+        pictureURL ='https://bloomist.com/cdn/shop/products/bloomiats_jurassic-grey_1000x.jpg?v=1681761843',
+        isPrimary=True
+    )
+    plant_image5_1 = PlantImage(
+        plantId=5,
+        pictureURL ='https://bloomist.com/cdn/shop/products/bloomist_jurassic-closeup_1500x.jpg?v=1681761843',
+        isPrimary=False
+    )
+    plant_image5_2 = PlantImage(
+        plantId=5,
+        pictureURL ='https://bloomist.com/cdn/shop/products/bloomist-jurassic_bookends_1000x.jpg?v=1681761843',
+        isPrimary=False
+    )
+
+
 
     db.session.add(plant_image1)
     db.session.add(plant_image1_1)
@@ -48,6 +80,12 @@ def seed_plantimages():
     db.session.add(plant_image3)
     db.session.add(plant_image3_1)
     db.session.add(plant_image3_2)
+    db.session.add(plant_image4)
+    db.session.add(plant_image4_1)
+    db.session.add(plant_image4_2)
+    db.session.add(plant_image5)
+    db.session.add(plant_image5_1)
+    db.session.add(plant_image5_2)
     db.session.commit()
 
 

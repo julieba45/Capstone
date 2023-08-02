@@ -35,24 +35,24 @@ def seed_plants():
         size='medium',
     )
     plant4 = Plant(
-        name='purple passionflower',
-        species='P. incarnata',
-        description=' known as maypop, purple passionflower, true passionflower, wild apricot, and wild passion vine, is a fast-growing perennial vine with climbing or trailing stems.',
-        careInstructions='Water daily',
-        wateringFrequency=3,
-        isInBloom=False,
-        price=90.0,
-        size='small',
+        name='Angel Wings Begonia Kokedama',
+        species='Begonia coccinea',
+        description='Angel Wings Begonia Kokedama is known for its unique, angel-wing-shaped leaves. The Kokedama technique adds a whimsical touch to the already beautiful plant.',
+        careInstructions='Care : For detailed instructions on watering, pruning, and fertilizing Angel Wings Begonia Kokedama, consult an expert or a guide specific to this plant. Sunlight : Angel Wings Begonia thrive in bright, indirect light. Avoid intense direct sunlight, which may cause leaf burn. Watering & Drought : Water the plant thoroughly when the moss ball feels light and dry. Submerge the moss ball in water until fully saturated, then allow it to drain. Mist regularly to maintain humidity. Pruning & Fertilizing : Pruning can be done to maintain shape or remove dead leaves. Use a balanced, slow-release fertilizer during the growing season. Soil & Repotting : Use a well-draining soil mixture suitable for begonias. Kokedama may require rewrapping or repotting over time. Please note : Angel Wings Begonia prefers moderate to high humidity and consistent temperatures. Avoid placing the plant in areas with cold drafts or fluctuating temperatures.',
+        wateringFrequency=4,
+        isInBloom=True,
+        price=120.0,
+        size='medium',
     )
     plant5 = Plant(
-        name='socotra dragon tree',
-        species='D. cinnabari',
-        description='Blood dragon tree with unique upturn appearance',
-        careInstructions='Water daily',
-        wateringFrequency=1,
+        name='Rex Begonia Jurassic Kokedama',
+        species='Begonia Rex Jurassic',
+        description='Rex Begonia Jurassic Kokedama is renowned for its vibrant, textured leaves and the unique Kokedama moss ball planting technique.',
+        careInstructions='Care : Follow specific guidelines for Rex Begonia Jurassic Kokedama care, including watering, pruning, and fertilizing. Sunlight : Rex Begonias prefer bright, indirect light but can tolerate lower light conditions. Watering & Drought : Water when the moss ball feels light and dry, and submerge it in water until fully saturated. Drain thoroughly. Mist to maintain humidity. Pruning & Fertilizing : Prune to maintain shape or remove dead leaves. Use a balanced, slow-release fertilizer as needed. Soil & Repotting : Use a well-draining soil mixture suitable for begonias. Kokedama may require rewrapping or repotting over time. Please note : Rex Begonias prefer consistent temperatures and moderate humidity. Avoid placing in areas with cold drafts or direct sunlight.',
+        wateringFrequency=4,
         isInBloom=False,
-        price=1080.0,
-        size='large',
+        price=130.0,
+        size='medium',
     )
 
 

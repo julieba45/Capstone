@@ -1,0 +1,44 @@
+.grid-favorite-details{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+}
+.favorite-image-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-favorite-item img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    transition: clip-path 0.3s ease;
+}
+
+.grid-favorite-item:hover img {
+    clip-path: polygon(0 10%, 100% 10%, 100% 100%, 0% 100%);
+}
+
+.garden-title {
+    font-size: 24px;
+    /* text-align: center; */
+    margin-bottom: 16px;
+    font-size: 3.4rem;
+    text-transform: uppercase;
+    font-family: "Romie";
+}
+
+.collection-number{
+    left:100%;
+    margin-left: 5px;
+    line-height: 1;
+}
+
+.garden-title-container{
+    display: flex;
+    align-items: center;
+}

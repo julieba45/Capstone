@@ -1,0 +1,90 @@
+.cart-page-container{
+    display: flex;
+    flex-direction: column;
+}
+.cart-page-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 16px;
+    padding-left: 20px;
+    font-family:'Cormorant Garamond', serif;;
+}
+.cart-page-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 16px;
+    align-items: center;
+}
+
+
+.cart-page-item img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+}
+
+.cart-name-img{
+    display: flex;
+    align-items: center;
+    gap:40px
+}
+
+.increment-decrement-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.increment-decrement-buttons button {
+    background: none;
+    border: none;
+    /* font-size: 24px; */
+    cursor: pointer;
+}
+
+.plant-name-cart{
+    font-family:'Cormorant Garamond', serif;;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.MainCart{
+    font-size: 6rem;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
+}
+
+
+.custom-green-btn{
+    background-color: #3c392c;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    height: 50px;
+    width: 40%;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 2px white;
+    transition: all 0.3s ease;
+    position: relative;
+    /* font-style: italic; */
+}
+
+.custom-green-btn:hover{
+    font-style: italic;
+}
+.custom-green-btn:hover::after {
+    content: '→';
+    color: white;
+    position: absolute;
+    /* right: 10px; */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.cart-removal-btns{
+    border: none;
+    width: 50%;
+    margin-left: 130px;
+    font-family: 'Fraunces', serif;
+
+}
