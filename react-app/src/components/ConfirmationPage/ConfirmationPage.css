@@ -1,0 +1,44 @@
+.confirmation-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.delivery-status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 10px; */
+    /* border-bottom: 1px solid #ccc; */
+    position: relative;
+    background-color: white;
+    padding: 10px;
+}
+
+.map-container{
+    margin-right: 50px;
+}
+
+.order-info{
+    margin-left: 50px;
+}
+
+.separator {
+    height: 1px;
+    background-color: #000;
+    flex-grow: 1;
+    align-self: center;
+    margin: 0 10px;
+}
+
+.thank-you{
+    font-family:'Cormorant Garamond', serif;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.cutsom-line-after-image {
+    width: 90%;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+}
