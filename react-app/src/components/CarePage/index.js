@@ -67,17 +67,30 @@ const CarePage = () => {
         setCurrentPlant(plants[index]);
     }
 
-
     return (
         <div className="care-page-main">
-            <div>
-            <h1>Care</h1>
+            <div className="care-weather-column">
+            <h1 className="main-care-header">Care</h1>
             {weatherData && (
-                <>
-                    <p>Temperature: {Math.round(weatherData.days[0].temp)}°F</p>
-                    <p>Weather: {weatherData.days[0].conditions}</p>
-                    <p>Precipitation: {Math.round(weatherData.days[0].precip*100)}%</p>
-                </>
+                < div className="weather-container">
+                    <div className="weather-row">
+                        <div className="weather-info">
+                            <i className="fa-solid fa-temperature-low"></i>
+                            <p>Temperature: {Math.round(weatherData.days[0].temp)}°F</p>
+                        </div>
+
+                    <div className="weather-info">
+                        <i className="fa-solid fa-cloud"></i>
+                        <p>Weather: {weatherData.days[0].conditions}</p>
+                    </div>
+                    </div>
+                    <div className="weather-row">
+                        <div className="weather-info">
+                            <i className="fa-solid fa-droplet"></i>
+                            <p>Precipitation: {Math.round(weatherData.days[0].precip*100)}%</p>
+                        </div>
+                    </div>
+                </div>
             )}
             {currentPlant && (
                     <>
@@ -91,7 +104,7 @@ const CarePage = () => {
 
             </div>
 
-             <Carousel onChange={handleSlideChange}>
+             <Carousel className="care-carousel" onChange={handleSlideChange} showStatus={false}>
              {plants.map((orderPlant, index) => (
                     orderPlant.plant.images && orderPlant.plant.images.length > 0 && (
                         <div key={index}>

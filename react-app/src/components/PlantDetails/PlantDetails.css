@@ -7,6 +7,8 @@
     color: #333;
     background-color: #faf8f3;
     padding: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .nums{
@@ -49,7 +51,7 @@
     font-family: 'Quattrocento', serif;
     font-size: 30px;
     margin-right: 0.2em;
-    padding-left: 30px;
+    padding-left: 60px;
 }
 
 .font-two{
@@ -96,5 +98,18 @@ body{
 }
 
 .plant-details-description{
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.add-to-cart{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    align-items: center;
+}
+
+.cart-quantity-container{
+    display: flex;
+    align-items: center;
+    gap:5px;
 }

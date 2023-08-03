@@ -1,0 +1,26 @@
+
+
+
+.login-header{
+    background-color: white;
+    /* padding: 20px 50px; */
+    margin-right: 200px;
+    text-align: start;
+    text-transform: uppercase;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 20px;
+    width: 100%;
+
+}
+
+.login-main-btn{
+    background-color: #9a988f;
+    color: white;
+    padding: 15px 20px;
+    min-width: 270px;
+    position: relative;
+    text-decoration: none;
+    border: 0;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+}
