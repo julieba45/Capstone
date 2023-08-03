@@ -4,7 +4,7 @@
     /* gap: 20px */
 }
 
-.order-grid{
+/* .order-grid{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap:10px;
@@ -12,6 +12,37 @@
     padding: 20px;
     align-items: center;
     margin: 20px;
+} */
+
+.order-grid {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+}
+
+.order-top-half {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+}
+
+.order-bottom-half {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
+    grid-gap: 10px; /* Space between the grid items */
+    margin-top: 20px;
+}
+
+.order-plants-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .orderhistory-title{
@@ -27,6 +58,8 @@
 }
 
 .cancel-btn-orders{
+    display: block;
+    margin: 10px 0;
     padding: 15px 20px;
     border: 0;
     cursor: pointer;
