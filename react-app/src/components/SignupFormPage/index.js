@@ -15,6 +15,7 @@ function SignupFormPage() {
   const [location, setLocation] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [acceptsTerms, setAcceptsTerms] = useState(false);
   const [errors, setErrors] = useState({});
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -193,8 +194,22 @@ function SignupFormPage() {
             />
           </label>
         </div>
+        <div>
+        <input
+          type="checkbox"
+          id="acceptsTerms"
+          checked={acceptsTerms}
+          onChange={e => setAcceptsTerms(e.target.checked)}
+        />
+         <label htmlFor="acceptsTerms">I accept the terms and conditions</label>
+        </div>
 				{errors.confirmPassword && <div>{errors.confirmPassword}</div>}
-				<button className="signup-main-btn" type="submit">Sign Up</button>
+				<button
+            type="submit"
+            className={`signup-main-btn ${acceptsTerms ? 'button-accepts-terms' : ''}`}
+        >
+            Sign Up
+        </button>
 			</form>
       </div>
 		</div>
