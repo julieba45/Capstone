@@ -60,9 +60,16 @@ const GetAllPlants = () => {
     //removing dupes
     const gardenNames = [...new Set(favorites.map(favorite => favorite.gardenName))];
 
+    // <div className='garden-title-container'>
+    //         <h1 className='garden-title'>{gardenName}</h1>
+    //         <p className='collection-number'>248</p>
+    //     </div>
     return (
         <div className='plants-container'>
-            <h1>Plants</h1>
+            <div className='shop-all-container'>
+                <h1 className='shop-all-header'>Shop All</h1>
+                <p className='collection-number'>248</p>
+            </div>
             <div className='plants-grid'>
             {
                 plants.map(plant => (
