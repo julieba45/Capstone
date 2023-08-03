@@ -1,0 +1,75 @@
+.signup-container {
+	background-image: url('https://sixpenny.com/cdn/shop/files/img_3x_bf3a3231-d9a6-44c9-9f24-61ce6ae326b2.webp?v=1686326774&width=1200');
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.signup-header{
+    background-color: white;
+    /* padding: 20px; */
+    text-align: start;
+    text-transform: uppercase;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 20px;
+}
+
+.signup-inner-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 800px;
+    position: absolute;
+    top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 50px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    gap:30px;
+}
+
+.signup-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-inputarea{
+    padding: 10px 0;
+    border: none;
+    border-bottom: solid 1px #c9c9c1;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.signup-main-btn{
+    background-color: #9a988f;
+    color: white;
+    padding: 15px 20px;
+    min-width: 270px;
+    position: relative;
+    text-decoration: none;
+    border: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.button-accepts-terms {
+    background-color: #3c392c;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    /* font-size: 16px; */
+    line-height: 1.5;
+    height: 50px;
+    width: 70%;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 2px white;
+    transition: all 0.3s ease;
+    position: relative;
+}
