@@ -30,37 +30,47 @@ function LoginFormPage() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="signup-container">
+       <div className="signup-inner-container">
+       <div className="signup-header">
+        <h1>Log In</h1>
+        </div>
+      <form  className="signup-form" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
+        <div className="signup-div">
         <label>
-          Email
           <input
+            className="signup-inputarea"
             type="text"
             value={email}
             maxLength="255"
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="EMAIL"
             required
           />
         </label>
+        </div>
+        <div className="signup-div">
         <label>
-          Password
           <input
+            className="signup-inputarea"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             maxLength="255"
+            placeholder="PASSWORD"
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        </div>
+        <button className="signup-main-btn" type="submit">Log In</button>
       </form>
-    </>
+    </div>
+    </div>
   );
 }
 

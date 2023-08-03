@@ -43,6 +43,10 @@ function ProfileButton({ user }) {
     history.push('/');
   };
 
+  const handleSignup = () => {
+    history.push('/signup');
+  };
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
@@ -69,17 +73,17 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+            <li>
+              <OpenModalButton
+                buttonText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
+            </li>
+            <li>
+              <button className="open-modal-button" onClick={handleSignup}>Sign Up</button>
+            </li>
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
           </>
         )}
       </ul>
