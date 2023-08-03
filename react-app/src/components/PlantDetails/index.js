@@ -88,6 +88,7 @@ const PlantDetails = () => {
                     <p>plant size: {plant.size}</p>
 
                 <div className='add-to-cart'>
+                    <div className="cart-quantity-container">
                     <label>Quantity</label>
                     <input
                         id="quantity"
@@ -95,6 +96,7 @@ const PlantDetails = () => {
                         value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
                     ></input>
+                    </div>
                     <button className="general-green-btn"onClick={handleAddToCart}>Add to Cart</button>
                     <p className="plant-price">{plant.price ? `from $${plant.price.toFixed(2)}` : 'price...'}</p>
                 </div>

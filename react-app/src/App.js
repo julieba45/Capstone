@@ -28,8 +28,9 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="App">
       <Navigation isLoaded={isLoaded} />
+      <div className="main-content">
       {isLoaded && (
         <Switch>
           <Route exact path ='/'>
@@ -70,8 +71,9 @@ function App() {
           </ProtectedRoute>
         </Switch>
       )}
+      </div>
       {isLoaded && <Footer/>}
-    </>
+    </div>
   );
 }
 

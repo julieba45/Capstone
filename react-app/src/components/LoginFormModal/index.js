@@ -45,35 +45,44 @@ function LoginFormModal() {
   }
 
   return (
-    <>
+    <div className="signup-container">
+      <div className="signup-inner-container">
+      <div className="login-header">
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      </div>
+      <form  className="signup-form" onSubmit={handleSubmit}>
+      <div>
         <label>
-          Email
           <input
+            className="signup-inputarea"
             type="text"
             value={email}
             maxLength="255"
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="EMAIL"
             required
           />
         </label>
+        </div>
         {errors.email && <div>{errors.email}</div>}
         <label>
-          Password
           <input
+            className="signup-inputarea"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             maxLength="255"
+            placeholder="PASSWORD"
             required
           />
         </label>
         {errors.password && <div>{errors.password}</div>}
-        <button type="submit">Log In</button>
+        <button className="login-main-btn" type="submit">Log In</button>
+        <button className="login-main-btn" onClick={handleDemoLogin}>Demo Login</button>
       </form>
-      <button onClick={handleDemoLogin}>Demo Login</button>
-    </>
+
+    </div>
+    </div>
   );
 }
 
