@@ -13,12 +13,17 @@ const ChatBot = () => {
     const dispatch = useDispatch()
     const plants = useSelector(state => state.plants.allPlants);
     const [error, setError] = useState({})
+    const user = useSelector(state => state.session.user);
+    const [messageCount, setMessageCount] = useState(0);
+    const MAX_MESSAGES = 5;
+
     useEffect(() => {
         dispatch(getPlants());
     }, [dispatch])
 
     useEffect(() => {
         sessionStorage.setItem('chatHistory', JSON.stringify(history));
+        // console.log('user', user)
     }, [history])
 
     const handleSubmit = async() => {
@@ -29,6 +34,7 @@ const ChatBot = () => {
         setError(errors);
 
          if (Object.keys(errors).length === 0){
+            setMessageCount(messageCount + 1);
             const newMessage = {
                 role:'user',
                 content: input
@@ -47,7 +53,7 @@ const ChatBot = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee with fewer than 31 words and be welcoming.`
+                        message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee of an online store with fewer than 31 words and be welcoming.`
                     }),
                 });
 
@@ -76,13 +82,15 @@ const ChatBot = () => {
         setIsOpen(!isOpen);
         if (isOpen) {
             setHistory([]);
+            setError({});
+            setMessageCount(0);
             sessionStorage.removeItem('chatHistory');
         }
     };
 
     return (
         <div>
-            {/* <h1>HomePage</h1> */}
+            {user && (
             <div className="chat-container">
             <button onClick={toggleChat} className="chat-button">
                 {isOpen ? 'Close Chat' : 'Open Chat'}</button>
@@ -91,19 +99,25 @@ const ChatBot = () => {
                     {history.map((message, index) => (
                         <p key={index}><strong>{message.role}:</strong> {message.content}</p>
                     ))}
+                    {messageCount < MAX_MESSAGES ? (
+                    <>
                     <textarea
                         value={input}
                         onChange={handleInputChange}
                         maxLength="150"
                     />
                     <button onClick={handleSubmit} className="chat-submit" >Send</button>
+                    </>
+                ):(
+                    <p>You have reached the maximum number of messages allowed.</p>
+                    )}
                     {error.message && (
                     <p className="error-message">{error.message}</p>
                 )}
                 </div>
             )}
             </div>
-
+        )}
 
         </div>
     )
