@@ -13,6 +13,7 @@ const MyFavoritesPage = () => {
 
     const handleDragStart = (event, favoriteId) => {
         event.dataTransfer.setData("favoriteId", favoriteId);
+        // event.currentTarget.parentNode.classList.add('favorite-dragging');
     }
 
     const handleDrop = async (event, gardenName) => {
@@ -43,7 +44,7 @@ const MyFavoritesPage = () => {
 
     return (
         <div className="favorites-container">
-            <h1>Favorites</h1>
+            <h1 className="favorites-main-header">Favorites</h1>
             <div className="gardens-grid">
             {sortedGardens.map(([gardenName, gardenFavorites]) => (
                 <div key={gardenName} className="garden-column">
