@@ -10,7 +10,8 @@
 .garden-column {
     border: 1px solid #ccc;
     padding: 10px;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
+    background: #f6f5f3;
 }
 
 .favorite {
@@ -18,6 +19,8 @@
     padding: 5px;
     border: 1px solid #ccc;
     background-color: #fff;
+    transition: all 0.3s ease;
+    border-radius: 4px;
 }
 /* .favorite p {
     margin: 0;
@@ -28,6 +31,16 @@
     cursor: grabbing;
 } */
 
+/* .favorite-dragging {
+    opacity: 2;
+} */
+
 .favorite-garden-name{
     text-decoration: none;
+}
+
+.favorites-main-header{
+    font-size: 4rem;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
 }
