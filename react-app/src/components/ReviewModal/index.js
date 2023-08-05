@@ -49,7 +49,7 @@ const ReviewModal = ({plantId, closeModal}) => {
                     max="5"
                     value={rating}
                     required
-                    onChange={(e) => setRating(parseFloat(e.target.value))}
+                    onChange={(e) => setRating((e.target.value))}
                 />
                 <button className="review-main-button"type="submit">Submit Review</button>
                 {error && <p>{error}</p>}
