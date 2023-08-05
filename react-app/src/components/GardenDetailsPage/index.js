@@ -49,7 +49,7 @@ const GardenDetailsPage = () => {
                             <p>Watering Frequency: {favorite.plant.wateringFrequency}</p>
                             {/* <p>Created at: {new Date(favorite.createdAt).toLocaleString()}</p>
                             <p>Updated at: {new Date(favorite.updatedAt).toLocaleString()}</p> */}
-                            <button onClick={() => handleDelete(favorite.id)}>Remove</button>
+                            <button className="garden-deets-btn"onClick={() => handleDelete(favorite.id)}>Remove</button>
                         </div>
                     ))}
                 </div>

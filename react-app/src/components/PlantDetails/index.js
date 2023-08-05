@@ -10,7 +10,7 @@ import ReviewModal from '../ReviewModal';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./PlantDetails.css"
-import plantStructure from "./images/plant-structure.png"
+import plantStructure from "./images/plant-structure.png";
 
 
 const PlantDetails = () => {
@@ -22,6 +22,7 @@ const PlantDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const {setModalContent} = useModal();
     const { closeModal } = useModal();
+    const [showReviews, setShowReviews] = useState(false);
 
     useEffect(() => {
         dispatch(getPlant(plantId));
@@ -39,6 +40,10 @@ const PlantDetails = () => {
     const openReviewModal = () => {
         setModalContent(<ReviewModal plantId={plantId} closeModal={closeModal}/>)
     }
+
+    const toggleReviews = () => {
+        setShowReviews(!showReviews);
+    };
 
     //formating the descriptions:
     let formattedInstructions = [];
@@ -60,12 +65,7 @@ const PlantDetails = () => {
     return (
         <div>
             {/* <h2 className='plant-details'>{plant.name} */}
-            {plant && plant.name && (
-                <>
-                <span className='font-one'>{plant.name.split(' ').slice(0, 2).join(' ')}</span>
-                <span className='font-two'>{plant.name.split(' ').slice(2).join(' ')}</span>
-                </>
-            )}
+
             <div className='product-details'>
                 <div className='product-images'>
                 {plant.images && plant.images.length > 0 && (
@@ -81,7 +81,14 @@ const PlantDetails = () => {
                 </div>
                 <div className='produce-info'>
                     {/* <h2>{plant.name}</h2> */}
-                    <hr class="line-after-image"></hr>
+                    {plant && plant.name && (
+                        <>
+                        <span className='font-one'>{plant.name.split(' ').slice(0, 2).join(' ')}</span>
+                        <span className='font-two'>{plant.name.split(' ').slice(2).join(' ')}</span>
+                        </>
+                    )}
+                    <hr className="line-after-image"></hr>
+                    <p className="plant-price">{plant.price ? `from $${plant.price.toFixed(2)}` : 'price...'}</p>
                     <p className='plant-details-description'>{plant.description}</p>
 
                     <p>species: {plant.species}</p>
@@ -98,24 +105,30 @@ const PlantDetails = () => {
                     ></input>
                     </div>
                     <button className="general-green-btn"onClick={handleAddToCart}>Add to Cart</button>
-                    <p className="plant-price">{plant.price ? `from $${plant.price.toFixed(2)}` : 'price...'}</p>
+
                 </div>
                 <div className='plant-detail-reviews'>
-                    <h2>Reviews:</h2>
+                    <h2 onClick={toggleReviews} className="reviews-header">
+                        reviews  ({reviews.length}) <span className="toggle-symbol">{showReviews ? '-' : '+'}</span>
+                    </h2>
+                    <div className={showReviews ? 'reviews-content' : 'hide-reviews'}>
                     {reviews.map(review => (
                         <div key={review.id}>
-                            <p>{review.user.firstName}</p>
-                            <p className='nums'>{review.createdAt}</p>
+                            <div className="review-author-date">
+                                <span className="review-author">{review.user.firstName}</span>
+                                <span className='nums review-date'>{review.createdAt}</span>
+                            </div>
                             <p>{review.reviewText}</p>
                             <p className='nums'>Rating: {review.rating}</p>
+                            <hr className="line-after-image" />
 
                             {currentUser && currentUser.id === review.userId && (
                                 <button onClick={() => openDeleteModal(review.id)}>Delete Review</button>
                             )}
-
                         </div>
                     ))}
                     {currentUser && <button className="general-green-btn"onClick={openReviewModal}>Create a Review</button>}
+                </div>
                 </div>
 
                 </div>
