@@ -100,7 +100,11 @@ const PaymentForm = () => {
                     maxLength="16"
                     placeholder="xxxx xxxx xxxx xxxx"
                     value={paymentInfo}
-                    onChange={(e) => setPaymentInfo(e.target.value)}
+                    onChange={(e) => {
+                        if (e.target.value.match(/^\d*$/)) {
+                            setPaymentInfo(e.target.value);
+                        }
+                    }}
                 />
                 {errors.paymentInfo && <p>{errors.paymentInfo}</p>}
                 <p className="payment-form-title">Payment Method</p>
