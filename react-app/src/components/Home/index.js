@@ -33,6 +33,7 @@ const Home = () => {
             if (playbackRate < 0.0625) {
                 videoRef.current.pause();
             } else {
+                if (videoRef.current.paused){
                 videoRef.current.play().then(() => {
                     clearTimeout(scrollTimeout);
 
@@ -41,8 +42,11 @@ const Home = () => {
                             videoRef.current.pause();
                         }
                     }, 100);
-                });
+                }).catch(error => {
+                    console.error("Error playing video:", error);
+                })
             }
+        }
 
             lastScrollTop = currentScrollTop;
         };
@@ -82,6 +86,14 @@ const Home = () => {
             <video className="video-container" autoPlay muted>
                 <source src={homeplants} type="video/mp4" />
             </video>
+            <div className="about-section">
+                <hr className="c-line-after-image" />
+                <h1>Our Mission</h1>
+                <p>
+                "Bloom, we are more than just an online store; we are a community passionate about plants and the environment. We offer a diverse selection of plants for sale, each accompanied by detailed care guides to help both novice and experienced gardeners thrive. Our mission extends beyond commerce, as we aim to spread awareness about the environmental significance of plants and their role in sustaining life on Earth. We believe in the power of greenery to enhance interior aesthetics, bringing a touch of nature into every space. Through our platform, we strive to inspire a love for plants, encouraging a greener, healthier, and more beautiful world. Join us on this journey, and let's grow together!"
+                </p>
+                <hr className="c-line-after-image" />
+            </div>
             <ChatBot/>
         </div>
     )

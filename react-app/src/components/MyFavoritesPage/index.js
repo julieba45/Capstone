@@ -49,7 +49,7 @@ const MyFavoritesPage = () => {
             {sortedGardens.map(([gardenName, gardenFavorites]) => (
                 <div key={gardenName} className="garden-column">
                     <h2>
-                        Garden Name: <NavLink className="favorite-garden-name" to={`/garden/${gardenName}`}>{gardenName}</NavLink>
+                        <NavLink className="favorite-garden-name" to={`/garden/${gardenName}`}>{gardenName}</NavLink>
                     </h2>
                     {gardenFavorites.map((favorite) => (
                         <div

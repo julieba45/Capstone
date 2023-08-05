@@ -87,7 +87,7 @@ const PlantDetails = () => {
                         <span className='font-two'>{plant.name.split(' ').slice(2).join(' ')}</span>
                         </>
                     )}
-                    <hr class="line-after-image"></hr>
+                    <hr className="line-after-image"></hr>
                     <p className="plant-price">{plant.price ? `from $${plant.price.toFixed(2)}` : 'price...'}</p>
                     <p className='plant-details-description'>{plant.description}</p>
 

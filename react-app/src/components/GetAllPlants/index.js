@@ -42,11 +42,14 @@ const GetAllPlants = () => {
 
     const handleAddToFavorite = (plantId, e) => {
         e.stopPropagation();
+        const selectedPlant = plants.find(plant => plant.id === plantId);
         if(user){
         setModalContent(
             <GardenSelectionModal
             gardenNames={gardenNames}
             onGardenSelect={(gardenName) => handleSelectedGarden(plantId, gardenName)}
+            plantImage={selectedPlant.images[0].pictureUrl}
+            plantName={selectedPlant.name}
             />
         )
         }
