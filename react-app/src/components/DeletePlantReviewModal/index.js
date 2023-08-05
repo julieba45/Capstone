@@ -20,10 +20,11 @@ function DeletePlantReviewModal({reviewId}){
 
     };
     return (
-        <div>
-            <h2 >Are you sure you want to delete this task</h2>
-            <button onClick={handleDelete}>Yes, Delete!</button>
-            <button onClick={closeModal}>No, Keep it.</button>
+        <div className="cancel-payment-modal">
+            <h2 >Are you sure you want to delete this review?</h2>
+            <hr className="line-after-image"></hr>
+            <button className="cancel-btn-order"onClick={handleDelete}>Yes, Delete!</button>
+            <button className="cancel-btn-order"onClick={closeModal}>No, Keep it.</button>
             {error && <p>{error}</p>}
         </div>
     )

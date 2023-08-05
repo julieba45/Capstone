@@ -65,12 +65,7 @@ const PlantDetails = () => {
     return (
         <div>
             {/* <h2 className='plant-details'>{plant.name} */}
-            {plant && plant.name && (
-                <>
-                <span className='font-one'>{plant.name.split(' ').slice(0, 2).join(' ')}</span>
-                <span className='font-two'>{plant.name.split(' ').slice(2).join(' ')}</span>
-                </>
-            )}
+
             <div className='product-details'>
                 <div className='product-images'>
                 {plant.images && plant.images.length > 0 && (
@@ -86,7 +81,14 @@ const PlantDetails = () => {
                 </div>
                 <div className='produce-info'>
                     {/* <h2>{plant.name}</h2> */}
+                    {plant && plant.name && (
+                        <>
+                        <span className='font-one'>{plant.name.split(' ').slice(0, 2).join(' ')}</span>
+                        <span className='font-two'>{plant.name.split(' ').slice(2).join(' ')}</span>
+                        </>
+                    )}
                     <hr class="line-after-image"></hr>
+                    <p className="plant-price">{plant.price ? `from $${plant.price.toFixed(2)}` : 'price...'}</p>
                     <p className='plant-details-description'>{plant.description}</p>
 
                     <p>species: {plant.species}</p>
@@ -103,7 +105,7 @@ const PlantDetails = () => {
                     ></input>
                     </div>
                     <button className="general-green-btn"onClick={handleAddToCart}>Add to Cart</button>
-                    <p className="plant-price">{plant.price ? `from $${plant.price.toFixed(2)}` : 'price...'}</p>
+
                 </div>
                 <div className='plant-detail-reviews'>
                     <h2 onClick={toggleReviews} className="reviews-header">
