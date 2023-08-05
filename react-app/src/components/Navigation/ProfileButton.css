@@ -41,7 +41,7 @@
     background-color: #f8f9fa;
 }
 
-/* .login-open-modal-button{
+.login-open-modal-button{
     border: none;
     cursor: pointer;
     width:100%;
@@ -49,4 +49,4 @@
     justify-content: flex-start;
     background-color: white;
     font-family: 'Times New Roman', Times, serif;
-} */
+}
