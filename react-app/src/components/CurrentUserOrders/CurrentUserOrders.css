@@ -20,6 +20,7 @@
     border: 1px solid #ccc;
     padding: 20px;
     margin: 20px;
+    background: #f6f5f3;
 }
 
 .order-top-half {
@@ -51,6 +52,7 @@
     line-height: 1.23;
     letter-spacing: 1.32px;
     font-family:'Cormorant Garamond', serif;
+    padding-left: 20px;
 }
 
 .order-placed{
@@ -66,4 +68,5 @@
     background-color: #9a988f;
     color: white;
     font-family: 'Times New Roman', Times, serif;
+    width: 30%
 }

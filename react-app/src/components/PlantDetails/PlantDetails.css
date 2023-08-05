@@ -51,7 +51,6 @@
     font-family: 'Quattrocento', serif;
     font-size: 30px;
     margin-right: 0.2em;
-    padding-left: 60px;
 }
 
 .font-two{
@@ -112,4 +111,31 @@ body{
     display: flex;
     align-items: center;
     gap:5px;
+}
+
+.reviews-header {
+    cursor: pointer;
+    background: #f0efed;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: medium;
+}
+
+.reviews-content {
+    display: block;
+}
+
+.hide-reviews {
+    display: none;
+}
+
+.toggle-symbol{
+    font-size: large;
+}
+
+.review-author-date {
+    display: flex;
+    justify-content: space-between;
 }

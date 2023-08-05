@@ -2,6 +2,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
+    margin-left: 40px;
+
 }
 .favorite-image-container {
     width: 100%;
@@ -41,4 +43,18 @@
 .garden-title-container{
     display: flex;
     align-items: center;
+    margin-left: 40px;
+}
+
+.garden-deets-btn{
+    background-color: #9a988f;
+    color: white;
+    padding: 15px 20px;
+    min-width: 270px;
+    position: relative;
+    text-decoration: none;
+    border: 0;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 50px;
+    cursor: pointer;
 }

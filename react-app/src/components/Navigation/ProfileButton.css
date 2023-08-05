@@ -31,3 +31,10 @@
     justify-content: flex-start;
     background-color: white;
 }
+
+.profile-btn-bars{
+    border: 1px solid rgba(1,27,26,.2)!important;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
