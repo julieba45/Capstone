@@ -107,7 +107,7 @@ const PaymentForm = () => {
                     }}
                 />
                 {errors.paymentInfo && <p>{errors.paymentInfo}</p>}
-                <p className="payment-form-title">Payment Method</p>
+                <p className="payment-form-title">Payment Amount</p>
                 <input
                     className="payment-input"
                     type = "number"
