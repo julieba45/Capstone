@@ -15,7 +15,7 @@ const CartPage = () => {
     useEffect(() => {
         dispatch(getCart())
         // console.log('-----STATE', state)
-        console.log(cart, 'MY CART')
+        console.log('------------MY CART', cart)
     }, [dispatch])
 
     const handleUpdate = (plantItem, increment = true) => {
@@ -56,7 +56,7 @@ const CartPage = () => {
                     <h4>Price</h4>
                 </div>
                 <hr className="line-after-image" />
-                {cart && cart.map(plantItem => (
+                {cart && cart.sort((a, b) => a.plant.id - b.plant.id).map(plantItem => (
                     <React.Fragment key={plantItem.id}>
                     <div key={plantItem.id}  className="cart-page-item">
                         <div className="cart-name-img">
