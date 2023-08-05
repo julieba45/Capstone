@@ -2,7 +2,8 @@ import React, {useEffect, useRef, useState} from "react";
 import ChatBot from "../ChatBot";
 import "./Home.css";
 // import Spline from '@splinetool/react-spline';
-import homeplants from "../../public/homeplants-2.mp4"
+// import homeplants from "../../public/homeplants-2.mp4"
+import homeplants from "../../public/home-plants.png"
 import homeplant from "../../public/rotate_plant.mp4"
 import { NavLink } from 'react-router-dom';
 
@@ -83,9 +84,8 @@ const Home = () => {
                 </div>
             </div>
             {/* <Spline scene="https://prod.spline.design/dO2sGncbnQ3-xKEL/scene.splinecode" /> */}
-            <video className="video-container" autoPlay muted>
-                <source src={homeplants} type="video/mp4" />
-            </video>
+            <img className="video-container" src={homeplants} alt="Description of the image"/>
+
             <div className="about-section">
                 <hr className="c-line-after-image" />
                 <h1>Our Mission</h1>
