@@ -6,6 +6,7 @@
     border-radius: 10px;
     list-style: none;
     z-index: 3;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .profile-dropdown li{
@@ -30,6 +31,7 @@
     display: flex;
     justify-content: flex-start;
     background-color: white;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .profile-btn-bars{
@@ -38,3 +40,13 @@
     padding: 10px;
     background-color: #f8f9fa;
 }
+
+/* .login-open-modal-button{
+    border: none;
+    cursor: pointer;
+    width:100%;
+    display: flex;
+    justify-content: flex-start;
+    background-color: white;
+    font-family: 'Times New Roman', Times, serif;
+} */
