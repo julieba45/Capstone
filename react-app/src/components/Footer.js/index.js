@@ -5,9 +5,9 @@ const Footer = () => {
         <div className='footer'>
             <div className='footer-content'>
                 <div className='footer-links'>
-                    <span className='followus'>Follow us! We're friendly:</span>
+                    <span className='followus'>Welcome to our store!</span>
                     <div className='social-links'>
-                        <a href='https://www.facebook.com/TaskRabbit-106755671141027'>
+                        {/* <a href='https://www.facebook.com/TaskRabbit-106755671141027'>
                             <></>
                             facebook
                         </a>
@@ -20,7 +20,7 @@ const Footer = () => {
                         <a href='https://www.instagram.com/taskrabbit/'>
                             <></>
                             instagram
-                        </a>
+                        </a> */}
                     </div>
                 </div>
                 <div className='footer-grid'>
