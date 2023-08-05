@@ -48,8 +48,8 @@ const PaymentForm = () => {
         if (!paymentAmount) newErrors.paymentAmount = "Payment amount is required";
         if (!location) newErrors.location = "Location is required";
 
-        const cardInfo = validateCreditCard();
-        if (cardInfo === 'INVALID') newErrors.paymentInfo = "Invalid card number";
+        // const cardInfo = validateCreditCard();
+        // if (cardInfo === 'INVALID') newErrors.paymentInfo = "Invalid card number";
 
         return newErrors
     }
