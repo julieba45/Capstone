@@ -15,7 +15,14 @@ const MyFavoritesPage = () => {
 
     const handleDragStart = (event, favoriteId) => {
         event.dataTransfer.setData("favoriteId", favoriteId);
+        event.currentTarget.classList.add('dragging');
+        document.querySelectorAll('.garden-column').forEach(column => column.classList.add('highlight'));
         // event.currentTarget.parentNode.classList.add('favorite-dragging');
+    }
+
+    const handleDragEnd = (event) => {
+        event.currentTarget.classList.remove('dragging');
+        document.querySelectorAll('.garden-column').forEach(column => column.classList.remove('highlight'));
     }
 
     const handleDrop = async (event, gardenName) => {
@@ -50,7 +57,8 @@ const MyFavoritesPage = () => {
 
     return (
         <div className="favorites-container">
-            <h1 className="favorites-main-header">Favorites</h1>
+            <h1 className="favorites-main-header">My Gardens</h1>
+            <p> Create and customize your own personal gardens. Drag and drop plants into the garden you want.</p>
             <div className="gardens-grid">
             {sortedGardens.map(([gardenName, gardenFavorites]) => (
                 <div key={gardenName} className="garden-column">
@@ -61,13 +69,13 @@ const MyFavoritesPage = () => {
                         <div
                             key={favorite.id}
                             className="favorite"
+                            draggable
+                            onDragStart={(event) => handleDragStart(event, favorite.id)}
+                            onDragEnd={handleDragEnd}
                             onDrop={(event) => handleDrop(event, gardenName)}
                             onDragOver={(event) => event.preventDefault()}
                         >
-                            <p
-                                draggable
-                                onDragStart={(event) => handleDragStart(event, favorite.id)}
-                            >
+                            <p>
                                 Plant Name:{favorite.plant.name}
                             </p>
                         </div>

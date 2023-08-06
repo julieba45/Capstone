@@ -45,3 +45,27 @@
     font-family: 'Cormorant Garamond', serif;
     text-transform: uppercase;
 }
+
+.favorite[draggable] {
+    cursor: grab;
+}
+
+.favorite[draggable]:active {
+    cursor: grabbing;
+}
+
+.favorite.dragging {
+    opacity: 0;
+}
+
+.favorite.dragging::after{
+    content: "";
+    display: block;
+    border: 3px solid black;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+.garden-column.highlight {
+    background-color: rgb(234, 204, 171);
+}
