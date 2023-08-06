@@ -14,22 +14,29 @@ const GardenName = ({ gardenName, onNameUpdate }) => {
     setNewName(event.target.value);
   };
 
+  const handleSubmit = () => {
+    onNameUpdate(gardenName, newName);
+    setIsEditing(false);
+  }
+
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      onNameUpdate(gardenName, newName);
-      setIsEditing(false);
+      handleSubmit();
     }
   };
 
   return (
     <div>
       {isEditing ? (
+         <div>
         <input
           type="text"
           value={newName}
           onChange={handleNameChange}
           onKeyPress={handleKeyPress}
         />
+          <button onClick={handleSubmit}>Update</button>
+        </div>
       ) : (
         <React.Fragment>
           <NavLink className="favorite-garden-name" to={`/garden/${gardenName}`}>{gardenName}</NavLink>
