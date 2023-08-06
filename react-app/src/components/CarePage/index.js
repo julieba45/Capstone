@@ -71,6 +71,7 @@ const CarePage = () => {
         <div className="care-page-main">
             <div className="care-weather-column">
             <h1 className="main-care-header">Care</h1>
+            <p>Use this information to provide the best care to your current plants!</p>
             {weatherData && (
                 < div className="weather-container">
                     <div className="weather-row">
