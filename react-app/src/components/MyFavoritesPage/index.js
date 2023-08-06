@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFavorites } from "../../store/favorite";
-import { NavLink } from 'react-router-dom';
 import { updateFavoritePlant } from "../../store/favorite";
+import { updateGarden } from "../../store/favorite";
 import "./MyFavoritesPage.css"
+import GardenName from './GardenName';
+
 
 
 const MyFavoritesPage = () => {
@@ -42,6 +44,10 @@ const MyFavoritesPage = () => {
 
     const sortedGardens = Object.entries(gardens).sort((a, b) => a[0].localeCompare(b[0]));
 
+    const handleNameUpdate = (oldName, newName) => {
+        dispatch(updateGarden(oldName, newName));
+    };
+
     return (
         <div className="favorites-container">
             <h1 className="favorites-main-header">Favorites</h1>
@@ -49,7 +55,7 @@ const MyFavoritesPage = () => {
             {sortedGardens.map(([gardenName, gardenFavorites]) => (
                 <div key={gardenName} className="garden-column">
                     <h2>
-                        <NavLink className="favorite-garden-name" to={`/garden/${gardenName}`}>{gardenName}</NavLink>
+                        <GardenName gardenName={gardenName} onNameUpdate={handleNameUpdate} />
                     </h2>
                     {gardenFavorites.map((favorite) => (
                         <div

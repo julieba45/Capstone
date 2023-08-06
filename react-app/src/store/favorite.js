@@ -1,6 +1,7 @@
 const GET_FAVORITES = "favorite/GET_FAVORITES";
 const GET_GARDEN_FAVORITES = "favorite/GET_GARDEN_FAVORITES";
 const UPDATE_FAVORITE = 'favorite/UPDATE_FAVORITE';
+const UPDATE_GARDEN_NAME = 'favorite/UPDATE_GARDEN_NAME';
 const ADD_FAVORITE = 'favorite/ADD_FAVORITE';
 const DELETE_FAVORITE = 'favorite/DELETE_FAVORITE';
 
@@ -18,6 +19,14 @@ const getGardenFavorites = (favorites) => ({
 const updateFavorite = (favorite) => ({
     type: UPDATE_FAVORITE,
     payload: favorite
+});
+
+const updateGardenName = (oldGardenName, updatedFavorites) => ({
+    type: UPDATE_GARDEN_NAME,
+    payload: {
+        oldGardenName,
+        updatedFavorites
+    }
 });
 
 const addFavorite = (favorite) => ({
@@ -64,12 +73,29 @@ export const updateFavoritePlant = (favoriteId, newGardenName) => async (dispatc
     }
 };
 
+export const updateGarden = (oldGardenName, newGardenName) => async (dispatch) => {
+    // console.log("---------API", `/api/favorite/${oldGardenName}`)
+    // console.log("-------------BODY", JSON.stringify({ newGardenName }))
+    const response = await fetch(`/api/favorites/${oldGardenName}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ newGardenName }),
+    });
+
+    if (response.ok) {
+        const updatedFavorites = await response.json();
+        dispatch(updateGardenName(oldGardenName, updatedFavorites));
+    }
+};
+
 export const addFavoritePlant = (plantId, gardenName, position) => async(dispatch) => {
-    console.log('--------FAILED BODY HERE',JSON.stringify({
-        id: plantId,
-        gardenName:gardenName,
-        position: position
-    }) )
+    // console.log('--------FAILED BODY HERE',JSON.stringify({
+    //     id: plantId,
+    //     gardenName:gardenName,
+    //     position: position
+    // }) )
     const response = await fetch(`/api/favorites`, {
         method: 'POST',
         headers:{
@@ -108,6 +134,9 @@ const favoriteReducer = (state = initialState, action) => {
             return [...state, action.payload]
         case UPDATE_FAVORITE:
             return state.map(favorite => favorite.id === action.payload.id ? action.payload : favorite)
+        case UPDATE_GARDEN_NAME:
+            const newState = state.filter(favorite => favorite.gardenName !== action.payload.oldGardenName);
+            return [...newState, ...action.payload.updatedFavorites];
         case DELETE_FAVORITE:
             return state.filter(favorite => favorite.id !== action.payload);
         default:

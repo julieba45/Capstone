@@ -17,6 +17,8 @@ def get_current_favorites():
     favorites = Favorite.query.filter_by(userId=current_user_id).all()
     return jsonify([favorite.to_dict() for favorite in favorites])
 
+
+
 @favorite_routes.route('/<string:gardenName>', methods=['GET'])
 @login_required
 def get_garden_details(gardenName):
@@ -26,6 +28,8 @@ def get_garden_details(gardenName):
     current_user_id = current_user.get_id()
     favorites = Favorite.query.filter_by(userId=current_user_id, gardenName=gardenName).all()
     return jsonify([favorite.to_dict() for favorite in favorites])
+
+
 
 @favorite_routes.route('', methods=['POST'])
 @login_required
@@ -52,6 +56,8 @@ def add_plant_to_favorites():
     db.session.commit()
     return jsonify(favorite.to_dict())
 
+
+
 @favorite_routes.route('/<int:favoriteId>', methods=['PUT'])
 @login_required
 def update_favorite(favoriteId):
@@ -68,6 +74,28 @@ def update_favorite(favoriteId):
     favorite.gardenName = data.get('gardenName', favorite.gardenName)
     db.session.commit()
     return jsonify(favorite.to_dict())
+
+
+
+@favorite_routes.route('/<string:oldGardenName>', methods=['PUT'])
+@login_required
+def update_garden_name(oldGardenName):
+    """
+    Update a favorite plant for the current user
+    """
+    data = request.get_json()
+    newGardenName = data.get('newGardenName')
+    favorites = Favorite.query.filter_by(gardenName=oldGardenName, userId=current_user.id).all()
+    if len(favorites) == 0:
+        return jsonify({'error': 'Garden not found'}), 404
+
+    for favorite in favorites:
+        favorite.gardenName = newGardenName
+
+    db.session.commit()
+    return jsonify([favorite.to_dict() for favorite in favorites])
+
+
 
 @favorite_routes.route('/<int:favoriteId>', methods=['DELETE'])
 @login_required
