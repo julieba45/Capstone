@@ -7,7 +7,6 @@ import "./MyFavoritesPage.css"
 import GardenName from './GardenName';
 
 
-
 const MyFavoritesPage = () => {
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.favorites);
