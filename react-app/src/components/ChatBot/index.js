@@ -39,7 +39,8 @@ const ChatBot = () => {
                 role:'user',
                 content: input
             };
-            setHistory([...history, newMessage])
+            const updatedHistory = [...history, newMessage]
+            setHistory(updatedHistory)
 
             try{
                 const plantsList = plants.map(plant => `'${plant.name}'`).join(", ");
@@ -53,7 +54,8 @@ const ChatBot = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee of an online store with fewer than 31 words and be welcoming.`
+                        history: updatedHistory,
+                        message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee of an online store with fewer than 21 words and be welcoming.`
                     }),
                 });
 
@@ -104,7 +106,7 @@ const ChatBot = () => {
                     <textarea
                         value={input}
                         onChange={handleInputChange}
-                        maxLength="150"
+                        maxLength="100"
                     />
                     <button onClick={handleSubmit} className="chat-submit" >Send</button>
                     </>

@@ -16,6 +16,8 @@ const GetAllPlants = () => {
     const {setModalContent} = useModal()
     const user = useSelector(state => state.session.user)
     const [hoverStates, setHoverStates] = useState({});
+    const [notification, setNotification] = useState("");
+
 
     //Some hovering effect fcts
     const handleMouseEnter = (plantId) => {
@@ -58,7 +60,17 @@ const GetAllPlants = () => {
     const handleSelectedGarden = (plantId, gardenName) => {
         dispatch(addFavoritePlant(plantId, gardenName, 1));
         setModalContent(null);
+        setNotification("Plant successfully added to your garden!");
     }
+
+    useEffect(() => {
+        if(notification){
+            const timer = setTimeout(() => {
+                setNotification("")
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [notification])
 
     //removing dupes
     const gardenNames = [...new Set(favorites.map(favorite => favorite.gardenName))];
@@ -94,12 +106,20 @@ const GetAllPlants = () => {
                                 <i className="fa-regular fa-heart"></i>
                                 </button>}
                         </div>
+
                         <p className="plant-ready">Ready to Ship</p>
 
                     </div>
                 ))
             }
             </div>
+
+            {notification &&
+                <div className="notification">
+                    <i className="fa-solid fa-check" style={{color: "#41511f;"}}></i>
+                    {notification}
+                </div>
+            }
         </div>
     )
 }

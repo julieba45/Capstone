@@ -17,10 +17,14 @@ const PaymentForm = () => {
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
 
+    const cart = useSelector(state => state.cart.cart.orderPlants);
+    const signuplocation = useSelector(state => state.session.user.location);
+
     const fetchSuggestions = async (input) => {
         const response = await fetch(`/api/auth/autocomplete/${input}`);
         const data = await response.json();
         setSuggestions(data);
+        // console.log('HELLLO---------', signuplocation)
     };
 
     const validateCreditCard = () => {
@@ -41,7 +45,6 @@ const PaymentForm = () => {
 
     }
 
-
     const validate = () => {
         const newErrors = {};
         if (!paymentInfo) newErrors.paymentInfo = "Payment info is required";
@@ -61,6 +64,21 @@ const PaymentForm = () => {
             setSuggestions([])
         }
     }, [location])
+
+    let totalCartCost = 0;
+    if (cart) {
+        totalCartCost = cart.reduce((acc, plantItem) => acc + (plantItem.quantity * plantItem.plant.price), 0);
+    }
+
+    useEffect(() => {
+        setPaymentAmount(totalCartCost);
+    }, [totalCartCost])
+
+    useEffect(() => {
+        if (signuplocation) {
+            setLocation(signuplocation);
+        }
+    }, [signuplocation]);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -93,7 +111,7 @@ const PaymentForm = () => {
         <div className="payment-page-container">
         <div className="payment-form-container">
             <form className="payment-form"onSubmit={handleSubmit}>
-                <p className="payment-form-title">Credite Card</p>
+                <p className="payment-form-title">Credit Card</p>
                 <input
                     className="payment-input"
                     type="text"
@@ -107,15 +125,15 @@ const PaymentForm = () => {
                     }}
                 />
                 {errors.paymentInfo && <p>{errors.paymentInfo}</p>}
-                <p className="payment-form-title">Payment Amount</p>
-                <input
+                {/* <p className="payment-form-title">Payment Amount</p> */}
+                {/* <input
                     className="payment-input"
                     type = "number"
                     value={paymentAmount}
                     onChange={(e) => setPaymentAmount(e.target.value)}
                     placeholder="Payment Amount"
-                />
-                {errors.paymentAmount && <p>{errors.paymentAmount}</p>}
+                /> */}
+                {/* {errors.paymentAmount && <p>{errors.paymentAmount}</p>} */}
                 <p className="payment-form-title">Delivery Location</p>
                 <input
                     className="payment-input"

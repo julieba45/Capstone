@@ -22,7 +22,7 @@ const CurrentUserOrders = () => {
     return(
         <div className="orders-container">
             <h1 className="orderhistory-title">Order History</h1>
-            {orders.map(order => (
+            {orders.sort((a,b) => b.id - a.id).map(order => (
                 <React.Fragment key={order.id}>
                 <p className="order-placed"> Order placed: {new Date(order.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 <div className="order-grid" key={order.id}>
