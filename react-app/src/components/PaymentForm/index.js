@@ -162,7 +162,7 @@ const PaymentForm = () => {
 
                 </div>
                 {errors.location && <p>{errors.location}</p>}
-                <button type="submit">Submit Payment</button>
+                <button className="general-green-btn"type="submit">Submit Payment</button>
                 {errors.error && <p>{errors.error}</p>}
             </form>
         </div>

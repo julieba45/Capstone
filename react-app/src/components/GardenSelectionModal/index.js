@@ -6,8 +6,11 @@ const GardenSelectionModal = ({onGardenSelect, gardenNames, plantImage, plantNam
 
     const handleNewGardenSubmit = (e) => {
         e.preventDefault()
-        const gardenName = newGardenName || 'My Favorites';
-        onGardenSelect(gardenName)
+        if(newGardenName.trim() === ''){
+            alert('Garden name cannot be empty')
+            return;
+        }
+        onGardenSelect(newGardenName)
         setNewGardenName('');
     }
     return (
@@ -34,7 +37,7 @@ const GardenSelectionModal = ({onGardenSelect, gardenNames, plantImage, plantNam
                             value={newGardenName}
                             onChange={(e) => setNewGardenName(e.target.value)}
                         />
-                        <button className="selection-modal-btn"type="submit">Create New Garden</button>
+                        <button className="delete-review-btn"type="submit">Create New Garden</button>
 
                     </form>
                 </div>
