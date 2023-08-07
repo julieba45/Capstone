@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import "./GardenName.css";
 
 
 const GardenName = ({ gardenName, onNameUpdate }) => {
@@ -30,18 +31,21 @@ const GardenName = ({ gardenName, onNameUpdate }) => {
       {isEditing ? (
          <div>
         <input
+        className='editgarden-inputarea'
           type="text"
           value={newName}
           onChange={handleNameChange}
           onKeyPress={handleKeyPress}
         />
-          <button onClick={handleSubmit}>Update</button>
+          <button className="update-garden-name"onClick={handleSubmit}>Update</button>
         </div>
       ) : (
-        <React.Fragment>
+        <div className='edit-gardenname'>
           <NavLink className="favorite-garden-name" to={`/garden/${gardenName}`}>{gardenName}</NavLink>
-          <button onClick={handleEditClick}>Edit</button>
-        </React.Fragment>
+          <button className="edit-button"onClick={handleEditClick}>
+            <i className="fa-solid fa-pen"></i>
+          </button>
+        </div>
       )}
     </div>
   );
