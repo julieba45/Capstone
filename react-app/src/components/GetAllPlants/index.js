@@ -45,6 +45,7 @@ const GetAllPlants = () => {
     const handleAddToFavorite = (plantId, e) => {
         e.stopPropagation();
         const selectedPlant = plants.find(plant => plant.id === plantId);
+        // console.log('--------GARDEN NAMES', gardenNames)
         if(user){
         setModalContent(
             <GardenSelectionModal
@@ -73,7 +74,7 @@ const GetAllPlants = () => {
     }, [notification])
 
     //removing dupes
-    const gardenNames = [...new Set(favorites.map(favorite => favorite.gardenName))];
+    const gardenNames = [...new Set([...favorites.map(favorite => favorite.gardenName), 'My Favorites'])];
 
     // <div className='garden-title-container'>
     //         <h1 className='garden-title'>{gardenName}</h1>
@@ -116,7 +117,7 @@ const GetAllPlants = () => {
 
             {notification &&
                 <div className="notification">
-                    <i className="fa-solid fa-check" style={{color: "#41511f;"}}></i>
+                    <i className="fa-solid fa-check" style={{color: "#41511f"}}></i>
                     {notification}
                 </div>
             }

@@ -60,6 +60,10 @@ const MyFavoritesPage = () => {
     const sortedGardens = Object.entries(gardens).sort((a, b) => a[0].localeCompare(b[0]));
 
     const handleNameUpdate = (oldName, newName) => {
+        if (newName.trim().length === 0) {
+            alert('Garden name cannot be empty!');
+            return;
+        }
         dispatch(updateGarden(oldName, newName));
     };
 
