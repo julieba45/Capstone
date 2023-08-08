@@ -124,7 +124,7 @@ const PaymentForm = () => {
                         }
                     }}
                 />
-                {errors.paymentInfo && <p>{errors.paymentInfo}</p>}
+                {errors.paymentInfo && <p className="signup-error-message">{errors.paymentInfo}</p>}
                 {/* <p className="payment-form-title">Payment Amount</p> */}
                 {/* <input
                     className="payment-input"
@@ -161,7 +161,7 @@ const PaymentForm = () => {
                 ))}
 
                 </div>
-                {errors.location && <p>{errors.location}</p>}
+                {errors.location && <p className="signup-error-message">{errors.location}</p>}
                 <button className="general-green-btn"type="submit">Submit Payment</button>
                 {errors.error && <p>{errors.error}</p>}
             </form>
