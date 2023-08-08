@@ -43,7 +43,11 @@ const ChatBot = () => {
             setHistory(updatedHistory)
 
             try{
-                const plantsList = plants.map(plant => `'${plant.name}'`).join(", ");
+                const plantsList = plants.reduce((obj, plant) => {
+                    obj[plant.name] = plant.price;
+                    return obj;
+                }, {});
+
                 // const systemMessageContent = `You are a helpful assistant. Current plants in inventory: ${plantsList}.`;
                 // console.log('---------------REQUEST BODY', JSON.stringify({
                 //     message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee with fewer than 31 words.`
@@ -55,7 +59,7 @@ const ChatBot = () => {
                     },
                     body: JSON.stringify({
                         history: updatedHistory,
-                        message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee of an online store with fewer than 21 words and be welcoming.`
+                        message: `Customer question: ${input} Current plants in inventory and their prices: ${JSON.stringify(plantsList)}. Please respond as the store employee of an online store with fewer than 21 words and be welcoming.`
                     }),
                 });
 
