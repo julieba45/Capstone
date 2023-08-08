@@ -99,21 +99,25 @@ const ConfirmationPage = () => {
             <div className="delivery-status-header">
                 <div className="status">
                     <p>Confirmed</p>
+                    <i className="custom-icon fa-solid fa-circle-check"></i>
                     <p>{formatDate(order.createdAt)}</p>
                 </div>
                 <div className="separator"></div>
                 <div className="status">
                     <p>On its way</p>
+                    <i className="custom-icon fa-solid fa-circle-check"></i>
                     <p>{formatDate(order.createdAt)}</p>
                 </div>
                 <div className="separator"></div>
                 <div className="status">
                     <p>Out for delivery</p>
+                    <i className="custom-icon fa-solid fa-truck"></i>
                     <p>In Progress</p>
                 </div>
                 <div className="separator"></div>
                 <div className="status">
                     <p>Delivered</p>
+                    <i className="custom-icon fa-solid fa-house-chimney"></i>
                     <p>In Progress</p>
                 </div>
             </div>
