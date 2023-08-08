@@ -116,14 +116,16 @@ const PlantDetails = () => {
                         <div key={review.id}>
                             <div className="review-author-date">
                                 <span className="review-author">{review.user.firstName}</span>
-                                <span className='nums review-date'>{review.createdAt}</span>
+                                <span className='nums review-date'>
+                                    {new Date(review.createdAt).toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' })}
+                                </span>
                             </div>
                             <p>{review.reviewText}</p>
                             <p className='nums'>Rating: {review.rating}</p>
                             <hr className="line-after-image" />
 
                             {currentUser && currentUser.id === review.userId && (
-                                <button onClick={() => openDeleteModal(review.id)}>Delete Review</button>
+                                <button className="delete-review-btn" onClick={() => openDeleteModal(review.id)}>Delete Review</button>
                             )}
                         </div>
                     ))}

@@ -55,3 +55,21 @@
     font-family: 'Cormorant Garamond', serif;
     text-transform: uppercase;
 }
+
+.care-page-noorders{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.care-page-noorders a{
+    color: inherit;
+    /* text-decoration: underline; */
+}
+
+.main-care-noorders-header {
+    font-size: 3rem;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
+}

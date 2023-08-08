@@ -59,6 +59,30 @@ const CarePage = () => {
         }
     });
 
+    if(plants.length === 0){
+        return (
+            <div className="care-page-noorders">
+                <h1 className="main-care-noorders-header">Care</h1>
+                <p>Welcome to the Care Page! Here, you'll find personalized care instructions for your plants based on your orders.</p>
+                <p>Hmmm..No orders yet! <p>
+                </p><a href="/plants">Click here </a> to browse our plants and start your journey towards a greener home.</p>
+                <div>
+                    {/* <img src="empty_orders_icon.png" alt="No orders" /> */}
+                    <iframe
+                        className="birdy"
+                        style={{border: "none"}}
+                        width="300"
+                        height="500"
+                        src="https://rive.app/s/c9PNX0ABuEmvNTUvnkU2tg/embed"
+                        // src="https://rive.app/s/DBadkMOJEUCi8pA71_dsSA/embed"
+                        allowFullScreen
+                    />
+
+                </div>
+            </div>
+        )
+    }
+
     if (plants.length > 0 && currentPlant === null) {
         setCurrentPlant(plants[0]);
     }
@@ -71,6 +95,7 @@ const CarePage = () => {
         <div className="care-page-main">
             <div className="care-weather-column">
             <h1 className="main-care-header">Care</h1>
+            <p>Use this information to provide the best care to your current plants!</p>
             {weatherData && (
                 < div className="weather-container">
                     <div className="weather-row">
@@ -119,13 +144,7 @@ const CarePage = () => {
                 ))}
 
 
-            {/* <iframe
-                style={{border: "none"}}
-                width="300"
-                height="500"
-                src="https://rive.app/s/ZA3G626QRkOXhfq1gXAP1g/embed"
-                allowFullScreen
-            /> */}
+
             </Carousel>
 
         </div>
