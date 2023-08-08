@@ -98,7 +98,7 @@ def unauthorized():
 @auth_routes.route('/autocomplete/<string:input>')
 def autocomplete(input):
     gmaps = googlemaps.Client(key=Config.API_KEY)
-    autocomplete_result = gmaps.places_autocomplete(input, types='address')
+    autocomplete_result = gmaps.places_autocomplete(input, types='address', components={'country': 'US'})
     return jsonify(autocomplete_result)
 
 @auth_routes.route('/map/<string:location>')
