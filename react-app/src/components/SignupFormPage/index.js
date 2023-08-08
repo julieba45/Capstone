@@ -98,7 +98,7 @@ function SignupFormPage() {
             />
           </label>
         </div>
-				{errors.firstName && <div>{errors.firstName}</div>}
+				{errors.firstName && <div className="signup-error-message">{errors.firstName}</div>}
         <div className="signup-div">
           <label>
             <input
@@ -112,7 +112,7 @@ function SignupFormPage() {
             />
           </label>
         </div>
-				{errors.lastName && <div>{errors.lastName}</div>}
+				{errors.lastName && <div className="signup-error-message">{errors.lastName}</div>}
         <div className="signup-div">
           <label>
             <input
@@ -126,7 +126,7 @@ function SignupFormPage() {
             />
           </label>
         </div>
-				{errors.email && <div>{errors.email}</div>}
+				{errors.email && <div className="signup-error-message">{errors.email}</div>}
         <div className="signup-div">
           <label>
             <input
@@ -140,7 +140,7 @@ function SignupFormPage() {
             />
           </label>
         </div>
-				{errors.username && <div>{errors.username}</div>}
+				{errors.username && <div className="signup-error-message">{errors.username}</div>}
 				<label>
 					<input
             className="signup-inputarea"
@@ -167,7 +167,7 @@ function SignupFormPage() {
 					</div>
 					))}
 				</label>
-				{errors.location && <div>{errors.location}</div>}
+				{errors.location && <div className="signup-error-message">{errors.location}</div>}
         <div className="signup-div">
           <label>
             <input
@@ -203,7 +203,7 @@ function SignupFormPage() {
         />
          <label htmlFor="acceptsTerms">I accept the terms and conditions</label>
         </div>
-				{errors.confirmPassword && <div>{errors.confirmPassword}</div>}
+				{errors.confirmPassword && <div className="signup-error-message">{errors.confirmPassword}</div>}
 				<button
             type="submit"
             className={`signup-main-btn ${acceptsTerms ? 'button-accepts-terms' : ''}`}
