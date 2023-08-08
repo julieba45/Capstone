@@ -139,3 +139,24 @@ body{
     display: flex;
     justify-content: space-between;
 }
+
+.delete-review-btn{
+    border: none;
+    width: 50%;
+    /* margin-left: 130px; */
+    font-family: 'Fraunces', serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    border: 1px solid transparent;
+
+}
+
+.delete-review-btn:hover {
+    background-color: black;
+    color: white;
+    box-shadow: inset 0 0 0 2px white;
+    border: 1px solid black;
+}

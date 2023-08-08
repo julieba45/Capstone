@@ -1,0 +1,46 @@
+.edit-gardenname{
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+}
+
+.edit-button:hover::after {
+    content: "Edit";
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.update-garden-name{
+    margin-left: 20px;
+    background-color: #9a988f;
+    color: white;
+    padding: 10px 15px;
+    min-width: 100px;
+    position: relative;
+    text-decoration: none;
+    border: 0;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+}
+
+.editgarden-inputarea{
+    padding: 10px 0;
+    border: none;
+    border-bottom: solid 1px #c9c9c1;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: transparent;
+}
