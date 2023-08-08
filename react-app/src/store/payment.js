@@ -14,7 +14,7 @@ const deletePayment = (paymentId) => ({
 })
 
 export const createPayment = (paymentInfo) => async(dispatch) => {
-    console.log('--------PAYMENT FAILED BODY', JSON.stringify(paymentInfo))
+    // console.log('--------PAYMENT FAILED BODY', JSON.stringify(paymentInfo))
     const response = await fetch(`/api/payments`, {
         method: 'POST',
         credentials: 'include',

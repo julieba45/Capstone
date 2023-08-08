@@ -27,7 +27,7 @@ const CarePage = () => {
 
                 const weatherResponse = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${lat},${lng}/today?key=${process.env.REACT_APP_API_WEATHER}`)
                 const weatherData = await weatherResponse.json()
-                console.log('---------------WEATHER DATA', weatherData)
+                // console.log('---------------WEATHER DATA', weatherData)
                 setWeatherData(weatherData);
                 setLoading(false);
 
@@ -93,6 +93,17 @@ const CarePage = () => {
 
     return (
         <div className="care-page-main">
+            <Carousel className="care-carousel" onChange={handleSlideChange} showStatus={false}>
+             {plants.map((orderPlant, index) => (
+                    orderPlant.plant.images && orderPlant.plant.images.length > 0 && (
+                        <div key={index}>
+                            {orderPlant.plant.images[0].isPrimary && (
+                                <img className="care-plant-image" src={orderPlant.plant.images[0].pictureUrl} alt={orderPlant.plant.name}></img>
+                            )}
+                        </div>
+                    )
+                ))}
+            </Carousel>
             <div className="care-weather-column">
             <h1 className="main-care-header">Care</h1>
             <p>Use this information to provide the best care to your current plants!</p>
@@ -128,27 +139,9 @@ const CarePage = () => {
                 )}
 
             </div>
-
-             <Carousel className="care-carousel" onChange={handleSlideChange} showStatus={false}>
-             {plants.map((orderPlant, index) => (
-                    orderPlant.plant.images && orderPlant.plant.images.length > 0 && (
-                        <div key={index}>
-                            {orderPlant.plant.images[0].isPrimary && (
-                                <img className="care-plant-image" src={orderPlant.plant.images[0].pictureUrl} alt={orderPlant.plant.name}></img>
-                            )}
-                            {/* {plant.images.filter(image => !image.isPrimary).map((image, index) => (
-                                <img key={index} className="plant-image" src={image.pictureUrl} alt={plant.name}></img>
-                            ))} */}
-                        </div>
-                    )
-                ))}
-
-
-
-            </Carousel>
-
         </div>
     )
+
 }
 
 export default CarePage

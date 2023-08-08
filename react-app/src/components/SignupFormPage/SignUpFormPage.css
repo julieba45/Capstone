@@ -75,3 +75,7 @@
     transition: all 0.3s ease;
     position: relative;
 }
+
+.signup-error-message{
+    color: rgb(167, 56, 56);
+}
