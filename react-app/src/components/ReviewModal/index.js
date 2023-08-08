@@ -52,7 +52,7 @@ const ReviewModal = ({plantId, closeModal}) => {
                     onChange={(e) => setRating((e.target.value))}
                 />
                 <button className="review-main-button"type="submit">Submit Review</button>
-                {error && <p>{error}</p>}
+                {error && <p className="signup-error-message">{error}</p>}
                 </div>
             </form>
     )

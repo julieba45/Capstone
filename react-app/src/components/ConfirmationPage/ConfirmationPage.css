@@ -1,6 +1,7 @@
 .confirmation-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding-top: 150px;
 }
 
 .delivery-status-header {
@@ -27,7 +28,7 @@
     background-color: #000;
     flex-grow: 1;
     align-self: center;
-    margin: 0 10px;
+    /* margin: 0 10px; */
 }
 
 .thank-you{
@@ -41,4 +42,8 @@
     border: 0;
     border-top: 1px solid #ccc;
     margin: 10px 0;
+}
+
+.custom-icon {
+    margin-left: 20px;
 }

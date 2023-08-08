@@ -99,13 +99,17 @@ const ChatBot = () => {
             {isOpen && (
                 <div className="chat-content">
                     {history.map((message, index) => (
-                        <p key={index}><strong>{message.role}:</strong> {message.content}</p>
+                        <p key={index} className={message.role === "user" ? 'user-message':'assistant-message'}>
+                            <strong>{message.role}:</strong> {message.content}
+                        </p>
                     ))}
                     {messageCount < MAX_MESSAGES ? (
                     <>
                     <textarea
+                        className="chat-textarea"
                         value={input}
                         onChange={handleInputChange}
+                        placeholder="Type your question here..."
                         maxLength="100"
                     />
                     <button onClick={handleSubmit} className="chat-submit" >Send</button>
