@@ -108,3 +108,12 @@
     /* margin: 10px 0; */
     padding-bottom: 50px;
 }
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.fade-in.show {
+    opacity: 1;
+}

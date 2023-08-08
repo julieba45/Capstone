@@ -88,7 +88,7 @@ const ConfirmationPage = () => {
                 <p>Order No. {order.id}</p>
                 <hr className="cutsom-line-after-image" />
                 <p>Order for: {order.userFirstName}</p>
-                <p>Total Amount: {order.payment.paymentAmount}</p>
+                <p>Total Amount: {order.payment.paymentAmount} $</p>
                 <p>Order Status: {order.status}</p>
                 <p>Shipped Location: {order.payment.location}</p>
                 <p>Estimated Delivery Date: {deliveryDate.toLocaleDateString()}</p>

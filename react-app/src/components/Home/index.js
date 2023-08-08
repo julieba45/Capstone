@@ -66,7 +66,7 @@ const Home = () => {
     return (
         <div className="home-container">
             <div className="home-content">
-                <h1 className="home-header">Home</h1>
+                <h1 className="home-header">Bloom</h1>
                 <div className="home-line"></div>
                 <div className="home-price">STARTING AT $10</div>
                 <div className="rotate-video">
