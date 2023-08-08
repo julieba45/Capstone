@@ -59,7 +59,7 @@ const ChatBot = () => {
                     },
                     body: JSON.stringify({
                         history: updatedHistory,
-                        message: `Customer question: ${input} Current plants in inventory and their prices: ${JSON.stringify(plantsList)}. Please respond as the store employee of an online store with fewer than 21 words and be welcoming.`
+                        message: `Customer question: ${input} Current plants in inventory and their prices: ${JSON.stringify(plantsList)}. Please respond with fewer than 21 words and be welcoming.`
                     }),
                 });
 
