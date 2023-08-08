@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import "./CartCount.css"
 
 const selectCartItemsCount = state =>
     state.cart.cart.orderPlants
@@ -14,7 +15,7 @@ const CartCount = () => {
         history.push('/cart');
     }
     return (
-        <div onClick={handleCartClick}>
+        <div className="shopping-cart-count"onClick={handleCartClick}>
             <i className="fa-solid fa-cart-shopping"></i>
             <span>{itemCount}</span>
         </div>
