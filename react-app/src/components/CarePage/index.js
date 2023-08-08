@@ -64,8 +64,8 @@ const CarePage = () => {
             <div className="care-page-noorders">
                 <h1 className="main-care-noorders-header">Care</h1>
                 <p>Welcome to the Care Page! Here, you'll find personalized care instructions for your plants based on your orders.</p>
-                <p>Hmmm..No orders yet! <p>
-                </p><a href="/plants">Click here </a> to browse our plants and start your journey towards a greener home.</p>
+                <p className="no-orders-yet">Hmmm..No orders yet! </p>
+                <p className="add-an-order-link"><a href="/plants">Add an order</a></p>
                 <div>
                     {/* <img src="empty_orders_icon.png" alt="No orders" /> */}
                     <iframe
