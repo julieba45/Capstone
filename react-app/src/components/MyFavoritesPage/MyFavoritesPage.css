@@ -7,7 +7,8 @@
 }
 
 .favorites-container {
-    margin: 20px;
+    margin-left: 60px;
+    padding-top: 100px;
 }
 
 .favorite, .favorite-placeholder {

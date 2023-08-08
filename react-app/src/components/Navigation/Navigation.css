@@ -11,6 +11,13 @@
   background-color: #f8f9fa;
   /* padding: 5px 0; */
   /* font-family: 'Fraunces', serif; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(248, 249, 250, 0.7);
+
 }
 
 .navbar > ul {
