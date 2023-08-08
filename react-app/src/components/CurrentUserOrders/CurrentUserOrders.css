@@ -1,6 +1,7 @@
 .orders-container{
     display: flex;
     flex-direction: column;
+    padding-top: 100px;
     /* gap: 20px */
 }
 
@@ -19,7 +20,7 @@
     flex-direction: column;
     border: 1px solid #ccc;
     padding: 20px;
-    margin: 20px;
+    margin: 40px;
     background: #f6f5f3;
 }
 
@@ -56,7 +57,7 @@
 }
 
 .order-placed{
-    margin: 20px;
+    margin-left: 40px;
 }
 
 .cancel-btn-orders{
