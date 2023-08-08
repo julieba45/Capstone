@@ -3,6 +3,7 @@
     flex-direction: column;
     padding-top: 100px;
     /* gap: 20px */
+    background-color: white;
 }
 
 /* .order-grid{
@@ -18,10 +19,12 @@
 .order-grid {
     display: flex;
     flex-direction: column;
-    border: 1px solid #ccc;
-    padding: 20px;
+    border: 0.5px solid #ccc;
+    /* padding: 20px; */
     margin: 40px;
-    background: #f6f5f3;
+    background-color:f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .order-top-half {
@@ -29,15 +32,22 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #f7f7f6ea;
     padding-bottom: 20px;
+    margin: 0;
+    padding: 20px;
+    background: #f7f7f6;
+    /* background-color: #d1e5e8; */
+    border-radius: 8px;
 }
 
 .order-bottom-half {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
     grid-gap: 10px; /* Space between the grid items */
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    margin: 0;
+    padding: 20px;
 }
 
 .order-plants-info {
@@ -53,7 +63,7 @@
     line-height: 1.23;
     letter-spacing: 1.32px;
     font-family:'Cormorant Garamond', serif;
-    padding-left: 20px;
+    padding-left: 40px;
 }
 
 .order-placed{
