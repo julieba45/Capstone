@@ -7,8 +7,9 @@
 }
 
 .favorites-container {
-    margin-left: 60px;
+    margin-left: 40px;
     padding-top: 100px;
+    margin-right: 40px;
 }
 
 .favorite, .favorite-placeholder {
@@ -34,6 +35,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     align-items: start;
+
 }
 .garden-column {
     border: 1px solid #ccc;
@@ -85,6 +87,7 @@
     font-size: 4rem;
     font-family: 'Cormorant Garamond', serif;
     text-transform: uppercase;
+    /* background-color: #d2c4c2; */
 }
 
 .favorite[draggable] {
@@ -114,3 +117,30 @@
 /* .favorite.is-dragging {
     background-color: rgb(234, 204, 171);
 } */
+
+.values-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.values-item {
+    flex: 1;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.transforming-title{
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 100px
+}
+
+.home-mid-section{
+    background-color: #ecede9ef;
+    padding-top: 20px;
+    padding-bottom: 20px ;
+}

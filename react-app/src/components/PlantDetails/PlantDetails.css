@@ -22,30 +22,34 @@
 }
 
 .general-green-btn{
-    background-color: #3c392c;
+    background-color: black;
     color: white;
     font-family: 'Times New Roman', Times, serif;
     font-size: 16px;
     line-height: 1.5;
     height: 50px;
-    width: 70%;
+    width: 50%;
     cursor: pointer;
-    box-shadow: inset 0 0 0 2px white;
+    /* box-shadow: inset 0 0 0 2px white; */
     transition: all 0.3s ease;
     position: relative;
+    border-radius: 4px;
     /* font-style: italic; */
 }
 
 .general-green-btn:hover{
-    font-style: italic;
+    /* font-style: italic; */
+    background-color: white;
+    color: black;
 }
 .general-green-btn:hover::after {
-    content: '→';
+
+    /* content: '→';
     color: white;
-    position: absolute;
+    position: absolute; */
     /* right: 10px; */
-    top: 50%;
-    transform: translateY(-50%);
+    /* top: 50%;
+    transform: translateY(-50%); */
 }
 
 .font-one{
@@ -145,19 +149,20 @@ body{
     border: none;
     width: 50%;
     /* margin-left: 130px; */
-    font-family: 'Fraunces', serif;
+    /* font-family: 'Fraunces', serif; */
     cursor: pointer;
     transition: background-color 0.3s;
     padding-top: 10px;
     padding-bottom: 10px;
     position: relative;
     border: 1px solid transparent;
+    font-family: 'Times New Roman', Times, serif;
 
 }
 
 .delete-review-btn:hover {
     background-color: black;
     color: white;
-    box-shadow: inset 0 0 0 2px white;
+    /* box-shadow: inset 0 0 0 2px white; */
     border: 1px solid black;
 }
