@@ -76,8 +76,16 @@
     padding: 15px 20px;
     border: 0;
     cursor: pointer;
-    background-color: #9a988f;
-    color: white;
+    background-color: #efefef;
+    color: black;
     font-family: 'Times New Roman', Times, serif;
-    width: 30%
+    width: 30%;
+    margin-left:10px;
+    border: 1px solid transparent;
+}
+
+.cancel-btn-orders:hover{
+    background-color: black;
+    color: white;
+    border: 1px solid black;
 }

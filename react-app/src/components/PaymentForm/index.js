@@ -111,6 +111,7 @@ const PaymentForm = () => {
         <div className="payment-page-container">
         <div className="payment-form-container">
             <form className="payment-form"onSubmit={handleSubmit}>
+                <p className="payment-form-title-review">Review items and shipping</p>
                 <p className="payment-form-title">Credit Card</p>
                 <input
                     className="payment-input"

@@ -23,7 +23,7 @@ def chat():
 
         messages = [{"role": item["role"], "content": item["content"]} for item in history]
 
-        messages.insert(0, {"role": "system", "content": "You are a helpful assistant in an online plant store.."})
+        messages.insert(0, {"role": "system", "content": "You are a helpful assistant at your online plant store.."})
 
         messages.append({"role": "user", "content": message})
 
