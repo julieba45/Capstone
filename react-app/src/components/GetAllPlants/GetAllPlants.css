@@ -56,8 +56,21 @@
 .favorite-button {
     background: none;
     border: none;
+    position: relative;
     cursor: pointer;
     color: #888;
+}
+.favorite-button:hover::after {
+    content: "Add to garden";
+    position: absolute;
+    top: 80%;
+    left: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
 }
 
 .tile-name-price{
@@ -106,4 +119,17 @@
 
 .notification p {
     margin: 0;
+}
+
+.favorite-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.favorite-image-main{
+    display: flex;
+    align-items: center;
 }

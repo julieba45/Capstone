@@ -13,6 +13,11 @@ function Navigation({ isLoaded }){
 		<nav className="navbar">
 			<ul>
 				<li>
+					<NavLink exact to="/">
+						<img className='logoimg' src={BloomLogo} alt='logo' />
+					</NavLink>
+				</li>
+				<li>
 					{isLoaded && (
 					<div>
 						<NavLink className="home-store" to="/plants">Store</NavLink>
@@ -20,11 +25,12 @@ function Navigation({ isLoaded }){
 
 					)}
 				 </li>
-				 <li>
-					<NavLink exact to="/">
-						<img className='logoimg' src={BloomLogo} alt='logo' />
+				 {isLoaded && sessionUser &&(
+					<NavLink to="/favorites">
+						Gardens
 					</NavLink>
-				</li>
+				)}
+
 				<li className='care-cart-profile'>
 				{isLoaded && sessionUser &&(
 					<NavLink to='/care'>Care</NavLink >
@@ -36,6 +42,7 @@ function Navigation({ isLoaded }){
 					</li>
 				)}
 				</li>
+
 			</ul>
 		</nav>
 	);
