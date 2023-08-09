@@ -16,7 +16,7 @@ const GardenSelectionModal = ({onGardenSelect, gardenNames, plantImage, plantNam
     return (
         <div className="garden-modal-container">
             <div className="garden-modal-header">
-                <h2>Add this item to a list</h2>
+                <h2>Add this item to a garden</h2>
             </div>
             <div className="garden-modal-content">
                 <div className="garden-modal-image">
