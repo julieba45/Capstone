@@ -61,10 +61,10 @@ const ChatBot = () => {
 
                 const messageContent = `Current store information on plant inventory and prices: ${JSON.stringify(plantsList)}. | Customer question: ${input}. | Respond like a real human online assistant with fewer than 21 words.`;
 
-                console.log('----------------HEY HERE IS THE CHAT REQUEST', JSON.stringify({
-                    history: updatedHistory,
-                    message: messageContent
-                }))
+                // console.log('----------------HEY HERE IS THE CHAT REQUEST', JSON.stringify({
+                //     history: updatedHistory,
+                //     message: messageContent
+                // }))
                 const response = await fetch('/api/chat/', {
                     method: 'POST',
                     headers: {

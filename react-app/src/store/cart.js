@@ -41,7 +41,7 @@ export const getCart = () => async(dispatch) => {
     // console.log('THE RESPONSE BACK', response)
     if(response.ok){
         const cart = await response.json();
-        console.log('THE RESPONSE BACK', cart)
+        // console.log('THE RESPONSE BACK', cart)
         dispatch(setCart(cart))
     } else if (response.status < 500){
         const data = response.json();
@@ -54,22 +54,20 @@ export const getCart = () => async(dispatch) => {
 }
 
 export const getOrder = (orderId) => async(dispatch) => {
-    console.log('---------get order')
+    // console.log('---------get order')
     const response = await fetch(`/api/cart/${orderId}`)
     if(response.ok){
-        console.log('------------get order success')
+        // console.log('------------get order success')
         const order = await response.json()
         dispatch(setOrder(order))
     }else if(response.status < 500){
-        console.log('------------get order failed')
+        // console.log('------------get order failed')
         const data = response.json();
         if(data.errors){
             return data.errors;
         }else{
             return ('An error occurred. Please try again.')
         }
-    }else{
-        console.log('------------get order get 500')
     }
 }
 

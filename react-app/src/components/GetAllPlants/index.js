@@ -32,7 +32,7 @@ const GetAllPlants = () => {
     useEffect(() => {
         // console.log(plants, 'HERE ARE ALL THE PLANTS')
         dispatch(getPlants());
-        console.log('THE USER',user)
+        // console.log('THE USER',user)
         if(user){
             dispatch(fetchFavorites());
         }
