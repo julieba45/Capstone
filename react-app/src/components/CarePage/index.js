@@ -124,7 +124,7 @@ const CarePage = () => {
 
                 {weatherData && (
                     <div className="weather-container">
-                        <h2 className="user-name">Welcome, {user}!</h2>
+                        <h2 className="user-name">Welcome, {user}.</h2>
                         <p>Here, you'll find personalized care instructions for your plants based on your orders.</p>
                         <div className="user-location">
                             <i className="fa-solid fa-location-dot"></i>
@@ -175,7 +175,9 @@ const CarePage = () => {
             <div className="">
             {sidebarOpen && currentPlant && (
                     <div className="care-plant-details">
-                        <button onClick={closeSidebar}>Close</button>
+                        <button className="close-sidebar"onClick={closeSidebar}>
+                            <i className="fa-solid fa-xmark"></i>
+                        </button>
                         <p>Plant Name: {currentPlant.plant.name}</p>
                         {currentPlant.plant.images[0].isPrimary && (
                             <img className="care-plant-sidebar-image" src={currentPlant.plant.images[0].pictureUrl} alt={currentPlant.plant.name}></img>
