@@ -11,6 +11,8 @@ const CarePage = () => {
     const orders = useSelector(state => state.orders.orders);
     const dispatch = useDispatch();
     const [currentPlant, setCurrentPlant] = useState(null);
+    const user = useSelector(state => state.session.user.firstName)
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
         dispatch(fetchOrders())
@@ -87,57 +89,82 @@ const CarePage = () => {
         setCurrentPlant(plants[0]);
     }
 
-    const handleSlideChange = (index) => {
-        setCurrentPlant(plants[index]);
-    }
+    // const handleSlideChange = (index) => {
+    //     setCurrentPlant(plants[index]);
+    // }
+    const handleTileClick = (orderPlant) => {
+        setCurrentPlant(orderPlant);
+        setSidebarOpen(true);
+    };
+
+    const closeSidebar = () => {
+        setSidebarOpen(false);
+    };
+
+
 
     return (
         <div className="care-page-main">
-            <Carousel className="care-carousel" onChange={handleSlideChange} showStatus={false}>
-             {plants.map((orderPlant, index) => (
-                    orderPlant.plant.images && orderPlant.plant.images.length > 0 && (
-                        <div key={index}>
-                            {orderPlant.plant.images[0].isPrimary && (
-                                <img className="care-plant-image" src={orderPlant.plant.images[0].pictureUrl} alt={orderPlant.plant.name}></img>
-                            )}
-                        </div>
-                    )
-                ))}
-            </Carousel>
-            <div className="care-weather-column">
-            <h1 className="main-care-header">Care</h1>
-            <p>Use this information to provide the best care to your current plants!</p>
-            {weatherData && (
-                < div className="weather-container">
-                    <div className="weather-row">
+            {/* <div className="care-dashboard"> */}
+            {/* First Column */}
+            <div className="care-user-info">
+                <h1 className="user-name">Welcome, {user}!</h1>
+
+                {weatherData && (
+                    <div className="weather-container">
                         <div className="weather-info">
                             <i className="fa-solid fa-temperature-low"></i>
                             <p>Temperature: {Math.round(weatherData.days[0].temp)}°F</p>
                         </div>
-
-                    <div className="weather-info">
-                        <i className="fa-solid fa-cloud"></i>
-                        <p>Weather: {weatherData.days[0].conditions}</p>
-                    </div>
-                    </div>
-                    <div className="weather-row">
+                        <div className="weather-info">
+                            <i className="fa-solid fa-cloud"></i>
+                            <p>Weather: {weatherData.days[0].conditions}</p>
+                        </div>
                         <div className="weather-info">
                             <i className="fa-solid fa-droplet"></i>
                             <p>Precipitation: {Math.round(weatherData.days[0].precip*100)}%</p>
                         </div>
                     </div>
-                </div>
-            )}
-            {currentPlant && (
-                    <>
+                )}
+
+            </div>
+            {/* <Carousel className="care-carousel" onChange={handleSlideChange} showStatus={false}> */}
+            {/* Second Column */}
+            <div className="care-plant-tiles">
+             {plants.map((orderPlant, index) => (
+                    orderPlant.plant.images && orderPlant.plant.images.length > 0 && (
+                        <div key={index} className="plant-tile" onClick={() => handleTileClick(orderPlant)}>
+                            {orderPlant.plant.images[0].isPrimary && (
+                                <img className="care-plant-image" src={orderPlant.plant.images[0].pictureUrl} alt={orderPlant.plant.name}></img>
+                            )}
+                             <div className="plant-middle-info">
+                                <h2>{orderPlant.plant.name}</h2>
+                                <p>size: {orderPlant.plant.size}</p>
+                                <p>species: {orderPlant.plant.species}</p>
+                            </div>
+                            {/* <p>{orderPlant.plant.description}</p> */}
+                            {/* <p>{orderPlant.plant.careInstructions}</p> */}
+                        </div>
+                    )
+                ))}
+            </div>
+
+            {/* <p>Use this information to provide the best care to your current plants!</p> */}
+            {/* Third Column (Sidebar) */}
+            <div className="care-plant-details">
+            {sidebarOpen && currentPlant && (
+                    <div className="care-plant-details">
+                        <button onClick={closeSidebar}>Close</button>
                         <p>Plant Name: {currentPlant.plant.name}</p>
+                        {currentPlant.plant.images[0].isPrimary && (
+                            <img className="care-plant-image" src={currentPlant.plant.images[0].pictureUrl} alt={currentPlant.plant.name}></img>
+                        )}
                         <p>Plant watering frequency: {currentPlant.plant.wateringFrequency} per day</p>
                         {/* const wateringAmount = currentPlant.plant.wateringFrequency * (1 - (weatherData.days[0].precip)); */}
                         <p>Adjusted watering amount based on precipitation: {(currentPlant.plant.wateringFrequency * (1 - (weatherData.days[0].precip))).toFixed(2)} per day</p>
                         {/* <p>Care Instructions: {currentPlant.plant.careInstructions}</p> */}
-                    </>
+                    </div>
                 )}
-
             </div>
         </div>
     )
