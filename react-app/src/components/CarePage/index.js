@@ -203,7 +203,7 @@ const CarePage = () => {
                                     // <p>Adjusted watering amount based on precipitation: {adjustedWateringAmount.toFixed(2)} cups per day</p>;
                                     }
                             })()}
-                            <button onClick={showCareInstructions}> + Read More</button>
+                            <button className="garden-deets-btn" onClick={showCareInstructions}> + Read More</button>
                         {/* <p>Care Instructions: {currentPlant.plant.careInstructions}</p> */}
                     </div>
                 )}

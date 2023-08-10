@@ -25,7 +25,7 @@
     color: black;
     border-radius: 5px;
     width: 100%;
-    padding-top: 20px;
+    /* padding-top: 20px; */
 
 }
 
@@ -34,13 +34,28 @@
     margin-bottom: 5px;
     color: white;
     border-radius: 5px;
-    border: 1px;
-    background-color: black;
+
+    /* background-color: black; */
     border-radius: 50%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     padding: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
+}
+
+.fa-droplet{
+    background-color: #aed4f7;
+    border: 1px solid  #aed4f7;
+}
+
+.fa-temperature-low{
+    background-color:  rgb(218, 190, 135);
+    border: 1px solid  rgb(218, 190, 135);
+}
+
+.fa-cloud{
+    background-color: #9ac186;
+    border: 1px solid  #9ac186;
 }
 
 
@@ -134,6 +149,7 @@
     align-items: center;
     justify-content: center;
     padding-left: 20px;
+    padding-right: 20px;
     /* padding-bottom: 200px; */
     /* background-color: rgba(240, 240, 240, 0.3); */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
