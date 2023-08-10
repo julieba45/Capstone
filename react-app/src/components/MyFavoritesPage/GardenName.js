@@ -36,6 +36,7 @@ const GardenName = ({ gardenName, onNameUpdate }) => {
           value={newName}
           onChange={handleNameChange}
           onKeyPress={handleKeyPress}
+          maxLength="25"
         />
           <button className="update-garden-name"onClick={handleSubmit}>Update</button>
         </div>

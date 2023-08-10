@@ -17,7 +17,8 @@
 
   .circle {
     fill: none;
-    stroke: #3c392c;
+    /* stroke: #3c392c; */
+    stroke: rgb(190, 217, 226);
     stroke-width: 3;
     stroke-linecap: round;
     transform: rotate(-90deg);
