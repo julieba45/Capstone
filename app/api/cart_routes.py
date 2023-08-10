@@ -41,28 +41,28 @@ def add_plant_to_cart():
     """
     Add a plant to the user's cart
     """
-    print("add_plant_to_cart called")
+    # print("add_plant_to_cart called")
 
     data = request.get_json()
-    print(f"---------------Data received: {data}")
+    # print(f"---------------Data received: {data}")
     plantId = data.get('id')
     quantity = int(data.get('quantity', 1)) #default to 1 for user friendliness
 
     plant = Plant.query.get(plantId)
     if plant is None:
-        print("Plant not found")
+        # print("Plant not found")
         return jsonify({'error': 'Plant not found'}), 404
 
     #Grabbing the orderId from session (if the user is not logged in)
     #Creating an order
     orderId = session.get('orderId')
-    print(f"orderId from session: {orderId}")
+    # print(f"orderId from session: {orderId}")
     if orderId is None:
         order = Order(isCheckedOut=False)
         db.session.add(order)
         db.session.commit()
         session['orderId'] = order.id
-        print(f"New orderId: {order.id}")
+        # print(f"New orderId: {order.id}")
     else:
         order = Order.query.get(orderId)
         if order is None:
@@ -70,7 +70,7 @@ def add_plant_to_cart():
             db.session.add(order)
             db.session.commit()
             session['orderId'] = order.id
-            print(f"New orderId: {order.id}")
+            # print(f"New orderId: {order.id}")
 
     #checking if the plant is already in the cart
     #Adding to the OrderPlants table, adding the plant if it's not already in the OrderPlants
@@ -95,7 +95,7 @@ def update_plant_in_cart(plantId):
     data = request.get_json()
     quantity = data.get('quantity',1)
     orderId = session.get('orderId')
-    print(f"---------------Data received: {data}")
+    # print(f"---------------Data received: {data}")
 
     if orderId is None:
         return jsonify({'error': 'No orderId, no order placed yet'}), 404

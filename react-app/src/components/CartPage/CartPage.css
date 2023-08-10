@@ -62,42 +62,45 @@
     font-family: 'Times New Roman', Times, serif;
     font-size: 16px;
     height: 50px;
-    width: 40%;
+    width: 30%;
     cursor: pointer;
-    box-shadow: inset 0 0 0 2px white;
+    /* box-shadow: inset 0 0 0 2px white; */
     transition: all 0.3s ease;
     position: relative;
+    margin: 20px;
     /* font-style: italic; */
 }
 
 .custom-green-btn:hover{
-    font-style: italic;
+    background-color: white;
+    color: black;
 }
-.custom-green-btn:hover::after {
+/* .custom-green-btn:hover::after {
     content: '→';
     color: white;
-    position: absolute;
+    position: absolute; */
     /* right: 10px; */
-    top: 50%;
+    /* top: 50%;
     transform: translateY(-50%);
-}
+} */
 
 .cart-removal-btns{
     border: none;
     width: 50%;
     margin-left: 130px;
-    font-family: 'Fraunces', serif;
+    /* font-family: 'Fraunces', serif; */
     cursor: pointer;
     transition: background-color 0.3s;
     padding-top: 10px;
     padding-bottom: 10px;
     position: relative;
     border: 1px solid transparent;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .cart-removal-btns:hover {
     background-color: black;
     color: white;
-    box-shadow: inset 0 0 0 2px white;
+    /* box-shadow: inset 0 0 0 2px white; */
     border: 1px solid black;
 }

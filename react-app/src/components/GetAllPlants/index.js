@@ -32,7 +32,7 @@ const GetAllPlants = () => {
     useEffect(() => {
         // console.log(plants, 'HERE ARE ALL THE PLANTS')
         dispatch(getPlants());
-        console.log('THE USER',user)
+        // console.log('THE USER',user)
         if(user){
             dispatch(fetchFavorites());
         }
@@ -104,7 +104,7 @@ const GetAllPlants = () => {
                         <div className='tile-name-price'>
                             <p className="plant-size">{plant.size}</p>
                             {user && <button className="favorite-button" onClick={(e) => handleAddToFavorite(plant.id, e)}>
-                                <i className="fa-regular fa-heart"></i>
+                                <i className="fa-solid fa-seedling"></i>
                                 </button>}
                         </div>
 

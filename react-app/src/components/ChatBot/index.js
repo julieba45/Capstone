@@ -52,6 +52,19 @@ const ChatBot = () => {
                 // console.log('---------------REQUEST BODY', JSON.stringify({
                 //     message: `Customer question: ${input} Current plants in inventory: ${plantsList}. Please respond as the store employee with fewer than 31 words.`
                 // }))
+
+                // const isAskingForPrice = input.toLowerCase().includes('price') || input.toLowerCase().includes('cost') || input.toLowerCase().includes('how much');
+
+                // const messageContent = isAskingForPrice
+                //     ? `Customer question: ${input} Current plants in inventory and their prices: ${JSON.stringify(plantsList)}. Please respond with fewer than 21 words and be welcoming.`
+                //     : `Customer question: ${input} This is all our plant inventory: ${JSON.stringify(plants)}. Respond like a real human online assistant with fewer than 21 words.`;
+
+                const messageContent = `Current store information on plant inventory and prices: ${JSON.stringify(plantsList)}. | Customer question: ${input}. | Respond like a real human online assistant with fewer than 21 words.`;
+
+                // console.log('----------------HEY HERE IS THE CHAT REQUEST', JSON.stringify({
+                //     history: updatedHistory,
+                //     message: messageContent
+                // }))
                 const response = await fetch('/api/chat/', {
                     method: 'POST',
                     headers: {
@@ -59,7 +72,7 @@ const ChatBot = () => {
                     },
                     body: JSON.stringify({
                         history: updatedHistory,
-                        message: `Customer question: ${input} Current plants in inventory and their prices: ${JSON.stringify(plantsList)}. Please respond with fewer than 21 words and be welcoming.`
+                        message: messageContent
                     }),
                 });
 
