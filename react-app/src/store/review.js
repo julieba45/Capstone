@@ -49,7 +49,7 @@ export const deleteReviewById = (reviewId) => async(dispatch) => {
         method: 'DELETE'
     })
     if(response.ok){
-        console.log(response, 'IN THE DELETE THUNK')
+        // console.log(response, 'IN THE DELETE THUNK')
         dispatch(deleteReview(reviewId))
     }
 }

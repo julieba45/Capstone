@@ -33,6 +33,12 @@
     margin-left: 20px;
 }
 
+.payment-form-title-review{
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 .payment-input{
     border: 1px solid lightgrey;
 }

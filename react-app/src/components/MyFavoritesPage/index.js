@@ -59,6 +59,7 @@ const MyFavoritesPage = () => {
 
     const sortedGardens = Object.entries(gardens).sort((a, b) => a[0].localeCompare(b[0]));
 
+
     const handleNameUpdate = (oldName, newName) => {
         if (newName.trim().length === 0) {
             alert('Garden name cannot be empty!');
@@ -92,9 +93,12 @@ const MyFavoritesPage = () => {
                             onDragEnd={handleDragEnd}
 
                         >
-                            <p>
-                                Plant Name:{favorite.plant.name}
-                            </p>
+                             <div className="favorite-image-main">
+                                <img src={favorite.plantPrimaryImage.primary_image} alt={favorite.plant.name} className="favorite-image" />
+                                <p>
+                                    {favorite.plant.name}
+                                </p>
+                            </div>
                         </div>
                     ))}
                     {draggedOverGarden === gardenName && <div className="favorite-placeholder"></div>}
