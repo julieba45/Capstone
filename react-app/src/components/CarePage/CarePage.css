@@ -1,18 +1,19 @@
-.care-page-main{
+/* .care-page-main{
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding-left: 50px;
     padding-right: 70px;
     padding-top: 150px;
-}
+} */
+
 
 .care-plant-image{
     object-fit: cover;
-    max-width: 100%;
+    max-width: 20%;
     object-fit: cover;
 }
 
-.weather-row {
+/* .weather-row {
     display: flex;
     justify-content: space-between;
     width: 80%;
@@ -21,28 +22,34 @@
 .weather-container {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-  }
+  } */
 
 .weather-info{
-    background-color:#a5b0a9;
-    /* padding: 10px; */
     margin: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    color: white;
+    flex-direction: row;
+    color: black;
     border-radius: 5px;
     width: 50%;
-    padding-top: 30px;
+    padding-top: 20px;
+
 }
 
 .weather-info i {
     margin-right: 10px;
     margin-bottom: 5px;
+    color: white;
+    border-radius: 5px;
+    border: 1px;
+    background-color: black;
+    border-radius: 50%;
+    border: 1px solid black;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
-
+/*
 .care-weather-column{
     padding-right: 30px;
 }
@@ -68,7 +75,6 @@
 
 .care-page-noorders a{
     color: inherit;
-    /* text-decoration: underline; */
 }
 
 .main-care-noorders-header {
@@ -84,14 +90,11 @@
 .add-an-order-link{
     border: none;
     width: 20%;
-    /* margin-left: 130px; */
-    /* font-family: 'Fraunces', serif; */
     cursor: pointer;
     transition: background-color 0.3s;
     padding-top: 10px;
     padding-bottom: 10px;
     position: relative;
-    /* border: 1px solid transparent; */
     background-color: black;
     color: white;
     box-shadow: inset 0 0 0 2px white;
@@ -111,4 +114,38 @@
 .add-an-order-link a {
     text-decoration: none;
     font-family: 'Times New Roman', Times, serif;
+}  */
+
+.care-page-main {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+    background-color: white;
+    padding-top:150px;
+}
+
+.plant-tile {
+    /* background-color: #f0f0f0; */
+    /* background-color: #efefef; */
+    background-color: rgba(240, 240, 240, 0.3);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    /* justify-content: space-between; */
+}
+
+.plant-tile:hover {
+    transform: scale(1.05);
+}
+
+.plant-tile img.care-plant-image {
+    margin-right: 10px;
+}
+
+.plant-middle-info{
+    /* display: flex;
+    flex-direction: column; */
 }
