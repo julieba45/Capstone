@@ -26,14 +26,14 @@ function Navigation({ isLoaded }){
 					)}
 				 </li>
 				 {isLoaded && sessionUser &&(
-					<NavLink to="/favorites">
+					<NavLink className="home-gardens-link"to="/favorites">
 						Gardens
 					</NavLink>
 				)}
 
 				<li className='care-cart-profile'>
 				{isLoaded && sessionUser &&(
-					<NavLink to='/care'>Care</NavLink >
+					<NavLink className="home-gardens-link" to='/care'>Care</NavLink >
 				)}
 				{isLoaded && <CartCount />}
 				{isLoaded && (
