@@ -136,6 +136,7 @@ const PlantDetails = () => {
                 </div>
                 <div className='product-specs'>
                 <h4 className='specs-tab'>CARE AND INSTRUCTIONS</h4>
+                <hr className="line-after-image"></hr>
                 <div className='specs-content'>
                     <div className='instructions'>
                     {formattedInstructions.map((instruction, index) => (
@@ -148,6 +149,7 @@ const PlantDetails = () => {
                     </div>
                     <img className='plant-structure-img' src={plantStructure} alt='logo' />
                 </div>
+                {/* <hr className="line-after-image"></hr> */}
             </div>
         </div>
     </div>

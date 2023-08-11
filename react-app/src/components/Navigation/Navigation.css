@@ -45,6 +45,20 @@
   text-decoration: none;
 }
 
-.home-store{
+.home-store {
   text-decoration: none;
+  color:black;
+}
+
+.home-store:hover{
+  color:gray;
+}
+
+.home-gardens-link{
+  text-decoration: none;
+  color:black;
+}
+
+.home-gardens-link:hover{
+  color:gray;
 }

@@ -4,7 +4,8 @@
     gap: 30px;
     /* background-color: rgba(255, 255, 255, 0.923); */
     /* background-color:#e5e5e5; */
-    background-color: #faf8f2;
+    /* background-color: #faf8f2; */
+    background-color: white;
     padding-top:150px;
 }
 
@@ -123,8 +124,8 @@
     /* background-color: #f0f0f0; */
     /* background-color: #efefef; */
     /* background-color: rgba(240, 240, 240, 0.3); */
-    background-color:#f4f4f4;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f7;
+    /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); */
     transition: transform 0.3s ease;
     cursor: pointer;
     display: flex;
@@ -136,7 +137,7 @@
 
 .plant-tile:hover {
     transform: scale(1.05);
-    background-color: white;
+    /* background-color: white; */
 }
 
 .plant-tile img.care-plant-image {
