@@ -124,8 +124,11 @@ const CarePage = () => {
 
                 {weatherData && (
                     <div className="weather-container">
-                        <h2 className="user-name">Welcome, {user}.</h2>
-                        <p>Here, you'll find personalized care instructions for your plants based on your orders.</p>
+                        <h3 className="user-name">Welcome, {user}.</h3>
+                        <div className="information-tooltip">
+                            <i className="fa-solid fa-circle-info"></i>
+                        </div>
+                        {/* <hr className="line-after-image"></hr> */}
                         <div className="user-location">
                             <i className="fa-solid fa-location-dot"></i>
                             <p>{location}</p>
