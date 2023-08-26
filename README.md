@@ -1,4 +1,6 @@
-# Flask React Project
+# Store
+
+# Configuration
 
 This is the starter for the Flask React project.
 
