@@ -1,4 +1,5 @@
-# Store
+# Landing Store
+![LandingStore](Readme/landing-store.png?raw=true)
 
 # Configuration
 
@@ -148,3 +149,22 @@ your site just below the name of the Web Service at the top of the page.
 
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
+
+# Features
+Cart/Orders Management Methods: GET, READ, UPDATE, DELETE (FULL CRUD)
+Logged in and Logged out users can:
+- Add plants to the cart.
+- View plants in the cart.
+- Modify the quantity of plants in the cart.
+- Remove plants from the cart.
+![addingcart](Readme/adding_cart.png?raw=true)
+
+Favorites/Wishlist (FULL CRUD): Methods: GET, CREATE, DELETE, UPDATE
+Logged and Logged out Users can:
+Create a favorites/wishlist to add their favorite plants.
+View the list of favorite/wishlist plants.
+Delete items(plants) from the favorites/wishlist.
+These favorite plants can also be put in a moodboard/garden.
+A user can have multiple (gardens).
+Update: Users can edit a garden: they can move favorite plants from one garden to another garden.
+![addinggarden](Readme/adding_garden.png?raw=true)
