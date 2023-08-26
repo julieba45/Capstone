@@ -18,23 +18,28 @@ function ProfileButton({ user }) {
   const ulRef = useRef();
 
   const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+    // if (showMenu) return;
+    // console.log("openMenu triggered");
+    setShowMenu(prevState => !prevState);
   };
 
   useEffect(() => {
-    if (!showMenu) return;
+    // console.log("showMenu value:", showMenu);
+}, [showMenu]);
 
-    const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    document.addEventListener("click", closeMenu);
+  //   const closeMenu = (e) => {
+  //     if (!ulRef.current.contains(e.target)) {
+  //       setShowMenu(false);
+  //     }
+  //   };
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   document.addEventListener("click", closeMenu);
+
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -52,7 +57,13 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button className="profile-btn-bars"onClick={openMenu}>
+    {/* <div className={showMenu ? "blur-overlay active" : "blur-overlay"}></div> */}
+    <div className="profile-dropdown-container"
+        onMouseEnter={openMenu}
+        onMouseLeave={() => setShowMenu(false)}
+    >
+      {/* <button className="profile-btn-bars"onClick={openMenu}> */}
+       <button className="profile-btn-bars">
         <i className="fa-solid fa-bars"></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
@@ -88,7 +99,8 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
+  </>
   );
 }
 
