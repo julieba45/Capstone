@@ -161,10 +161,11 @@ Logged in and Logged out users can:
 
 Favorites/Wishlist (FULL CRUD): Methods: GET, CREATE, DELETE, UPDATE
 Logged and Logged out Users can:
-Create a favorites/wishlist to add their favorite plants.
-View the list of favorite/wishlist plants.
-Delete items(plants) from the favorites/wishlist.
-These favorite plants can also be put in a moodboard/garden.
-A user can have multiple (gardens).
-Update: Users can edit a garden: they can move favorite plants from one garden to another garden.
+- Create a favorites/wishlist to add their favorite plants.
+- View the list of favorite/wishlist plants.
+- Delete items(plants) from the favorites/wishlist.
+- These favorite plants can also be put in a moodboard/garden.
+- A user can have multiple (gardens).
+- Update: Users can edit a garden: they can move favorite plants from one garden to another garden.
+- Users can also edit the name of their Garden. 
 ![addinggarden](Readme/adding_garden.png?raw=true)
