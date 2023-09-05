@@ -34,11 +34,14 @@
     /* background-color: white; */
     background-color: rgba(248, 249, 250, 0.7);
     padding: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .profile-dropdown li:hover{
     background-color: lightgray;
     color: black;
+
 }
 
 .profile-dropdown .text-link {
@@ -54,6 +57,7 @@
     justify-content: flex-start;
     background-color: rgba(248, 249, 250, 0.7);
     font-family: 'Times New Roman', Times, serif;
+
 }
 
 .profile-btn-bars{
