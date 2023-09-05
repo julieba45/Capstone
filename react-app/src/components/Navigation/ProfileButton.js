@@ -70,7 +70,7 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <li>Welcome {user.username}.</li>
-            <li>{user.username}</li>
+            {/* <li>{user.username}</li> */}
             <li>{user.email}</li>
             <li>
               <NavLink className='text-link' to="/orders/current">My Orders</NavLink>
