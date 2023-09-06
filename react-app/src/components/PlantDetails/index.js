@@ -78,10 +78,10 @@ const PlantDetails = () => {
                 {plant.images && plant.images.length > 0 && (
                     <Carousel>
                     {plant.images[0].isPrimary && (
-                        <img className="plant-image" src={plant.images[0].pictureUrl} alt={plant.name}></img>
+                        <img className="plantdetails-image" src={plant.images[0].pictureUrl} alt={plant.name}></img>
                     )}
                     {plant.images.filter(image => !image.isPrimary).map((image, index) => (
-                        <img key={index} className="plant-image" src={image.pictureUrl} alt={plant.name}></img>
+                        <img key={index} className="plantdetails-image" src={image.pictureUrl} alt={plant.name}></img>
                     ))}
                     </Carousel>
                 )}

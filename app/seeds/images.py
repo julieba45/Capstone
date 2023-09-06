@@ -70,7 +70,21 @@ def seed_plantimages():
         pictureURL ='https://bloomist.com/cdn/shop/products/bloomist-jurassic_bookends_1000x.jpg?v=1681761843',
         isPrimary=False
     )
-
+    plant_image6 = PlantImage(
+        plantId=6,
+        pictureURL="https://www.brumleyandbloom.com/cdn/shop/files/image_1f8b6fa3-cc68-46b3-8437-14e233863713_1080x.heic?v=1682707942",
+        isPrimary=True
+    )
+    plant_image7 = PlantImage(
+        plantId=7,
+        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/files/The-Sill_Small-Lady-Finger-Cactus_Small_Hyde_Cream_Variant.jpg?v=1686604640",
+        isPrimary=True
+    )
+    plant_image8 = PlantImage(
+        plantId=8,
+        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_parlor-palm_variant_small_hyde_mint.jpg?v=1687365879",
+        isPrimary=True
+    )
 
 
     db.session.add(plant_image1)
@@ -86,6 +100,9 @@ def seed_plantimages():
     db.session.add(plant_image5)
     db.session.add(plant_image5_1)
     db.session.add(plant_image5_2)
+    db.session.add(plant_image6)
+    db.session.add(plant_image7)
+    db.session.add(plant_image8)
     db.session.commit()
 
 

@@ -91,9 +91,11 @@ const GetAllPlants = () => {
                 plants.map(plant => (
                     <div key={plant.id} className='plant-card'  onMouseEnter={() => handleMouseEnter(plant.id)} onMouseLeave={() => handleMouseLeave(plant.id)} onClick={() => handleClick(plant.id)}>
                         {/* <p>{plant.description}</p> */}
-                        {plant.images && plant.images.length > 0 && plant.images[0].isPrimary &&
-                        <img className="plant-image" src={hoverStates[plant.id] ? (plant.images[1] ? plant.images[1].pictureUrl : plant.images[0].pictureUrl) : plant.images[0].pictureUrl} alt={plant.name}></img>
-                        }
+                        <div className="plant-image-container">
+                            {plant.images && plant.images.length > 0 && plant.images[0].isPrimary &&
+                            <img className="plant-image" src={hoverStates[plant.id] ? (plant.images[1] ? plant.images[1].pictureUrl : plant.images[0].pictureUrl) : plant.images[0].pictureUrl} alt={plant.name}></img>
+                            }
+                        </div>
                         {/* <button onClick={() => handleClick(plant.id)}>See Details</button> */}
                         <hr className="line-after-image" />
                         <div className='tile-name-price'>
