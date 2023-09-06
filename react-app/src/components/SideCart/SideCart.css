@@ -1,0 +1,87 @@
+
+.side-cart {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background-color: white;
+    box-shadow: 1px 0 5px rgba(0,0,0,0.05);
+    overflow-y: auto;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.side-cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.side-cart-image {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.side-cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* padding: 0 10px; */
+}
+
+.sidebar-close{
+    border:none;
+    background-color: inherit;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.sidebar-close:hover{
+    color: rgb(84, 29, 29);
+}
+
+.sidebar-remove-btn{
+    border: none;
+    width: 50%;
+    /* margin-left: 130px; */
+    /* font-family: 'Fraunces', serif; */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* padding-top: 10px; */
+    /* padding-bottom: 10px; */
+    position: relative;
+    border: 1px solid transparent;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.sidebar-remove-btn:hover{
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+
+.sidecart-general-btn{
+    background-color: black;
+    font-family: 'Times New Roman', Times, serif;
+    width: 100%;
+    height: 50px;
+    font-size:16px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+}
+
+.sidecart-general-btn:hover{
+    background-color: rgb(66, 65, 65);
+}
