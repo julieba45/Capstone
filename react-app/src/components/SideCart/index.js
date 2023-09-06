@@ -26,7 +26,7 @@ const SideCart = ({onClose})=>{
     return (
         <div className="side-cart" onClick={(e) => e.stopPropagation()}>
             <div className="side-cart-header">
-                <NavLink className="order-link" aactiveClassName="is-active" to="/cart" onClick={(e) => e.stopPropagation()}>View FullCart</NavLink>
+                <NavLink className="order-link" activeClassName="is-active" to="/cart" onClick={(e) => e.stopPropagation()}>View FullCart</NavLink>
                 <button className="sidebar-close"onClick={onClose}>X</button>
             </div>
             <h2>Your Cart</h2>
