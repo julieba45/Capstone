@@ -11,6 +11,7 @@ import PlantDetails from "./components/PlantDetails";
 import PaymentForm from "./components/PaymentForm";
 import ConfirmationPage from "./components/ConfirmationPage";
 import CurrentUserOrders from "./components/CurrentUserOrders";
+import CancelledOrders from "./components/CancelledOrders";
 import { getCart } from "./store/cart";
 import MyFavoritesPage from "./components/MyFavoritesPage";
 import GardenDetailsPage from "./components/GardenDetailsPage";
@@ -62,6 +63,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute exact path='/orders/current'>
             <CurrentUserOrders/>
+          </ProtectedRoute>
+          <ProtectedRoute exact path='/orders/cancelled'>
+            <CancelledOrders/>
           </ProtectedRoute>
           <ProtectedRoute exact path='/favorites'>
             <MyFavoritesPage/>

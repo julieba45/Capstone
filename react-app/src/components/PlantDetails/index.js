@@ -23,6 +23,8 @@ const PlantDetails = () => {
     const {setModalContent} = useModal();
     const { closeModal } = useModal();
     const [showReviews, setShowReviews] = useState(false);
+    const [showInstructions, setShowInstructions] = useState(false);
+
 
     useEffect(() => {
         dispatch(getPlant(plantId));
@@ -44,6 +46,11 @@ const PlantDetails = () => {
     const toggleReviews = () => {
         setShowReviews(!showReviews);
     };
+
+    const toggleInstructions = () => {
+        setShowInstructions(!showInstructions);
+    };
+
 
     //formating the descriptions:
     let formattedInstructions = [];
@@ -71,10 +78,10 @@ const PlantDetails = () => {
                 {plant.images && plant.images.length > 0 && (
                     <Carousel>
                     {plant.images[0].isPrimary && (
-                        <img className="plant-image" src={plant.images[0].pictureUrl} alt={plant.name}></img>
+                        <img className="plantdetails-image" src={plant.images[0].pictureUrl} alt={plant.name}></img>
                     )}
                     {plant.images.filter(image => !image.isPrimary).map((image, index) => (
-                        <img key={index} className="plant-image" src={image.pictureUrl} alt={plant.name}></img>
+                        <img key={index} className="plantdetails-image" src={image.pictureUrl} alt={plant.name}></img>
                     ))}
                     </Carousel>
                 )}
@@ -131,26 +138,27 @@ const PlantDetails = () => {
                     ))}
                     {currentUser && <button className="general-green-btn"onClick={openReviewModal}>Create a Review</button>}
                 </div>
-                </div>
-
-                </div>
-                <div className='product-specs'>
-                <h4 className='specs-tab'>CARE AND INSTRUCTIONS</h4>
-                <hr className="line-after-image"></hr>
-                <div className='specs-content'>
-                    <div className='instructions'>
-                    {formattedInstructions.map((instruction, index) => (
-                        <div key={index}>
-                            <h3 className='font-two'>{instruction.title}</h3>
-                            <p>{instruction.description}</p>
-                            {/* <br /> */}
+                    <div>
+                        <h4 onClick={toggleInstructions} className="reviews-header">
+                            CARE AND INSTRUCTIONS <span className="toggle-symbol">{showInstructions ? '-' : '+'}</span>
+                        </h4>
+                        <hr className="line-after-image"></hr>
+                        <div className={showInstructions ? 'reviews-content' : 'hide-reviews'}>
+                            <div className='instructions'>
+                            {formattedInstructions.map((instruction, index) => (
+                                <div key={index}>
+                                    <h3 className='font-two'>{instruction.title}</h3>
+                                    <p>{instruction.description}</p>
+                                    {/* <br /> */}
+                                </div>
+                            ))}
+                            </div>
+                            {/* <img className='plant-structure-img' src={plantStructure} alt='logo' /> */}
                         </div>
-                    ))}
+                        {/* <hr className="line-after-image"></hr> */}
                     </div>
-                    <img className='plant-structure-img' src={plantStructure} alt='logo' />
                 </div>
-                {/* <hr className="line-after-image"></hr> */}
-            </div>
+                </div>
         </div>
     </div>
     )

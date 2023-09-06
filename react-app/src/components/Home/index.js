@@ -3,11 +3,11 @@ import ChatBot from "../ChatBot";
 import "./Home.css";
 import Spline from '@splinetool/react-spline';
 // import homeplants from "../../public/homeplants-2.mp4"
-import homeplants from "../../public/home-plants.png"
-import homeplant from "../../public/rotate_plant.mp4"
-import blueplant from "../../public/blue-plant.jpg"
-import greentree from "../../public/green-tree.jpg"
-import girlplanting from "../../public/girl.jpg"
+// import homeplants from "../../public/home-plants.png"
+// import homeplant from "../../public/rotate_plant.mp4"
+// import blueplant from "../../public/blue-plant.jpg"
+// import greentree from "../../public/green-tree.jpg"
+// import girlplanting from "../../public/girl.jpg"
 import { NavLink } from 'react-router-dom';
 
 
@@ -117,7 +117,7 @@ const Home = () => {
 
                 <div className="rotate-video">
                     <video ref={videoRef} className="rotate-image" loop muted>
-                        <source src={homeplant} alt="Home Plant" type="video/mp4"/>
+                        <source src="https://bloomcap.s3.us-east-2.amazonaws.com/rotate_plant.mp4" alt="Home Plant" type="video/mp4"/>
                     </video>
                 </div>
                 <div className="home-line"></div>
@@ -131,7 +131,7 @@ const Home = () => {
 
 
             </div>
-            <img className={`video-container fade-in ${isVisible ? 'visible' : ''}`} src={homeplants} alt="Description of the image"/>
+            <img className={`video-container fade-in ${isVisible ? 'visible' : ''}`} src="https://bloomcap.s3.us-east-2.amazonaws.com/home-plants.png" alt="Description"/>
             <div className="home-mid-section">
             <h1 className="transforming-title">Transforming Spaces with the Beauty of Nature</h1>
             <div className="values-section">
@@ -168,7 +168,7 @@ const Home = () => {
                     <p>Dive into our collection and explore detailed care guides to get you flourishing in the world of home gardening - fast.</p>
                 </div>
                 <div className="green-image-content">
-                    <img src={girlplanting} alt="Description of the image"/>
+                    <img src="https://bloomcap.s3.us-east-2.amazonaws.com/girl.jpg" alt="Description"/>
                 </div>
                   {/* <div >
                     <video loop muted>
