@@ -85,6 +85,41 @@ def seed_plantimages():
         pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_parlor-palm_variant_small_hyde_mint.jpg?v=1687365879",
         isPrimary=True
     )
+    plant_image9 = PlantImage(
+        plantId=9,
+        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/files/The-Sill_Medium-Barrel-Cactus_Medium_Hyde_Stone_Variant.jpg?v=1686605124",
+        isPrimary=True
+    )
+    plant_image9_1 = PlantImage(
+        plantId=9,
+        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/files/The-Sill_Medium-Barrel-Cactus_Gallery.jpg?v=1686605124",
+        isPrimary=False
+    )
+    plant_image10 = PlantImage(
+        plantId=10,
+        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/files/the-sill_silver-satin_variant_small_hyde_cream.jpg?v=1682433187",
+        isPrimary=True
+    )
+    plant_image10_1 = PlantImage(
+        plantId=10,
+        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_philodendron-silver_gallery_small_all_all_05.jpg?v=1682433187",
+        isPrimary=False
+    )
+    plant_image11 = PlantImage(
+        plantId=11,
+        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/products/The-Sill_Ponytail-Palm_Large_Case-Study_Red_Variant.jpg?v=1678475593",
+        isPrimary=True
+    )
+    plant_image11_1 = PlantImage(
+        plantId=11,
+        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/products/The-Sill_Ponytail-Palm_Large_Growpot_Trio_Variant.jpg?v=1678475593",
+        isPrimary=False
+    )
+    plant_image12 = PlantImage(
+        plantId=12,
+        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/files/the-sill_Stromanthe-Triostar_Large_Mexia_Black_Variant.jpg?v=1687366645",
+        isPrimary=True
+    )
 
 
     db.session.add(plant_image1)
@@ -103,6 +138,13 @@ def seed_plantimages():
     db.session.add(plant_image6)
     db.session.add(plant_image7)
     db.session.add(plant_image8)
+    db.session.add(plant_image9)
+    db.session.add(plant_image9_1)
+    db.session.add(plant_image10)
+    db.session.add(plant_image10_1)
+    db.session.add(plant_image11)
+    db.session.add(plant_image11_1)
+    db.session.add(plant_image12)
     db.session.commit()
 
 
