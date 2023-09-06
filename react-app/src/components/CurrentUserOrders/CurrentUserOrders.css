@@ -89,3 +89,28 @@
     color: white;
     border: 1px solid black;
 }
+
+
+.order-link{
+    display: inline-block;
+    padding: 0em 1em 0.75em;
+    color: #3d463d;
+    border-bottom: 2px solid transparent;
+    position: relative;
+    bottom: -3px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.order-link:hover,
+.order-link.is-active {
+    color: #022022;
+    border-bottom-color: #022022
+}
+
+.link-container{
+    align-self: flex-start;
+    padding-left: 5%;
+    margin-top: 50px;
+}

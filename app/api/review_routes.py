@@ -46,7 +46,7 @@ def delete_review(reviewId):
     Delete a review for a specific plant
     """
     review = Review.query.get(reviewId)
-    # print('--------------', review)
+    print('--------------', review)
     if review is None:
         return jsonify({'error': 'Review not found'}), 404
     if review.userId != current_user.id:
