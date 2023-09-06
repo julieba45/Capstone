@@ -54,6 +54,37 @@ def seed_plants():
         price=130.0,
         size='medium',
     )
+    plant6 = Plant(
+        name='Espostoa melanostele \'Peruvian Old Lady\'',
+        species='Espostoa melanostele',
+        description='Espostoa melanostele, commonly known as the "Peruvian Old Lady", is a columnar cactus native to the Andes mountains in Peru. It is known for its dense white woolly covering which protects it from intense sunlight and cold temperatures.',
+        careInstructions='Care : For detailed instructions on watering, pruning, and fertilizing, you may want to refer to a comprehensive guide on Espostoa melanostele care. Sunlight : Prefers full sun to partial shade. If grown indoors, place near a window with bright, indirect light. Watering & Drought : Being a cactus, the "Peruvian Old Lady" is drought-tolerant. Water sparingly, allowing the soil to dry out completely between waterings. Overwatering can lead to root rot. Pruning & Fertilizing : Minimal pruning is required, mostly to remove any dead or damaged parts. Fertilize with a cactus-specific fertilizer during the growing season. Please note : This cactus can tolerate some frost but it is best to protect it from freezing temperatures. The woolly covering can attract pests like mealybugs, so regular inspection is advised.',
+        wateringFrequency=3,
+        isInBloom=False,
+        price=50.0,
+        size='medium',
+    )
+    plant7 = Plant(
+        name='Ladyfinger Cactus',
+        species='Mammillaria elongata',
+        description='The Ladyfinger Cactus, scientifically known as Mammillaria elongata, is a popular cactus native to central Mexico. It is characterized by its elongated tubular segments covered in golden-yellow spines, giving it the appearance of lady fingers. It is a fast-growing cactus that often forms clusters and produces small pink or cream-colored flowers in spring.',
+        careInstructions='Care : For detailed instructions on watering, pruning, and fertilizing, you may want to refer to a comprehensive guide on Ladyfinger Cactus care. Sunlight : Prefers full sun but can tolerate partial shade. If grown indoors, ensure it receives ample bright light. Watering & Drought : Being a cactus, the Ladyfinger is drought-tolerant. Water sparingly, allowing the soil to dry out completely between waterings. Overwatering can lead to root rot. Pruning & Fertilizing : Pruning is generally not required unless you want to shape the plant or remove offsets. Fertilize with a cactus-specific fertilizer during the growing season, typically once in spring. Please note : Protect the cactus from freezing temperatures. While it can handle some cold, frost can damage the plant. Regularly inspect for pests like spider mites or mealybugs.',
+        wateringFrequency=3,
+        isInBloom=True,
+        price=25.0,
+        size='small',
+    )
+    plant8 = Plant(
+    name='Parlor Palm',
+    species='Chamaedorea elegans',
+    description='The Parlor Palm, also known as Chamaedorea elegans, is a popular indoor palm native to the rainforests of Southern Mexico and Guatemala. It is known for its elegant, feathery fronds and compact growth, making it a favorite for indoor spaces and offices. The Parlor Palm is slow-growing and can reach heights of 3-4 feet indoors.',
+    careInstructions='Care : For detailed instructions on watering, pruning, and fertilizing, you may want to refer to a comprehensive guide on Parlor Palm care. Sunlight : Prefers bright, indirect light but can tolerate low light conditions. Avoid direct sunlight as it can scorch the leaves. Watering & Drought : Water the palm when the top inch of the soil feels dry. Ensure the pot has good drainage to prevent root rot. Overwatering can be harmful. Pruning & Fertilizing : Prune dead or yellowing fronds at the base. Fertilize with a balanced, slow-release fertilizer during the growing season, typically once in spring and once in summer. Please note : Parlor Palms prefer higher humidity but can tolerate average indoor humidity. They are sensitive to cold drafts, so keep them away from doorways and air-conditioning vents.',
+    wateringFrequency=2,
+    isInBloom=False,
+    price=40.0,
+    size='medium',
+    )
+
 
 
     db.session.add(plant1)
@@ -61,6 +92,9 @@ def seed_plants():
     db.session.add(plant3)
     db.session.add(plant4)
     db.session.add(plant5)
+    db.session.add(plant6)
+    db.session.add(plant7)
+    db.session.add(plant8)
     db.session.commit()
 
 
