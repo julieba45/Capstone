@@ -62,15 +62,15 @@ const PaymentForm = () => {
     const renderCardIcon = () => {
         switch(cardType) {
             case 'AMEX':
-                return<i className="fa-brands fa-cc-amex" style={{color: "#2e5fb2"}}></i>
+                return<i className="credit-card-icon fa-brands fa-cc-amex" style={{color: "#2e5fb2"}}></i>
             case 'DISCOVER':
-                return <i className="fa-brands fa-cc-discover" style={{color: "#e66d0a"}}></i>
+                return <i className="credit-card-icon fa-brands fa-cc-discover" style={{color: "#e66d0a"}}></i>
             case 'VISA':
-                return <i className="fa-brands fa-cc-visa" style={{color: "#0c47ac"}}></i>
+                return <i className="credit-card-icon fa-brands fa-cc-visa" style={{color: "#0c47ac"}}></i>
             case 'MASTERCARD':
-                return <i className="fab fa-cc-mastercard"></i>;
+                return <i className="credit-card-icon fab fa-cc-mastercard"></i>;
             default:
-                return <i className="fa-regular fa-credit-card"></i>;
+                return <i className="credit-card-icon fa-regular fa-credit-card"></i>;
         }
     }
 
@@ -149,12 +149,12 @@ const PaymentForm = () => {
         <div className="payment-page-container">
         <div className="payment-form-container">
             <form className="payment-form"onSubmit={handleSubmit}>
-                <p className="payment-form-title-review">Review items and shipping</p>
+                <h4 className="payment-form-title-review">Delivery Information</h4>
                 <p className="payment-form-title">Payment Method</p>
                 <div className="credit-card-input-container">
                     {renderCardIcon()}
                     <input
-                        className="payment-input-cc"
+                        className="cc-input"
                         type="text"
                         maxLength="16"
                         placeholder="xxxx xxxx xxxx xxxx"
