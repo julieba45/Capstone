@@ -15,7 +15,7 @@ const CartPage = () => {
     useEffect(() => {
         dispatch(getCart())
         // console.log('-----STATE', state)
-        console.log('------------MY CART', cart)
+        // console.log('------------MY CART', cart)
     }, [dispatch])
 
     const handleUpdate = (plantItem, increment = true) => {
