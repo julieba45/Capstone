@@ -46,7 +46,7 @@ const SideCart = ({onClose})=>{
                     <button className="sidebar-remove-btn"onClick={(e) => handleDelete(plantItem.plantId, e)}>Remove</button>
                 </div>
             ))}
-            <NavLink className="sidecart-general-btn" aactiveClassName="is-active" to="/cart" onClick={(e) => e.stopPropagation()}>View Full Cart</NavLink>
+            <NavLink className="sidecart-general-btn" activeClassName="is-active" to="/cart" onClick={(e) => e.stopPropagation()}>View Full Cart</NavLink>
         </div>
     );
 }
