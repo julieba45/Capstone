@@ -19,7 +19,7 @@ const FinalCart = () => {
 
     return (
         <div className="final-cart-div">
-            <h1 className='final-MainCart'>Cart</h1>
+            <h4 className='final-MainCart'>Order Summary</h4>
             <div className='final-cart-page-container'>
             <div className='final-cart-page-header'>
                     <h4>Product</h4>
