@@ -5,7 +5,9 @@ import { useHistory } from 'react-router-dom';
 import { addFavoritePlant } from '../../store/favorite';
 import { fetchFavorites } from '../../store/favorite';
 import GardenSelectionModal from '../GardenSelectionModal';
+import { addToCart } from '../../store/cart';
 import { useModal } from '../../context/Modal';
+import SideCart from '../SideCart';
 import "./GetAllPlants.css";
 
 const GetAllPlants = () => {
@@ -17,6 +19,7 @@ const GetAllPlants = () => {
     const user = useSelector(state => state.session.user)
     const [hoverStates, setHoverStates] = useState({});
     const [notification, setNotification] = useState("");
+    const [showSideCart, setShowSideCart] = useState(false);
 
 
     //Some hovering effect fcts
@@ -64,6 +67,14 @@ const GetAllPlants = () => {
         setNotification("Plant successfully added to your garden!");
     }
 
+    const handleAddToCart = (plant, e) => {
+        e.stopPropagation();
+        dispatch(addToCart(plant, 1));
+        // TODO: Open the side cart
+        setShowSideCart(true)
+
+    }
+
     useEffect(() => {
         if(notification){
             const timer = setTimeout(() => {
@@ -95,7 +106,12 @@ const GetAllPlants = () => {
                             {plant.images && plant.images.length > 0 && plant.images[0].isPrimary &&
                             <img className="plant-image" src={hoverStates[plant.id] ? (plant.images[1] ? plant.images[1].pictureUrl : plant.images[0].pictureUrl) : plant.images[0].pictureUrl} alt={plant.name}></img>
                             }
+                            {hoverStates[plant.id] &&
+                            <button className="add-to-cart-button" onClick={(e) => handleAddToCart(plant, e)}>Quick Add</button>
+                            }
                         </div>
+
+                        {showSideCart && <SideCart onClose={(e) => {e.stopPropagation(); setShowSideCart(false)}} />}
                         {/* <button onClick={() => handleClick(plant.id)}>See Details</button> */}
                         <hr className="line-after-image" />
                         <div className='tile-name-price'>
