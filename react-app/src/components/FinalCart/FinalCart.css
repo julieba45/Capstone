@@ -15,12 +15,13 @@
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 16px;
     align-items: center;
+    padding-bottom:20px;
 }
 
 
 .final-cart-page-item img {
     max-width: 100px;
-    max-height: 100px;
+    max-height: auto;
     object-fit: cover;
 }
 
