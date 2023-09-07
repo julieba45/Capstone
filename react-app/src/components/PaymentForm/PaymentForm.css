@@ -39,6 +39,42 @@
     font-weight: bold;
 }
 
-.payment-input{
-    border: 1px solid lightgrey;
+.payment-input-cc{
+    border: none;
+}
+
+.payment-input-cc:focus{
+    outline: none;
+}
+
+.credit-card-input-container{
+    display: flex;
+    margin-left: 40px;
+}
+
+.expiry-cvc-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-left: 20px;
+    width: 80%;
+}
+
+.expiry-input,
+.cvc-input {
+    width: 45%;
+    border: none;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.signup-error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    width: 100%;
+    text-align: left;
 }
