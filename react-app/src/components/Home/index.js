@@ -108,7 +108,7 @@ const Home = () => {
                 {/* <h1 className={`home-header ${isHeaderVisible ? 'visible' : ''}`}>Bloom</h1> */}
                 <div className="video-container-main">
                     <video muted autoPlay>
-                            <source src={main4} alt="Home Plant" type="video/mp4"/>
+                            <source src="https://bloomcap.s3.us-east-2.amazonaws.com/main4.mp4" alt="Home Plant" type="video/mp4"/>
                     </video>
                     <h1 className="overlay-text">Bloom</h1>
                 </div>
