@@ -7,7 +7,6 @@ import "./Home.css";
 // import homeplant from "../../public/rotate_plant.mp4"
 // import girlplanting from "../../public/girl.jpg"
 import { NavLink } from 'react-router-dom';
-import main4 from "../../public/main4.mp4";
 
 
 
