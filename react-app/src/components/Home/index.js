@@ -1,17 +1,13 @@
 import React, {useEffect, useRef, useState} from "react";
 import ChatBot from "../ChatBot";
 import "./Home.css";
-import Spline from '@splinetool/react-spline';
+// import Spline from '@splinetool/react-spline';
 // import homeplants from "../../public/homeplants-2.mp4"
 // import homeplants from "../../public/home-plants.png"
 // import homeplant from "../../public/rotate_plant.mp4"
-// import blueplant from "../../public/blue-plant.jpg"
-// import greentree from "../../public/green-tree.jpg"
 // import girlplanting from "../../public/girl.jpg"
 import { NavLink } from 'react-router-dom';
-import main from "../../public/main.mp4";
-import main2 from "../../public/main2.mp4";
-import main3 from "../../public/main3.mp4"
+import main4 from "../../public/main4.mp4";
 
 
 
@@ -112,7 +108,7 @@ const Home = () => {
                 {/* <h1 className={`home-header ${isHeaderVisible ? 'visible' : ''}`}>Bloom</h1> */}
                 <div className="video-container-main">
                     <video muted autoPlay>
-                            <source src={main3} alt="Home Plant" type="video/mp4"/>
+                            <source src={main4} alt="Home Plant" type="video/mp4"/>
                     </video>
                     <h1 className="overlay-text">Bloom</h1>
                 </div>
