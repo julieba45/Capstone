@@ -200,7 +200,7 @@ video {
     transform: translate(-50%, -50%);
     color: white;
     font-size: 3em;
-    z-index: 10;
+    z-index: 2;
 }
 
 .end-section-home{

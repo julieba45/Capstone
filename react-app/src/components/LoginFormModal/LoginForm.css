@@ -10,7 +10,6 @@
     font-family:'Cormorant Garamond', serif;
     font-size: 20px;
     width: 100%;
-
 }
 
 .login-main-btn{
@@ -23,4 +22,14 @@
     border: 0;
     font-family: 'Times New Roman', Times, serif;
     cursor: pointer;
+}
+
+.login-container{
+    position: relative;  /* or absolute, depending on your needs */
+    z-index: 9999999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
 }
