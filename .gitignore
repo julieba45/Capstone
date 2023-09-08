@@ -9,3 +9,4 @@ Pipfile
 Pipfile.lock
 .Pipfile.lock
 .Pipfile
+..bfg-report
