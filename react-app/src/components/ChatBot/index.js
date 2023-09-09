@@ -112,7 +112,7 @@ const ChatBot = () => {
             {user && (
             <div className="chat-container">
             <button onClick={toggleChat} className="chat-button">
-                {isOpen ? 'Close Chat' : 'Open Chat'}</button>
+                {isOpen ? <i className="fa-regular fa-message chatty-open"></i> :  <i className="fa-solid fa-message chatty-close"></i>}</button>
             {isOpen && (
                 <div className="chat-content">
                     {history.map((message, index) => (
