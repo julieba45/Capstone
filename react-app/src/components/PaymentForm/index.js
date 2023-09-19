@@ -75,7 +75,7 @@ const PaymentForm = () => {
     }
 
     const validate = () => {
-        console.log('---------VALIDATING')
+        // console.log('---------VALIDATING')
         const newErrors = {};
         if (!paymentInfo) newErrors.paymentInfo = "Payment info is required";
         if (!paymentAmount) newErrors.paymentAmount = "Payment amount is required";

@@ -27,7 +27,7 @@ const ConfirmationPage = () => {
         } else if (order.payment) {
             setLoading(false);
             fetchMapData(order.payment.location);
-            console.log('hi')
+            // console.log('hi')
         }
     }, [dispatch, orderId, order]);
 
