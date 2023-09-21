@@ -43,7 +43,7 @@ export const getCart = () => async(dispatch) => {
         const cart = await response.json();
         // console.log('THE RESPONSE BACK', cart)
         dispatch(setCart(cart))
-    } else if (response.status < 500){
+    }else if (response.status < 500){
         const data = response.json();
         if(data.errors){
             return data.errors;
