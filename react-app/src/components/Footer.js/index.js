@@ -7,16 +7,16 @@ const Footer = () => {
                 <div className='footer-links'>
                     <span className='followus'>Welcome to our store!</span>
                     <div className='social-links'>
-                        {/* <a href='https://www.facebook.com/TaskRabbit-106755671141027'>
+                        <a href='https://www.linkedin.com/in/julie-barreto-415105289/' target="_blank" rel="noopener noreferrer">
                             <></>
-                            facebook
+                            LinkedIn
                         </a>
                         <span>|</span>
-                        <a href='https://twitter.com/i/flow/login?redirect_after_login=%2Ftaskrabbit'>
+                        <a href='https://github.com/julieba45'target="_blank" rel="noopener noreferrer">
                             <></>
-                            twitter
+                            Github
                         </a>
-                        <span>|</span>
+                        {/* <span>|</span>
                         <a href='https://www.instagram.com/taskrabbit/'>
                             <></>
                             instagram

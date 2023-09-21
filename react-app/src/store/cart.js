@@ -43,7 +43,7 @@ export const getCart = () => async(dispatch) => {
         const cart = await response.json();
         // console.log('THE RESPONSE BACK', cart)
         dispatch(setCart(cart))
-    } else if (response.status < 500){
+    }else if (response.status < 500){
         const data = response.json();
         if(data.errors){
             return data.errors;
@@ -89,7 +89,7 @@ export const addToCart = (plant, quantity) => async(dispatch) => {
 }
 
 export const updatePlantInCart = (plant) => async(dispatch) => {
-    console.log('--------Plant in thunk', plant)
+    // console.log('--------Plant in thunk', plant)
     const response = await fetch(`/api/cart/${plant.plantId}`, {
         method:'PUT',
         headers:{
@@ -100,7 +100,7 @@ export const updatePlantInCart = (plant) => async(dispatch) => {
 
     if(response.ok){
         const data = await response.json();
-        console.log('MY RESPONSE FROM THUNK UPDATE', data)
+        // console.log('MY RESPONSE FROM THUNK UPDATE', data)
         dispatch(updatePlant(data))
     }
 }
@@ -127,7 +127,7 @@ const cartReducer = (state = initialState, action) => {
                 cart: action.payload
             }
         case ADD_PLANT:
-            console.log('------CART', state.cart)
+            // console.log('------CART', state.cart)
             return {
                 ...state,
                 cart: {

@@ -92,12 +92,12 @@ def seed_plantimages():
     )
     plant_image9_1 = PlantImage(
         plantId=9,
-        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/files/The-Sill_Medium-Barrel-Cactus_Gallery.jpg?v=1686605124",
+        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_phildendron-green_medium_hyde_cream.jpg?v=1680593275",
         isPrimary=False
     )
     plant_image10 = PlantImage(
         plantId=10,
-        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/files/the-sill_silver-satin_variant_small_hyde_cream.jpg?v=1682433187",
+        pictureURL="https://cdn.shopify.com/s/files/1/0150/6262/products/the-sill_phildendron-green_medium_hyde_cream.jpg?v=1680593275",
         isPrimary=True
     )
     plant_image10_1 = PlantImage(

@@ -18,7 +18,8 @@ def get_current_cart():
     order = Order.query.get(orderId)
 
     if order is None:
-        return jsonify({'error': 'Order not found'}), 404
+        # return jsonify({'error': 'Order not found'}), 404
+        return {}
     else:
         return jsonify(order.to_dict())
 
