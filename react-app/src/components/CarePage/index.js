@@ -26,12 +26,12 @@ const CarePage = () => {
                 try{
                 const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(location)}&key=${process.env.REACT_APP_API_KEY}`);
                 const data = await response.json();
-                // console.log('-----------LOCATION DATA', data)
+                console.log('-----------LOCATION DATA', data)
                 const { lat, lng } = data.results[0].geometry.location;
 
                 const weatherResponse = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${lat},${lng}/today?key=${process.env.REACT_APP_API_WEATHER}`)
                 const weatherData = await weatherResponse.json()
-                // console.log('---------------WEATHER DATA', weatherData)
+                console.log('---------------WEATHER DATA', weatherData)
                 setWeatherData(weatherData);
                 setLoading(false);
 
